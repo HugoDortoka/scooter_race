@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('address');
             $table->decimal('price_per_course', 8, 2);
+            $table->boolean('active')->default(true);
         });
     }
 
