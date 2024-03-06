@@ -17,4 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/adminLogin', [AdministratorController::class, 'login'])->name('admin.login');
+
 Route::get('/adminHome', [AdministratorController::class, 'home'])->name('admin.home');
