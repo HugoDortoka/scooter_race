@@ -17,6 +17,12 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
         });
+
+        DB::table('administrators')->insert([
+            'name' => 'admin',
+            'email' => 'admin',
+            'password' => bcrypt('admin'),
+        ]);
     }
 
     /**

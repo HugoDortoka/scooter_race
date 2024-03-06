@@ -6,6 +6,9 @@
         <title>Admin Login</title>
     </head>
     <body>
-        
+        <form action="" method="POST">
+            
+            <input type="submit" value="Login">
+        </form>
     </body>
 </html>

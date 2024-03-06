@@ -10,6 +10,11 @@ class AdministratorController extends Controller
     {
         return view('admin.login');
     }
+
+    public function checkLogin()
+    {
+        
+    }
     
     public function home()
     {

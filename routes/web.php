@@ -19,4 +19,6 @@ Route::get('/', function () {
 
 Route::get('/adminLogin', [AdministratorController::class, 'login'])->name('admin.login');
 
+Route::post('/adminLogin/check', [AdministratorController::class, 'checkLogin'])->name('admin.checkLogin');
+
 Route::get('/adminHome', [AdministratorController::class, 'home'])->name('admin.home');
