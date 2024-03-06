@@ -1,0 +1,27 @@
+.insurer {
+    display: grid;
+    grid-template-columns: 65% 14% 14%;
+    gap: 2%;
+    background-color: #0DCAF0;
+    color: white;
+    margin-bottom: 25px;
+    border-radius: 20px;
+    padding: 25px;
+}
+.insurer h5{
+    display: grid;
+    align-items: center;
+}
+.btn-pink {
+    background-color: #E75E8D;
+    color: white;
+    border: none;
+    border-radius: 20px;
+}
+.btn-pink:hover {
+    background-color: #d81b60;
+    color: white;
+}
+.btnAdd{
+    margin-bottom: 2%;
+}
