@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Insurer extends Model
 {
     use HasFactory;
+    
+    public static function mostrarTodas()
+    {
+        return self::all();
+    }
 }

@@ -8,6 +8,7 @@
 <body>
 	<h1>Welcome to the Admin Panel</h1>
 	<!-- Aquí puedes agregar contenido adicional según sea necesario -->
+    <a href="{{ route('admin.insurers') }}">Insurers</a>
 </body>
 </html>
 
