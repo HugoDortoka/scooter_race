@@ -12,29 +12,46 @@ class InsurerController extends Controller
         $insurers = Insurer::all();
         return view('admin.insurers', compact('insurers'));
     }
-
-    public function create()
+    public function show($id)
     {
-        return view('admin.createInsurer');
+        $insurer = Insurer::insurerById($id);
+        return view('admin.insurerShow', compact('insurer'));
+    }
+    public function showAdd()
+    {
+        return view('admin.insurerAdd');
+    }
+    public function add(Request $request)
+    {
+        $insurer = new Insurer();
+        $insurer->CIF = $request->input('cif');
+        $insurer->name = $request->input('name');
+        $insurer->address = $request->input('address');
+        $insurer->price_per_course = $request->input('price');
+        $insurer->save();
+        $insurers = Insurer::all();
+        return view('admin.insurers', compact('insurers'));
+    }
+    
+
+    public function update(Request $request, $id)
+    {
+        $insurer = Insurer::findOrFail($id);
+        $insurer->update([
+            'CIF' => $request->input('cif'),
+            'name' => $request->input('name'),
+            'address' => $request->input('address'),
+            'price_per_course' => $request->input('price')
+        ]);
+        $insurers = Insurer::all();
+        return view('admin.insurers', compact('insurers'));
     }
 
-    public function store(Request $request)
-    {
-        // Valida y guarda los datos de la nueva aseguradora
-    }
-
-    public function edit(Insurer $insurers)
-    {
-        return view('admin.editInsurer', compact('insurers'));
-    }
-
-    public function update(Request $request, Insurer $insurers)
-    {
-        // Valida y actualiza los datos de la aseguradora
-    }
-
-    public function destroy(Insurer $insurers)
-    {
-        // Desactiva la aseguradora (en lugar de borrarla completamente)
+    public function change($id){
+        $insurer = Insurer::findOrFail($id);
+        $insurer->active = !$insurer->active;
+        $insurer->save();
+        $insurers = Insurer::all();
+        return view('admin.insurers', compact('insurers'));
     }
 }

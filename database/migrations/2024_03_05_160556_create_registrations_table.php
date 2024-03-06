@@ -21,6 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('insurer_id')->nullable();
             $table->foreign('insurer_id')->references('id')->on('insurers')->onDelete('set null');
             $table->time('Finish_Time')->nullable();
+            $table->timestamps();
         });
     }
 

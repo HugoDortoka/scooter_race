@@ -20,6 +20,7 @@ return new class extends Migration
             $table->boolean('principal')->default(false);
             $table->decimal('extra_cost', 8, 2)->nullable();
             $table->boolean('active')->default(true);
+            $table->timestamps();
         });
     }
 

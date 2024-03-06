@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('date_of_birth');
             $table->boolean('PRO')->default(false);
             $table->string('federation_number')->default(null);
+            $table->timestamps();
         });
     }
 

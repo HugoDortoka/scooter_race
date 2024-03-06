@@ -29,3 +29,8 @@ Route::get('/adminHome', [AdministratorController::class, 'home'])->name('admin.
 
 //InsurersController
 Route::get('/insurers', [InsurerController::class, 'index'])->name('admin.insurers');
+Route::get('/insurers/{id}', [InsurerController::class, 'show'])->name('admin.insurerShow');
+Route::post('/insurers/{id}', [InsurerController::class, 'update'])->name('admin.insurerUpdate');
+Route::get('/insurerAdd', [InsurerController::class, 'showAdd'])->name('admin.insurerShowAdd');
+Route::post('/insurerAdd', [InsurerController::class, 'add'])->name('admin.insurerAdd');
+Route::get('/insurers/{id}/change', [InsurerController::class, 'change'])->name('admin.insurerChange');

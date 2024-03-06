@@ -20,6 +20,7 @@ return new class extends Migration
             $table->decimal('annual_fee', 8, 2);
             $table->boolean('paid')->default(false);
             $table->decimal('discount', 8, 2)->nullable();
+            $table->timestamps();
         });
     }
 
