@@ -23,6 +23,8 @@ Route::get('/adminLogin', [AdministratorController::class, 'login'])->name('admi
 
 Route::post('/adminLogin', [AdministratorController::class, 'checkLogin'])->name('admin.checkLogin');
 
+Route::get('/adminLogout', [AdministratorController::class, 'logout'])->name('admin.logout');
+
 Route::get('/adminHome', [AdministratorController::class, 'home'])->name('admin.home');
 
 //InsurersController
