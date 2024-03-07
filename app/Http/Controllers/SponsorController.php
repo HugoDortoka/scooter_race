@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sponsor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class SponsorController extends Controller
 {
@@ -40,8 +41,7 @@ class SponsorController extends Controller
         $sponsor->principal = $principal;
         $sponsor->extra_cost = $request->input('extra_cost');
         $sponsor->save();
-        $sponsors = Sponsor::all();
-        return view('admin.sponsors', compact('sponsors'));
+        return Redirect::route('admin.sponsors');
     }
     
 
@@ -69,15 +69,13 @@ class SponsorController extends Controller
         }
 
         $sponsor->update($dataToUpdate);
-        $sponsors = Sponsor::all();
-        return view('admin.sponsors', compact('sponsors'));
+        return Redirect::route('admin.sponsors');
     }
 
     public function change($id){
         $sponsor = Sponsor::findOrFail($id);
         $sponsor->active = !$sponsor->active;
         $sponsor->save();
-        $sponsors = Sponsor::all();
-        return view('admin.sponsors', compact('sponsors'));
+        return Redirect::route('admin.sponsors');
     }
 }

@@ -28,7 +28,6 @@ Route::post('/adminLogin', [AdministratorController::class, 'checkLogin'])->name
 
 Route::get('/adminLogout', [AdministratorController::class, 'logout'])->name('admin.logout');
 
-
 //InsurersController
 Route::get('/insurers', [InsurerController::class, 'index'])->name('admin.insurers');
 Route::get('/insurers/{id}', [InsurerController::class, 'show'])->name('admin.insurerShow');

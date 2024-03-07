@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class CourseController extends Controller
 {
@@ -47,8 +48,7 @@ class CourseController extends Controller
         $course->sponsorship_cost = $request->input('sponsorship_cost');
         $course->registration_price = $request->input('registration_price');
         $course->save();
-        $courses = Course::all();
-        return view('admin.home', compact('courses'));
+        return Redirect::route('admin.home');
     }
     
 
@@ -89,15 +89,13 @@ class CourseController extends Controller
         }
 
         $course->update($dataToUpdate);
-        $courses = Course::all();
-        return view('admin.home', compact('courses'));
+        return Redirect::route('admin.home');
     }
 
     public function change($id){
         $course = Course::findOrFail($id);
         $course->active = !$course->active;
         $course->save();
-        $courses = Course::all();
-        return view('admin.home', compact('courses'));
+        return Redirect::route('admin.home');
     }
 }

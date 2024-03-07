@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Insurer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class InsurerController extends Controller
 {
@@ -29,8 +30,7 @@ class InsurerController extends Controller
         $insurer->address = $request->input('address');
         $insurer->price_per_course = $request->input('price');
         $insurer->save();
-        $insurers = Insurer::all();
-        return view('admin.insurers', compact('insurers'));
+        return Redirect::route('admin.insurers');
     }
     
 
@@ -43,15 +43,13 @@ class InsurerController extends Controller
             'address' => $request->input('address'),
             'price_per_course' => $request->input('price')
         ]);
-        $insurers = Insurer::all();
-        return view('admin.insurers', compact('insurers'));
+        return Redirect::route('admin.insurers');
     }
 
     public function change($id){
         $insurer = Insurer::findOrFail($id);
         $insurer->active = !$insurer->active;
         $insurer->save();
-        $insurers = Insurer::all();
-        return view('admin.insurers', compact('insurers'));
+        return Redirect::route('admin.insurers');
     }
 }
