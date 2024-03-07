@@ -1,17 +1,23 @@
 
-<form action="{{ route('admin.insurerUpdate', $insurer->id) }}" method="post">
+<form action="{{ route('admin.sponsorUpdate', $sponsor->id) }}" method="post">
     @csrf
     <label for="cif">CIF:</label>
-    <input type="text" id="cif" name="cif" value="{{ $insurer->CIF }}" readonly ><br><br>
+    <input type="text" id="cif" name="cif" value="{{ $sponsor->CIF }}" readonly ><br><br>
 
     <label for="name">Nombre:</label>
-    <input type="text" id="name" name="name" value="{{ $insurer->name }}" ><br><br>
+    <input type="text" id="name" name="name" value="{{ $sponsor->name }}" ><br><br>
+
+    <label for="name">Logo:</label>
+    <input type="text" id="logo" name="logo" value="{{ $sponsor->logo }}" ><br><br>
 
     <label for="address">Dirección:</label>
-    <input type="text" id="address" name="address" value="{{ $insurer->address }}" ><br><br>
+    <input type="text" id="address" name="address" value="{{ $sponsor->address }}" ><br><br>
+    
+    <label for="principal">Principal:</label>
+    <input type="checkbox" id="principal" name="principal" value="1" {{ $sponsor->principal ? 'checked' : '' }}><br><br>
 
-    <label for="price">Precio por carrera:</label>
-    <input type="text" id="price" name="price" value="{{ $insurer->price_per_course }}" ><br><br>
+    <label for="extra_cost">Coste extra</label>
+    <input type="number" id="extra_cost" name="extra_cost" value="{{ $sponsor->extra_cost }}" ><br><br>
 
     <!-- Agrega aquí más campos si es necesario -->
 
