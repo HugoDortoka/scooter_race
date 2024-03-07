@@ -55,7 +55,7 @@ class CourseController extends Controller
     public function update(Request $request, $id)
     {
         $course = Course::findOrFail($id);
-        $course->update([
+        $dataToUpdate = [
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             'elevation' => $request->input('elevation'),
@@ -66,7 +66,29 @@ class CourseController extends Controller
             'location' => $request->input('location'),
             'sponsorship_cost' => $request->input('sponsorship_cost'),
             'registration_price' => $request->input('registration_price')
-        ]);
+        ];
+
+        if ($request->hasFile('map_image')) {
+            unlink(public_path($course->map_image));
+            $map_image = $request->file('map_image');
+            $map_imageExtension = $map_image->getClientOriginalExtension();
+            $map_imageName = time() . '_' . $request->input('name') . '.' . $map_imageExtension;
+            $map_image->move(public_path('img/map_images'), $map_imageName);
+            $map_imagePath = 'img/map_images/' . $map_imageName;
+            $dataToUpdate['map_image'] = $map_imagePath;
+        }
+
+        if ($request->hasFile('promotion_poster')) {
+            unlink(public_path($course->promotion_poster));
+            $promotion_poster = $request->file('promotion_poster');
+            $promotion_posterExtension = $promotion_poster->getClientOriginalExtension();
+            $promotion_posterName = time() . '_' . $request->input('name') . '.' . $promotion_posterExtension;
+            $promotion_poster->move(public_path('img/promotion_posters'), $promotion_posterName);
+            $promotion_posterPath = 'img/promotion_posters/' . $promotion_posterName;
+            $dataToUpdate['promotion_poster'] = $promotion_posterPath;
+        }
+
+        $course->update($dataToUpdate);
         $courses = Course::all();
         return view('admin.home', compact('courses'));
     }

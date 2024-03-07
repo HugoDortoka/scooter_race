@@ -28,7 +28,12 @@ class SponsorController extends Controller
         $sponsor = new Sponsor();
         $sponsor->CIF = $request->input('cif');
         $sponsor->name = $request->input('name');
-        $sponsor->logo = $request->input('logo');
+        $logo = $request->file('logo');
+        $logoExtension = $logo->getClientOriginalExtension();
+        $logoName = time() . '_' . $request->input('name') . '.' . $logoExtension;
+        $logo->move(public_path('img/sponsors'), $logoName);
+        $logoPath = 'img/sponsors/' . $logoName;
+        $sponsor->logo = $logoPath;
         $sponsor->address = $request->input('address');
         
         $principal = $request->has('principal');
@@ -45,16 +50,25 @@ class SponsorController extends Controller
         $sponsor = Sponsor::findOrFail($id);
         $principal = isset($_POST['principal']) && $_POST['principal'] == 'ON' ? true : false;
 
-        $sponsor->update([
-            
+        $dataToUpdate = [
             'CIF' => $request->input('cif'),
             'name' => $request->input('name'),
-            'logo' => $request->input('logo'),
             'address' => $request->input('address'),
             'principal' => $request->has('principal'),
-
             'extra_cost' => $request->input('extra_cost')
-        ]);
+        ];
+        
+        if ($request->hasFile('logo')) {
+            unlink(public_path($sponsor->logo));
+            $logo = $request->file('logo');
+            $logoExtension = $logo->getClientOriginalExtension();
+            $logoName = time() . '_' . $request->input('name') . '.' . $logoExtension;
+            $logo->move(public_path('img/sponsors'), $logoName);
+            $logoPath = 'img/sponsors/' . $logoName;
+            $dataToUpdate['logo'] = $logoPath;
+        }
+
+        $sponsor->update($dataToUpdate);
         $sponsors = Sponsor::all();
         return view('admin.sponsors', compact('sponsors'));
     }

@@ -1,5 +1,5 @@
 
-<form action="{{ route('admin.sponsorUpdate', $sponsor->id) }}" method="post">
+<form action="{{ route('admin.sponsorUpdate', $sponsor->id) }}" method="post" enctype="multipart/form-data">
     @csrf
     <label for="cif">CIF:</label>
     <input type="text" id="cif" name="cif" value="{{ $sponsor->CIF }}" readonly ><br><br>
@@ -7,8 +7,9 @@
     <label for="name">Nombre:</label>
     <input type="text" id="name" name="name" value="{{ $sponsor->name }}" ><br><br>
 
-    <label for="name">Logo:</label>
-    <input type="text" id="logo" name="logo" value="{{ $sponsor->logo }}" ><br><br>
+    <label for="logo">Logo:</label>
+    <input type="file" id="logo" name="logo" accept="image/*"><br>
+    <p>IMPORTANT: if you don't want to change the logo, don't upload any file</p><br>
 
     <label for="address">Dirección:</label>
     <input type="text" id="address" name="address" value="{{ $sponsor->address }}" ><br><br>

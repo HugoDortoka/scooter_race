@@ -9,8 +9,9 @@
     <label for="elevation">Elevation (0-100%):</label>
     <input type="number" id="elevation" name="elevation" min="0" max="100" value="{{ $course->elevation }}" required><br><br>
 
-    <!-- <label for="map_image">Map Image:</label>
-    <input type="file" id="map_image" name="map_image" accept="image/*" value="{{ $course->map_image }}" readonly><br><br> -->
+    <label for="map_image">Map Image:</label>
+    <input type="file" id="map_image" name="map_image" accept="image/*"><br>
+    <p>IMPORTANT: if you don't want to change the map, don't upload any file</p><br>
 
     <label for="max_participants">Max Participants:</label>
     <input type="number" id="max_participants" name="max_participants" min="1" value="{{ $course->max_participants }}" required><br><br>
@@ -27,8 +28,9 @@
     <label for="location">Location:</label>
     <input type="text" id="location" name="location" value="{{ $course->location }}" required><br><br>
 
-    <!-- <label for="promotion_poster">Promotion Poster:</label>
-    <input type="file" id="promotion_poster" name="promotion_poster" accept="image/*" value="{{ $course->promotion_poster }}" readonly><br><br> -->
+    <label for="promotion_poster">Promotion Poster:</label>
+    <input type="file" id="promotion_poster" name="promotion_poster" accept="image/*"><br>
+    <p>IMPORTANT: if you don't want to change the promotion poster, don't upload any file</p><br>
 
     <label for="sponsorship_cost">Sponsorship Cost:</label>
     <input type="number" id="sponsorship_cost" name="sponsorship_cost" min="0" step="0.01" value="{{ $course->sponsorship_cost }}" required><br><br>
