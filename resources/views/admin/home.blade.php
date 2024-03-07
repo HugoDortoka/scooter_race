@@ -10,6 +10,7 @@
 	<!-- Scripts de Bootstrap (JavaScript) -->
 	<script src="{{ asset('assets/js/bootstrap.min.js') }}" defer></script>
 	<!-- Additional CSS Files -->
+  <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}">
 	<link rel="stylesheet" href="{{ asset('assets/css/fontawesome.css') }}">
 	<link rel="stylesheet" href="{{ asset('assets/css/templatemo-cyborg-gaming.css') }}">
 	<link rel="stylesheet" href="{{ asset('assets/css/owl.css') }}">
@@ -65,8 +66,29 @@
         </div>
     </div>
 </header>
-	
-	<!-- Aquí puedes agregar contenido adicional según sea necesario -->
+
+<!-- Contenido adicional -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="page-content">
+
+                <a href="{{ route('admin.courseShowAdd') }}" class="btn btn-pink btnAdd">Add</a>
+                @foreach($courses as $course)
+                    <div class="row justify-content-center">
+                        <div>
+                            <div class="insurer">
+                                <h5>Name: {{ $course->name }}</h5>
+                                <a href="{{ route('admin.courseShow', $course->id) }}" class="btn btn-pink mr-2">Show details</a>
+                                <a href="{{ route('admin.courseChange', $course->id) }}" class="btn btn-pink">Change active</a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+</div>
     
 <!-- Scripts -->
 <!-- Bootstrap core JavaScript -->
