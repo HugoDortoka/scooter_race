@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdministratorController;
 use App\Http\Controllers\InsurerController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\SponsorController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,7 +28,6 @@ Route::post('/adminLogin', [AdministratorController::class, 'checkLogin'])->name
 
 Route::get('/adminLogout', [AdministratorController::class, 'logout'])->name('admin.logout');
 
-Route::get('/adminHome', [AdministratorController::class, 'home'])->name('admin.home');
 
 //InsurersController
 Route::get('/insurers', [InsurerController::class, 'index'])->name('admin.insurers');
@@ -37,9 +38,17 @@ Route::post('/insurerAdd', [InsurerController::class, 'add'])->name('admin.insur
 Route::get('/insurers/{id}/change', [InsurerController::class, 'change'])->name('admin.insurerChange');
 
 //CoursesController
-Route::get('/courses', [CourseController::class, 'index'])->name('admin.courses');
+Route::get('/adminHome', [CourseController::class, 'index'])->name('admin.home');
 Route::get('/courses/{id}', [CourseController::class, 'show'])->name('admin.courseShow');
 Route::post('/courses/{id}', [CourseController::class, 'update'])->name('admin.courseUpdate');
 Route::get('/courseAdd', [CourseController::class, 'showAdd'])->name('admin.courseShowAdd');
 Route::post('/courseAdd', [CourseController::class, 'add'])->name('admin.courseAdd');
 Route::get('/courses/{id}/change', [CourseController::class, 'change'])->name('admin.courseChange');
+
+//SponsorController
+Route::get('/sponsors', [SponsorController::class, 'index'])->name('admin.sponsors');
+Route::get('/sponsors/{id}', [SponsorController::class, 'show'])->name('admin.sponsorShow');
+Route::post('/sponsors/{id}', [SponsorController::class, 'update'])->name('admin.sponsorUpdate');
+Route::get('/sponsorAdd', [SponsorController::class, 'showAdd'])->name('admin.sponsorShowAdd');
+Route::post('/sponsorAdd', [SponsorController::class, 'add'])->name('admin.sponsorAdd');
+Route::get('/sponsor/{id}/change', [SponsorController::class, 'change'])->name('admin.sponsorChange');
