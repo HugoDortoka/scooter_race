@@ -24,13 +24,31 @@ class CourseController extends Controller
     public function add(Request $request)
     {
         $course = new Course();
-        $course->CIF = $request->input('cif');
         $course->name = $request->input('name');
-        $course->address = $request->input('address');
-        $course->price_per_course = $request->input('price');
+        $course->description = $request->input('description');
+        $course->elevation = $request->input('elevation');
+        $mapImage = $request->file('map_image');
+        $mapImageExtension = $mapImage->getClientOriginalExtension();
+        $mapImageName = time() . '_' . $request->input('name') . '.' . $mapImageExtension;
+        $mapImage->move(public_path('img/map_images'), $mapImageName);
+        $mapImagePath = 'img/map_images/' . $mapImageName;
+        $course->map_image = $mapImagePath;
+        $course->max_participants = $request->input('max_participants');
+        $course->distance_km = $request->input('distance_km');
+        $course->date = $request->input('date');
+        $course->time = $request->input('time');
+        $course->location = $request->input('location');
+        $promotionPoster = $request->file('promotion_poster');
+        $promotionPosterExtension = $promotionPoster->getClientOriginalExtension();
+        $promotionPosterName = time() . '_' . $request->input('name') . '.' . $promotionPosterExtension;
+        $promotionPoster->move(public_path('img/promotion_posters'), $promotionPosterName);
+        $promotionPosterPath = 'img/promotion_posters/' . $promotionPosterName;
+        $course->promotion_poster = $promotionPosterPath;
+        $course->sponsorship_cost = $request->input('sponsorship_cost');
+        $course->registration_price = $request->input('registration_price');
         $course->save();
         $courses = Course::all();
-        return view('admin.courses', compact('courses'));
+        return view('admin.home', compact('courses'));
     }
     
 
@@ -38,13 +56,19 @@ class CourseController extends Controller
     {
         $course = Course::findOrFail($id);
         $course->update([
-            'CIF' => $request->input('cif'),
             'name' => $request->input('name'),
-            'address' => $request->input('address'),
-            'price_per_course' => $request->input('price')
+            'description' => $request->input('description'),
+            'elevation' => $request->input('elevation'),
+            'max_participants' => $request->input('max_participants'),
+            'distance_km' => $request->input('distance_km'),
+            'date' => $request->input('date'),
+            'time' => $request->input('time'),
+            'location' => $request->input('location'),
+            'sponsorship_cost' => $request->input('sponsorship_cost'),
+            'registration_price' => $request->input('registration_price')
         ]);
         $courses = Course::all();
-        return view('admin.courses', compact('courses'));
+        return view('admin.home', compact('courses'));
     }
 
     public function change($id){
@@ -52,6 +76,6 @@ class CourseController extends Controller
         $course->active = !$course->active;
         $course->save();
         $courses = Course::all();
-        return view('admin.courses', compact('courses'));
+        return view('admin.home', compact('courses'));
     }
 }
