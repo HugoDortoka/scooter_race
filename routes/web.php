@@ -34,3 +34,11 @@ Route::post('/insurers/{id}', [InsurerController::class, 'update'])->name('admin
 Route::get('/insurerAdd', [InsurerController::class, 'showAdd'])->name('admin.insurerShowAdd');
 Route::post('/insurerAdd', [InsurerController::class, 'add'])->name('admin.insurerAdd');
 Route::get('/insurers/{id}/change', [InsurerController::class, 'change'])->name('admin.insurerChange');
+
+//CoursesController
+Route::get('/courses', [CourseController::class, 'index'])->name('admin.courses');
+Route::get('/courses/{id}', [CourseController::class, 'show'])->name('admin.courseShow');
+Route::post('/courses/{id}', [CourseController::class, 'update'])->name('admin.courseUpdate');
+Route::get('/courseAdd', [CourseController::class, 'showAdd'])->name('admin.courseShowAdd');
+Route::post('/courseAdd', [CourseController::class, 'add'])->name('admin.courseAdd');
+Route::get('/courses/{id}/change', [CourseController::class, 'change'])->name('admin.courseChange');
