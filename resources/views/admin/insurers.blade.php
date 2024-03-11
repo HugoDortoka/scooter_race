@@ -34,7 +34,7 @@
             <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-                    <a href="index.html" class="logo">
+                    <a href="{{ route('admin.home') }}" class="logo">
                         <img src="assets/images/logo.png" alt="">
                     </a>
                     <!-- ***** Logo End ***** -->
@@ -48,8 +48,8 @@
                     <!-- ***** Search End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li><a href="{{ route('admin.insurers') }}" class="active">Insurers</a></li>
                         <li><a href="{{ route('admin.home') }}" >Races</a></li>
+                        <li><a href="{{ route('admin.insurers') }}" class="active">Insurers</a></li>
                         <li><a href="{{ route('admin.sponsors') }}">Sponsors</a></li>
                         <li><a href="streams.html">Competitors</a></li>
                         <li><a href="{{ route('admin.logout') }}">Logout<img src="assets/images/profile-header.jpg" alt=""></a></li>
