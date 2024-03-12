@@ -5,21 +5,31 @@ namespace App\Http\Controllers;
 use App\Models\Sponsor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class SponsorController extends Controller
 {
     public function index()
     {
+        if (Session::get('admin') !== 'admin') {
+            return Redirect::route('admin.login');
+        }
         $sponsors = Sponsor::all();
         return view('admin.sponsors', compact('sponsors'));
     }
     public function show($id)
     {
+        if (Session::get('admin') !== 'admin') {
+            return Redirect::route('admin.login');
+        }
         $sponsor = Sponsor::insurerById($id);
         return view('admin.sponsorShow', compact('sponsor'));
     }
     public function showAdd()
     {
+        if (Session::get('admin') !== 'admin') {
+            return Redirect::route('admin.login');
+        }
         return view('admin.sponsorAdd');
     }
     public function add(Request $request)

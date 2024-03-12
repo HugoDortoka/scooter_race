@@ -5,21 +5,31 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class CourseController extends Controller
 {
     public function index()
     {
+        if (Session::get('admin') !== 'admin') {
+            return Redirect::route('admin.login');
+        }
         $courses = Course::all();
         return view('admin.home', compact('courses'));
     }
     public function show($id)
     {
+        if (Session::get('admin') !== 'admin') {
+            return Redirect::route('admin.login');
+        }
         $course = Course::insurerById($id);
         return view('admin.courseShow', compact('course'));
     }
     public function showAdd()
     {
+        if (Session::get('admin') !== 'admin') {
+            return Redirect::route('admin.login');
+        }
         return view('admin.courseAdd');
     }
     public function add(Request $request)

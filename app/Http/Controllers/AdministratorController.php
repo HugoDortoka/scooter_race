@@ -5,6 +5,7 @@ use App\Models\Administrator;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 
 class AdministratorController extends Controller
 {
@@ -22,7 +23,7 @@ class AdministratorController extends Controller
 
         if ($administrator) {
             Session::put('admin', 'admin');
-            return redirect()->route('admin.home');
+            return Redirect::route('admin.home');
         } else {
             return back()->with('error', 'Email or password are incorrect');
         }
@@ -33,10 +34,4 @@ class AdministratorController extends Controller
         Session::flush();
         return redirect()->route('admin.login');
     }
-
-    public function home()
-    {
-        return view('admin.home');
-    }
-
 }

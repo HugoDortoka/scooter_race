@@ -5,21 +5,31 @@ namespace App\Http\Controllers;
 use App\Models\Insurer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class InsurerController extends Controller
 {
     public function index()
     {
+        if (Session::get('admin') !== 'admin') {
+            return Redirect::route('admin.login');
+        }
         $insurers = Insurer::all();
         return view('admin.insurers', compact('insurers'));
     }
     public function show($id)
     {
+        if (Session::get('admin') !== 'admin') {
+            return Redirect::route('admin.login');
+        }
         $insurer = Insurer::insurerById($id);
         return view('admin.insurerShow', compact('insurer'));
     }
     public function showAdd()
     {
+        if (Session::get('admin') !== 'admin') {
+            return Redirect::route('admin.login');
+        }
         return view('admin.insurerAdd');
     }
     public function add(Request $request)
