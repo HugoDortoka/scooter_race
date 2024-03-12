@@ -25,3 +25,34 @@
 .btnAdd{
     margin-bottom: 2%;
 }
+
+.editForm{
+    color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 120px;
+}
+.editForm div{
+    display: grid;
+    text-align: center;
+}
+.editForm div label{
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+.editForm div input{
+   text-align: center;
+   height: 240px;
+   background-color: #0DCAF0;
+   color: white;
+   font-size: 40px;
+   border-radius: 20px;
+  
+}
+@media (max-width: 1400px) {
+    .editForm{
+        grid-template-columns: 1fr;
+    }
+}
+  
