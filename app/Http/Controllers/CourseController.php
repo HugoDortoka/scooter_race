@@ -108,4 +108,10 @@ class CourseController extends Controller
         $course->save();
         return Redirect::route('admin.home');
     }
+
+    public function search(Request $request){
+        $query = $request->input('query');
+        $courses = Course::where('name', 'like', "%$query%")->get();
+        return view('admin.search_courses', compact('courses'));
+    }
 }

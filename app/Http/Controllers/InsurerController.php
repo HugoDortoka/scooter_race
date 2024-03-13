@@ -62,4 +62,10 @@ class InsurerController extends Controller
         $insurer->save();
         return Redirect::route('admin.insurers');
     }
+
+    public function search(Request $request){
+        $query = $request->input('query');
+        $insurers = Insurer::where('name', 'like', "%$query%")->get();
+        return view('admin.search_insurers', compact('insurers'));
+    }
 }

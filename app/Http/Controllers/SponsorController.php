@@ -88,4 +88,10 @@ class SponsorController extends Controller
         $sponsor->save();
         return Redirect::route('admin.sponsors');
     }
+
+    public function search(Request $request){
+        $query = $request->input('query');
+        $sponsors = Sponsor::where('name', 'like', "%$query%")->get();
+        return view('admin.search_sponsors', compact('sponsors'));
+    }
 }

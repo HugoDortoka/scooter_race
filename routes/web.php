@@ -5,6 +5,7 @@ use App\Http\Controllers\AdministratorController;
 use App\Http\Controllers\InsurerController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\SponsorController;
+use App\Http\Controllers\RegistrationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,7 @@ Route::post('/insurers/{id}', [InsurerController::class, 'update'])->name('admin
 Route::get('/insurerAdd', [InsurerController::class, 'showAdd'])->name('admin.insurerShowAdd');
 Route::post('/insurerAdd', [InsurerController::class, 'add'])->name('admin.insurerAdd');
 Route::get('/insurers/{id}/change', [InsurerController::class, 'change'])->name('admin.insurerChange');
+Route::get('/insurer/search', [InsurerController::class, 'search'])->name('admin.insurersSearch'); //Da error si tiene el mismo nombre que el primero (/insurers/search)
 
 //CoursesController
 Route::get('/adminHome', [CourseController::class, 'index'])->name('admin.home');
@@ -43,6 +45,7 @@ Route::post('/courses/{id}', [CourseController::class, 'update'])->name('admin.c
 Route::get('/courseAdd', [CourseController::class, 'showAdd'])->name('admin.courseShowAdd');
 Route::post('/courseAdd', [CourseController::class, 'add'])->name('admin.courseAdd');
 Route::get('/courses/{id}/change', [CourseController::class, 'change'])->name('admin.courseChange');
+Route::get('/adminHome/search', [CourseController::class, 'search'])->name('admin.coursesSearch');
 
 //SponsorController
 Route::get('/sponsors', [SponsorController::class, 'index'])->name('admin.sponsors');
@@ -51,3 +54,7 @@ Route::post('/sponsors/{id}', [SponsorController::class, 'update'])->name('admin
 Route::get('/sponsorAdd', [SponsorController::class, 'showAdd'])->name('admin.sponsorShowAdd');
 Route::post('/sponsorAdd', [SponsorController::class, 'add'])->name('admin.sponsorAdd');
 Route::get('/sponsor/{id}/change', [SponsorController::class, 'change'])->name('admin.sponsorChange');
+Route::get('/sponsor/search', [SponsorController::class, 'search'])->name('admin.sponsorsSearch'); //Da error si tiene el mismo nombre que el primero (/sponsors/search)
+
+//viewParticipants
+Route::get('/participants/{courseId}', [RegistrationController::class, 'showParticipants'])->name('admin.showParticipants');

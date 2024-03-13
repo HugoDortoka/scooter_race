@@ -7,6 +7,8 @@
     <title>Admin Home</title>
     <!-- CSS de Bootstrap -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Scripts de Bootstrap (JavaScript) -->
+	<script src="{{ asset('assets/js/bootstrap.min.js') }}" defer></script>
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/fontawesome.css') }}">
@@ -41,7 +43,7 @@
                     <!-- ***** Search End ***** -->
                     <div class="search-input">
                         <form id="search" action="#">
-                            <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
+                            <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword"/>
                             <i class="fa fa-search"></i>
                         </form>
                     </div>
@@ -71,24 +73,25 @@
             <div class="page-content">
 
                 <a href="{{ route('admin.insurerShowAdd') }}" class="btn btn-pink btnAdd">Add</a>
-                @foreach($insurers as $insurer)
-                    <div class="row justify-content-center">
-                        <div>
-                            <div class="insurer">
-                                <h5>Name: {{ $insurer->name }}</h5>
-                                <a href="{{ route('admin.insurerShow', $insurer->id) }}" class="btn btn-pink mr-2">Show details</a>
-                                <a href="{{ route('admin.insurerChange', $insurer->id) }}" class="btn btn-pink">Change active</a>
+                <div id="bodyList">
+                    @foreach($insurers as $insurer)
+                        <div class="row justify-content-center">
+                            <div>
+                                <div class="insurer">
+                                    <h5>Name: {{ $insurer->name }}</h5>
+                                    <a href="{{ route('admin.insurerShow', $insurer->id) }}" class="btn btn-pink mr-2">Show details</a>
+                                    <a href="{{ route('admin.insurerChange', $insurer->id) }}" class="btn btn-pink">Change active</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 <!-- Scripts de Bootstrap (JavaScript) -->
-<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('assets/js/jquery/jquery.min.js') }}"></script>
 
 <script src="{{ asset('assets/js/isotope.min.js') }}"></script>
@@ -96,5 +99,10 @@
 <script src="{{ asset('assets/js/tabs.js') }}"></script>
 <script src="{{ asset('assets/js/popup.js') }}"></script>
 <script src="{{ asset('assets/js/custom.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    var searchInsurersRoute = "{{ route('admin.insurersSearch') }}";
+</script>
+<script src="{{ asset('assets/js/search_bar.js') }}"></script>
 </body>
 </html>
