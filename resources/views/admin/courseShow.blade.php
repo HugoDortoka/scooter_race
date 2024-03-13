@@ -124,8 +124,8 @@
                                 <input type="number" id="registration_price" name="registration_price" min="0" step="0.01" value="{{ $course->registration_price }}" required>
                             </div>
                             <!-- Agrega aquí más campos si es necesario -->
-
-                            <input type="submit" value="Enviar" class="btn btn-pink">
+                            <a href="{{ route('admin.showParticipants', $course->id) }}" class="btn btn-pink">View participants</a>
+                            <input type="submit" value="Save" class="btn btn-pink">
                         </form>
                     </div>
                 </div>
