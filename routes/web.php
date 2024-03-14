@@ -46,6 +46,9 @@ Route::get('/courseAdd', [CourseController::class, 'showAdd'])->name('admin.cour
 Route::post('/courseAdd', [CourseController::class, 'add'])->name('admin.courseAdd');
 Route::get('/courses/{id}/change', [CourseController::class, 'change'])->name('admin.courseChange');
 Route::get('/adminHome/search', [CourseController::class, 'search'])->name('admin.coursesSearch');
+Route::get('/courses/{id}/uploadPhotos', [CourseController::class, 'uploadPhotos'])->name('admin.courseUploadPhotos');
+Route::post('/courses/{id}/uploadPhotosTemporarily', [CourseController::class, 'saveUploadPhotosTemporarily'])->name('admin.courseSaveUploadPhotosTemporarily');
+Route::post('/courses/{id}/uploadPhotos', [CourseController::class, 'saveUploadPhotos'])->name('admin.courseSaveUploadPhotos');
 
 //SponsorController
 Route::get('/sponsors', [SponsorController::class, 'index'])->name('admin.sponsors');
@@ -58,3 +61,5 @@ Route::get('/sponsor/search', [SponsorController::class, 'search'])->name('admin
 
 //viewParticipants
 Route::get('/participants/{courseId}', [RegistrationController::class, 'showParticipants'])->name('admin.showParticipants');
+Route::get('/participants/{courseId}/pdf', [RegistrationController::class, 'pdf'])->name('admin.pdfParticipants');
+Route::get('/participants/{courseId}/{competitorId}', [RegistrationController::class, 'pdfIndividual'])->name('admin.pdfParticipant');
