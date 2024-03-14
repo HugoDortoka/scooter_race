@@ -114,4 +114,30 @@ class CourseController extends Controller
         $courses = Course::where('name', 'like', "%$query%")->get();
         return view('admin.search_courses', compact('courses'));
     }
+
+    public function uploadPhotos($id){
+        if (Session::get('admin') !== 'admin') {
+            return Redirect::route('admin.login');
+        }
+        $course = Course::findOrFail($id);
+        return view('admin.courseUploadPhotos', compact('course'));
+    }
+
+    public function saveUploadPhotosTemporarily(Request $request){
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+
+            // Construir el nombre de archivo único
+            $imageName = time() . '_' . $image->getClientOriginalName();
+
+            // Mover el archivo a la carpeta deseada
+            $image->move(public_path('img/photos_temporarily'), $imageName);
+
+            // Devolver la ruta de la imagen almacenada para su posterior uso si es necesario
+            return response()->json(['path' => 'img/photos_temporarily/' . $imageName], 200);
+        } else {
+            // Si no se proporciona ningún archivo, devolver un error
+            return response()->json(['message' => 'No se proporcionó ninguna imagen'], 400);
+        }
+    }
 }
