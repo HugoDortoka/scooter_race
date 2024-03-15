@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}">
 {{ $course->name }}
 <form action="{{ route('admin.courseSaveUploadPhotos', $course->id) }}" method="post" enctype="multipart/form-data">
+    @csrf    
     <input type="submit" value="Save" class="btn btn-pink">
     <input type="button" value="Cancel" onclick="window.location.href = '{{ route('admin.home') }}';" class="btn btn-pink"/>
     <input type="hidden" name="photo_urls" id="photo_urls">

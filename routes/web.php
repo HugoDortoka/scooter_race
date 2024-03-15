@@ -6,6 +6,7 @@ use App\Http\Controllers\InsurerController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\SponsorController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\PhotoController;
 
 /*
 |--------------------------------------------------------------------------
