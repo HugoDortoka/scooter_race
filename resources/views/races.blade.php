@@ -92,60 +92,42 @@ https://templatemo.com/tm-579-cyborg-gaming
             <div class="col-lg-8">
               <div class="featured-games header-text">
                 <div class="heading-section">
-                  <h4><em>Most popular</em> Races</h4>
+                  <h4><em>Most Popular</em> Races</h4>
                 </div>
                 <div class="owl-features owl-carousel">
-                @foreach($recents as $recent)
-                  <div class="item">
-                    <div class="thumb">
-                      <img src="{{ asset($recent->map_image) }}" alt="{{ $recent->name }}">
+                  @foreach($recents as $recent)
+                    <div class="item">
+                      <div class="thumb">
+                        <img src="{{ asset($recent->map_image) }}" alt="{{ $recent->name }}">
+                      </div>
+                      <h4>{{ $recent->name }}</h4>
+                      <ul>
+                        <li><i class="fa fa-star"></i> 4.8</li>
+                        <li><i class="fa fa-download"></i> 2.3M</li>
+                      </ul>
                     </div>
-                    <h4>{{ $recent->name }}<br><span>249K Downloads</span></h4>
-                    <ul>
-                      <li><i class="fa fa-star"></i> 4.8</li>
-                      <li><i class="fa fa-download"></i> 2.3M</li>
-                    </ul>
-                  </div>
-                @endforeach
+                  @endforeach
                 </div>
               </div>
             </div>
             <div class="col-lg-4">
               <div class="top-downloaded">
                 <div class="heading-section">
-                  <h4><em>Top</em> Downloaded</h4>
+                  <h4><em>Most Difficult</em> Races</h4>
                 </div>
                 <ul>
-                  <li>
-                    <img src="assets/images/game-01.jpg" alt="" class="templatemo-item">
-                    <h4>Fortnite</h4>
-                    <h6>Sandbox</h6>
-                    <span><i class="fa fa-star" style="color: yellow;"></i> 4.9</span>
-                    <span><i class="fa fa-download" style="color: #ec6090;"></i> 2.2M</span>
-                    <div class="download">
-                      <a href="#"><i class="fa fa-download"></i></a>
-                    </div>
-                  </li>
-                  <li>
-                    <img src="assets/images/game-02.jpg" alt="" class="templatemo-item">
-                    <h4>CS-GO</h4>
-                    <h6>Legendary</h6>
-                    <span><i class="fa fa-star" style="color: yellow;"></i> 4.9</span>
-                    <span><i class="fa fa-download" style="color: #ec6090;"></i> 2.2M</span>
-                    <div class="download">
-                      <a href="#"><i class="fa fa-download"></i></a>
-                    </div>
-                  </li>
-                  <li>
-                    <img src="assets/images/game-03.jpg" alt="" class="templatemo-item">
-                    <h4>PugG</h4>
-                    <h6>Battle Royale</h6>
-                    <span><i class="fa fa-star" style="color: yellow;"></i> 4.9</span>
-                    <span><i class="fa fa-download" style="color: #ec6090;"></i> 2.2M</span>
-                    <div class="download">
-                      <a href="#"><i class="fa fa-download"></i></a>
-                    </div>
-                  </li>
+                  @foreach($difficulties as $difficult)
+                    <li>
+                      <img src="{{ asset($difficult->map_image) }}" alt="{{ $difficult->name }}" class="templatemo-item">
+                      <h4>Fortnite</h4>
+                      <h6>Sandbox</h6>
+                      <span><i class="fa fa-star" style="color: yellow;"></i> 4.9</span>
+                      <span><i class="fa fa-download" style="color: #ec6090;"></i> 2.2M</span>
+                      <div class="download">
+                        <a href="#"><i class="fa fa-download"></i></a>
+                      </div>
+                    </li>
+                  @endforeach
                 </ul>
                 <div class="text-button">
                   <a href="profile.html">View All Games</a>

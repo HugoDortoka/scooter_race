@@ -146,7 +146,9 @@ class CourseController extends Controller
         $recents = Course::orderBy('date', 'desc')
                 ->orderBy('time', 'asc')
                 ->get();
-        $difficulties = Course::orderBy('elevation', 'desc')->get();
+        $difficulties = Course::orderBy('elevation', 'desc')
+                ->take(3)
+                ->get();
         return view('races', compact('recents', 'difficulties'));
     }
 }
