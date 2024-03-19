@@ -19,9 +19,11 @@ use App\Http\Controllers\PhotoController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
+Route::get('/', [CourseController::class, 'home'])->name('user.home');
+
 
 //AdministradorController
 Route::get('/adminLogin', [AdministratorController::class, 'login'])->name('admin.login');
@@ -52,6 +54,7 @@ Route::get('/courses/{id}/uploadPhotos', [CourseController::class, 'uploadPhotos
 Route::post('/courses/{id}/uploadPhotosTemporarily', [CourseController::class, 'saveUploadPhotosTemporarily'])->name('admin.courseSaveUploadPhotosTemporarily');
 //USER
 Route::get('/races', [CourseController::class, 'races'])->name('user.races');
+Route::get('/allraces', [CourseController::class, 'allraces'])->name('user.allraces');
 
 //SponsorController
 Route::get('/sponsors', [SponsorController::class, 'index'])->name('admin.sponsors');

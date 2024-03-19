@@ -143,12 +143,27 @@ class CourseController extends Controller
     }
     //USER
     public function races(){
-        $recents = Course::orderBy('date', 'desc')
+        $recents = Course::where('active', 1)
+                ->orderBy('date', 'desc')
                 ->orderBy('time', 'asc')
                 ->get();
-        $difficulties = Course::orderBy('elevation', 'desc')
+
+        $difficulties = Course::where('active', 1)
+                ->orderBy('elevation', 'desc')
                 ->take(3)
                 ->get();
+
         return view('races', compact('recents', 'difficulties'));
+    }
+    
+    public function allraces(){
+        $courses = Course::where('active', 1)->get();
+        return view('user.all_races', compact('courses'));
+    }
+
+
+    public function home(){
+        $courses = Course::take(8)->get();
+        return view('index', compact('courses'));
     }
 }
