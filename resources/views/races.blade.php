@@ -98,7 +98,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                   @foreach($recents as $recent)
                     <div class="item">
                       <div class="thumb">
-                        <img src="{{ asset($recent->map_image) }}" alt="{{ $recent->name }}">
+                        <img src="{{ asset($recent->promotion_poster) }}" alt="{{ $recent->name }}">
                       </div>
                       <h4>{{ $recent->name }}</h4>
                       <ul>

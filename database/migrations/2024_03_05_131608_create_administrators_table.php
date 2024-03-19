@@ -23,6 +23,8 @@ return new class extends Migration
             'name' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('admin'),
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
     }
 
