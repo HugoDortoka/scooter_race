@@ -40,6 +40,7 @@ Route::get('/insurers/{id}/change', [InsurerController::class, 'change'])->name(
 Route::get('/insurer/search', [InsurerController::class, 'search'])->name('admin.insurersSearch'); //Da error si tiene el mismo nombre que el primero (/insurers/search)
 
 //CoursesController
+//ADMIN
 Route::get('/adminHome', [CourseController::class, 'index'])->name('admin.home');
 Route::get('/courses/{id}', [CourseController::class, 'show'])->name('admin.courseShow');
 Route::post('/courses/{id}', [CourseController::class, 'update'])->name('admin.courseUpdate');
@@ -49,6 +50,8 @@ Route::get('/courses/{id}/change', [CourseController::class, 'change'])->name('a
 Route::get('/adminHome/search', [CourseController::class, 'search'])->name('admin.coursesSearch');
 Route::get('/courses/{id}/uploadPhotos', [CourseController::class, 'uploadPhotos'])->name('admin.courseUploadPhotos');
 Route::post('/courses/{id}/uploadPhotosTemporarily', [CourseController::class, 'saveUploadPhotosTemporarily'])->name('admin.courseSaveUploadPhotosTemporarily');
+//USER
+Route::get('/races', [CourseController::class, 'races'])->name('user.races');
 
 //SponsorController
 Route::get('/sponsors', [SponsorController::class, 'index'])->name('admin.sponsors');

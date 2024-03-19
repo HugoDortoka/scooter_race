@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Session;
 
 class CourseController extends Controller
 {
+    //ADMIN
     public function index()
     {
         if (Session::get('admin') !== 'admin') {
@@ -140,4 +141,6 @@ class CourseController extends Controller
             return response()->json(['message' => 'No se proporcionó ninguna imagen'], 400);
         }
     }
+    //USER
+    
 }
