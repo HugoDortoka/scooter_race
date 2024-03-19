@@ -10,16 +10,16 @@ aa<!DOCTYPE html>
 
     <title>Cyborg - Awesome HTML5 Template</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-
+    <!-- CSS de Bootstrap -->
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Scripts de Bootstrap (JavaScript) -->
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}" defer></script>
     <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="assets/css/fontawesome.css">
-    <link rel="stylesheet" href="assets/css/templatemo-cyborg-gaming.css">
-    <link rel="stylesheet" href="assets/css/owl.css">
-    <link rel="stylesheet" href="assets/css/animate.css">
-    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="{{ asset('assets/css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/templatemo-cyborg-gaming.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/owl.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
 <!--
 
 TemplateMo 579 Cyborg Gaming
@@ -402,14 +402,13 @@ https://templatemo.com/tm-579-cyborg-gaming
 
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script src="{{ asset('assets/js/jquery/jquery.min.js') }}"></script>
 
-  <script src="assets/js/isotope.min.js"></script>
-  <script src="assets/js/owl-carousel.js"></script>
-  <script src="assets/js/tabs.js"></script>
-  <script src="assets/js/popup.js"></script>
-  <script src="assets/js/custom.js"></script>
+  <script src="{{ asset('assets/js/isotope.min.js') }}"></script>
+  <script src="{{ asset('assets/js/owl-carousel.js') }}"></script>
+  <script src="{{ asset('assets/js/tabs.js') }}"></script>
+  <script src="{{ asset('assets/js/popup.js') }}"></script>
+  <script src="{{ asset('assets/js/custom.js') }}"></script>
 
 
   </body>
