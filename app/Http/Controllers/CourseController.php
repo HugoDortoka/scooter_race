@@ -142,5 +142,11 @@ class CourseController extends Controller
         }
     }
     //USER
-    
+    public function races(){
+        $recents = Course::orderBy('date', 'desc')
+                ->orderBy('time', 'asc')
+                ->get();
+        $difficulties = Course::orderBy('elevation', 'desc')->get();
+        return view('races', compact('recents', 'difficulties'));
+    }
 }
