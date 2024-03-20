@@ -166,4 +166,10 @@ class CourseController extends Controller
         $courses = Course::take(8)->get();
         return view('index', compact('courses'));
     }
+
+    public function infoRace($id)
+    {
+        $course = Course::insurerById($id);
+        return view('user.infoRace', compact('course'));
+    }
 }

@@ -55,6 +55,8 @@ Route::post('/courses/{id}/uploadPhotosTemporarily', [CourseController::class, '
 //USER
 Route::get('/races', [CourseController::class, 'races'])->name('user.races');
 Route::get('/allraces', [CourseController::class, 'allraces'])->name('user.allraces');
+Route::get('/infoRace/{id}', [CourseController::class, 'infoRace'])->name('user.infoRace');
+
 
 //SponsorController
 Route::get('/sponsors', [SponsorController::class, 'index'])->name('admin.sponsors');

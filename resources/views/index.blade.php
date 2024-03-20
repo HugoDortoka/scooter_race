@@ -114,12 +114,14 @@ https://templatemo.com/tm-579-cyborg-gaming
                         @foreach ($courses->take(8) as $course)
                             <div class="col-lg-3 col-sm-6">
                                 <div class="item">
+                                  <a href="{{ route('user.infoRace', $course->id) }}">
                                     <img src="{{ asset($course->map_image) }}" alt="map_image">
                                     <h4>{{ $course->name }}<br><span>Unevenness</span></h4>
                                     <ul>
                                         <li><i class="fa fa-star"></i> {{ $course->distance_km }}</li>
                                         <li><i class="fa fa-download"></i> {{ $course->elevation }}%</li>
                                     </ul>
+                                  </a>
                                 </div>
                             </div>
                         @endforeach
