@@ -51,7 +51,7 @@ https://templatemo.com/tm-579-cyborg-gaming
             <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-                    <a href="index.html" class="logo">
+                    <a href="{{ route('user.home') }}" class="logo">
                         <img src="assets/images/logo.png" alt="">
                     </a>
                     <!-- ***** Logo End ***** -->
@@ -65,11 +65,10 @@ https://templatemo.com/tm-579-cyborg-gaming
                     <!-- ***** Search End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="{{ route('user.home') }}" class="active">Home</a></li>
                         <li><a href="{{ route('user.races') }}">Races</a></li>
-                        <li><a href="details.html">Details</a></li>
-                        <li><a href="streams.html">Streams</a></li>
-                        <li><a href="profile.html">Profile <img src="assets/images/profile-header.jpg" alt=""></a></li>
+                        <li><a href="{{ route('user.competitors') }}">Competitors</a></li>
+                        <li><a href="{{ route('user.profile') }}">Profile <img src="assets/images/profile-header.jpg" alt=""></a></li>
                     </ul>   
                     <a class='menu-trigger'>
                         <span>Menu</span>
@@ -190,7 +189,7 @@ https://templatemo.com/tm-579-cyborg-gaming
         <div class="col-lg-12">
           <p>Copyright © 2036 <a href="#">Scooter Leveling</a> Company. All rights reserved. 
           
-          <br>Design by <a href="https://templatemo.com" target="_blank" title="free CSS templates">Hugo Varela y Lucas Moreno</a></p>
+          <br>Design by <a href="https://templatemo.com" target="_blank" title="free CSS templates">Hugo Varela and Lucas Moreno</a></p>
         </div>
       </div>
     </div>

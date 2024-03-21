@@ -7,6 +7,8 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\SponsorController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\CompetitorController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +61,7 @@ Route::get('/infoRace/{id}', [CourseController::class, 'infoRace'])->name('user.
 
 
 //SponsorController
+//ADMIN
 Route::get('/sponsors', [SponsorController::class, 'index'])->name('admin.sponsors');
 Route::get('/sponsors/{id}', [SponsorController::class, 'show'])->name('admin.sponsorShow');
 Route::post('/sponsors/{id}', [SponsorController::class, 'update'])->name('admin.sponsorUpdate');
@@ -66,6 +69,7 @@ Route::get('/sponsorAdd', [SponsorController::class, 'showAdd'])->name('admin.sp
 Route::post('/sponsorAdd', [SponsorController::class, 'add'])->name('admin.sponsorAdd');
 Route::get('/sponsor/{id}/change', [SponsorController::class, 'change'])->name('admin.sponsorChange');
 Route::get('/sponsor/search', [SponsorController::class, 'search'])->name('admin.sponsorsSearch'); //Da error si tiene el mismo nombre que el primero (/sponsors/search)
+//USER
 
 //viewParticipants
 Route::get('/participants/{courseId}', [RegistrationController::class, 'showParticipants'])->name('admin.showParticipants');
@@ -74,3 +78,8 @@ Route::get('/participants/{courseId}/{competitorId}', [RegistrationController::c
 
 //PhotoController
 Route::post('/courses/{id}/addUploadPhotos', [PhotoController::class, 'addUploadPhotos'])->name('admin.courseSaveUploadPhotos');
+
+//CompetitorController
+//USER
+Route::get('/competitors', [CompetitorController::class, 'competitors'])->name('user.competitors');
+Route::get('/profile', [CompetitorController::class, 'profile'])->name('user.profile');
