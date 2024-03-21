@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/templatemo-cyborg-gaming.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/owl.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/user.css') }}">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
 <!--
 
@@ -118,7 +119,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                 <ul>
                   @foreach($difficulties as $difficult)
                     <li>
-                      <img src="{{ asset($difficult->map_image) }}" alt="{{ $difficult->name }}" class="templatemo-item">
+                      <img src="{{ asset($difficult->map_image) }}" alt="{{ $difficult->name }}" class="templatemo-item difficult">
                       <h4>{{ $difficult->name }}</h4>
                       <h6>{{ $difficult->elevation }}%</h6>
                     </li>
