@@ -100,6 +100,18 @@
         </div>
     </div>
 </div>
+
+<footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <p>Copyright © 2036 <a href="#">Scooter Leveling</a> Company. All rights reserved. 
+          
+          <br>Design by <a href="https://templatemo.com" target="_blank" title="free CSS templates">Hugo Varela and Lucas Moreno</a></p>
+        </div>
+      </div>
+    </div>
+  </footer>
     
 <!-- Scripts -->
 <!-- Bootstrap core JavaScript -->
