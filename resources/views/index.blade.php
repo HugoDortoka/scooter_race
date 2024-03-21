@@ -94,7 +94,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                   <h6>Welcome To Scooter Leveling</h6>
                   <h4><em>Browse</em> Our Popular Races Here</h4>
                   <div class="main-button">
-                    <a href="browse.html">Browse Now</a>
+                    <a href="{{ route('user.races') }}">Browse Now</a>
                   </div>
                 </div>
               </div>
@@ -126,7 +126,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                         @endforeach
                       </div>
                       <div class="main-button">
-                          <a href="browse.html">Discover More</a>
+                          <a href="{{ route('user.races') }}">Discover More</a>
                       </div>
                   </div>
               </div>
