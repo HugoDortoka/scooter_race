@@ -50,8 +50,9 @@ function showImages() {
 
         const img = document.createElement('img');
         img.src = adjustedUrl;
-        img.style.width = '100px'; // Ajusta el ancho según sea necesario
-        img.style.height = '100px'; // Ajusta la altura según sea necesario
+        img.style.width = '200px'; // Ajusta el ancho según sea necesario
+        img.style.height = '200px'; // Ajusta la altura según sea necesario
+        img.style.padding = '10px';
         imagenesDiv.appendChild(img);
     });
 }

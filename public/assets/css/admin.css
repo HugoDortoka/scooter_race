@@ -137,3 +137,18 @@
 .formLogin{
     width: 350px;
 }
+.uploadPhotos{
+    text-align: center;
+    color: white;
+}
+.formUpload{
+    display: grid;
+    justify-content: center;
+}
+.titleUpload{
+    padding-bottom: 30px;
+}
+.buttonsUpload{
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
