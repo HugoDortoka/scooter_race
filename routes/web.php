@@ -83,3 +83,7 @@ Route::post('/courses/{id}/addUploadPhotos', [PhotoController::class, 'addUpload
 //USER
 Route::get('/competitors', [CompetitorController::class, 'competitors'])->name('user.competitors');
 Route::get('/profile', [CompetitorController::class, 'profile'])->name('user.profile');
+Route::get('/login', [CompetitorController::class, 'login'])->name('user.login');
+Route::post('/login', [CompetitorController::class, 'checkLogin'])->name('user.checkLogin');
+Route::get('/registration', [CompetitorController::class, 'registration'])->name('user.registration');
+Route::post('/registration', [CompetitorController::class, 'insertRegistration'])->name('user.insertRegistration');
