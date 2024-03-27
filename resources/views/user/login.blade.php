@@ -11,6 +11,7 @@
         <script src="{{ asset('assets/js/bootstrap.min.js') }}" defer></script>
         <!-- Additional CSS Files -->
         <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/user.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/fontawesome.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/templatemo-cyborg-gaming.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/owl.css') }}">
@@ -32,6 +33,7 @@
         <!-- ***** Preloader End ***** -->
         <div class="containerLogin">
             <div class="centrado">
+                <a href=""><img src="assets/images/flecha.png" alt="flecha" class="fotoLogin"></a>
                 <h1 class="loginTitulo">Login</h1>
                 <form action="{{ route('user.checkLogin') }}" method="POST" class="formLogin">
                     @csrf
