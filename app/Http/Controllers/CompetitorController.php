@@ -18,10 +18,11 @@ class CompetitorController extends Controller
     }
  
     public function profile(){
-        if (Session::get('user') !== 'user') {
+        if (!Session::has('user')) {
             return Redirect::route('user.login');
         }
-        return view('profile');
+        $user = Session::get('user');
+        return view('profile', compact('user'));
     }
 
     public function login(){
@@ -35,7 +36,7 @@ class CompetitorController extends Controller
         $user = Competitor::authenticate($dni, $password);
 
         if ($user) {
-            Session::put('user', 'user');
+            Session::put('user', $user);
             return Redirect::route('user.home');
         } else {
             return back()->with('error', 'Email or password are incorrect');
