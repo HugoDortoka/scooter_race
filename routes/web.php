@@ -87,3 +87,4 @@ Route::get('/login', [CompetitorController::class, 'login'])->name('user.login')
 Route::post('/login', [CompetitorController::class, 'checkLogin'])->name('user.checkLogin');
 Route::get('/registration', [CompetitorController::class, 'registration'])->name('user.registration');
 Route::post('/registration', [CompetitorController::class, 'insertRegistration'])->name('user.insertRegistration');
+Route::get('/logout', [CompetitorController::class, 'logout'])->name('user.logout');
