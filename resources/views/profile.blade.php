@@ -97,7 +97,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                   <div class="col-lg-4 align-self-center">
                     <div class="main-info header-text">
                       <span>Offline</span>
-                      <h4>Alan Smithee</h4>
+                      <h4>{{ $user->name }} {{ $user->surname }}</h4>
                       <p>You Haven't Gone Live yet. Go Live By Touching The Button Below.</p>
                       <div class="main-border-button">
                         <a href="{{ route('user.logout') }}">LOGOUT</a>

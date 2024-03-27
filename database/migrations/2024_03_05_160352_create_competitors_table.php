@@ -23,6 +23,19 @@ return new class extends Migration
             $table->string('password');
             $table->timestamps();
         });
+
+        DB::table('competitors')->insert([
+            'DNI' => '28148365E',
+            'name' => 'Juan',
+            'surname' => 'Varela',
+            'address' => '123 Rainbow Lane, Sparkle City',
+            'date_of_birth' => '1990-04-12',
+            'PRO' => true,
+            'federation_number' => 'FED123456',
+            'password' => bcrypt('28148365E'),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 
     /**
