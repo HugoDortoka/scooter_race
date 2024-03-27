@@ -125,6 +125,10 @@
     width: 20px;
     height: 20px;
 }
+.arrowLogin{
+    width: 25px;
+    height: 25px;
+}
 .divLogin{
     border-bottom: 1px solid black;
     padding-bottom: 5%;

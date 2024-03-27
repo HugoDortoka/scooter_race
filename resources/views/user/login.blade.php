@@ -33,7 +33,7 @@
         <!-- ***** Preloader End ***** -->
         <div class="containerLogin">
             <div class="centrado">
-                <a href=""><img src="assets/images/flecha.png" alt="flecha" class="fotoLogin"></a>
+                <a href=""><img src="assets/images/flecha.png" alt="flecha" class="arrowLogin"></a>
                 <h1 class="loginTitulo">Login</h1>
                 <form action="{{ route('user.checkLogin') }}" method="POST" class="formLogin">
                     @csrf
