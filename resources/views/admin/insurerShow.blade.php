@@ -53,7 +53,7 @@
                             <li><a href="{{ route('admin.home') }}">Races</a></li>
                             <li> <a href="{{ route('admin.insurers') }}" class="active">Insurers</a></li>
                             <li><a href="{{ route('admin.sponsors') }}">Sponsors</a></li>
-                            <li><a href="streams.html">Competitors</a></li>
+                            <li><a href="{{ route('admin.competitors') }}">Competitors</a></li>
                             <li><a href="{{ route('admin.logout') }}">Logout<img src="{{ asset('assets/images/profile-header.jpg') }}" alt=""></a></li>
                         </ul>   
                         <a class='menu-trigger'>
