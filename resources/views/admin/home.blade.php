@@ -76,24 +76,48 @@
                 <a href="{{ route('admin.courseShowAdd') }}" class="btn btn-pink btnAdd">Add</a>
                 <div id="bodyList">
                     @foreach($courses as $course)
-                        <div class="row justify-content-center">
-                            <div>
-                                <div class="races">
-                                    <h5>Name: {{ $course->name }}</h5>
-                                    <?php
-                                        $actual_date = date("Y-m-d");
-                                        $course_date = $course->date;
-                                    ?>
-                                    @if($course_date < $actual_date)
-                                        <a href="{{ route('admin.courseUploadPhotos', $course->id) }}" class="btn btn-pink mr-2">Upload photos</a>
-                                    @else
-                                        <a class="btn btn-pink mr-2">Not finished</a>
-                                    @endif
-                                    <a href="{{ route('admin.courseShow', $course->id) }}" class="btn btn-pink mr-2">Show details</a>
-                                    <a href="{{ route('admin.courseChange', $course->id) }}" class="btn btn-pink">Change active</a>
+                        <?php
+                            $active = $course->active;
+                        ?>
+                        @if($active == 1)
+                            <div class="row justify-content-center">
+                                <div>
+                                    <div class="races">
+                                        <h5>Name: {{ $course->name }}</h5>
+                                        <?php
+                                            $actual_date = date("Y-m-d");
+                                            $course_date = $course->date;
+                                        ?>
+                                        @if($course_date < $actual_date)
+                                            <a href="{{ route('admin.courseUploadPhotos', $course->id) }}" class="btn btn-pink mr-2">Upload photos</a>
+                                        @else
+                                            <a class="btn btn-pink mr-2">Not finished</a>
+                                        @endif
+                                        <a href="{{ route('admin.courseShow', $course->id) }}" class="btn btn-pink mr-2">Show details</a>
+                                        <a href="{{ route('admin.courseChange', $course->id) }}" class="btn btn-pink">Change active</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @else
+                            <div class="row justify-content-center">
+                                <div>
+                                    <div class="races transparent">
+                                        <h5>Name: {{ $course->name }}</h5>
+                                        <?php
+                                            $actual_date = date("Y-m-d");
+                                            $course_date = $course->date;
+                                        ?>
+                                        @if($course_date < $actual_date)
+                                            <a href="{{ route('admin.courseUploadPhotos', $course->id) }}" class="btn btn-pink mr-2">Upload photos</a>
+                                        @else
+                                            <a class="btn btn-pink mr-2">Not finished</a>
+                                        @endif
+                                        <a href="{{ route('admin.courseShow', $course->id) }}" class="btn btn-pink mr-2">Show details</a>
+                                        <a href="{{ route('admin.courseChange', $course->id) }}" class="btn btn-pink">Change active</a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                     @endforeach
                 </div>
             </div>

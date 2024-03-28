@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <title>Admin Home</title>
+    <title>Admin Insurers</title>
     <!-- CSS de Bootstrap -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Scripts de Bootstrap (JavaScript) -->
@@ -75,15 +75,30 @@
                 <a href="{{ route('admin.insurerShowAdd') }}" class="btn btn-pink btnAdd">Add</a>
                 <div id="bodyList">
                     @foreach($insurers as $insurer)
-                        <div class="row justify-content-center">
-                            <div>
-                                <div class="insurer">
-                                    <h5>Name: {{ $insurer->name }}</h5>
-                                    <a href="{{ route('admin.insurerShow', $insurer->id) }}" class="btn btn-pink mr-2">Show details</a>
-                                    <a href="{{ route('admin.insurerChange', $insurer->id) }}" class="btn btn-pink">Change active</a>
+                        <?php
+                            $active = $insurer->active;
+                        ?>
+                        @if($active == 1)
+                            <div class="row justify-content-center">
+                                <div>
+                                    <div class="insurer">
+                                        <h5>Name: {{ $insurer->name }}</h5>
+                                        <a href="{{ route('admin.insurerShow', $insurer->id) }}" class="btn btn-pink mr-2">Show details</a>
+                                        <a href="{{ route('admin.insurerChange', $insurer->id) }}" class="btn btn-pink">Change active</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @else
+                            <div class="row justify-content-center">
+                                <div>
+                                    <div class="insurer transparent">
+                                        <h5>Name: {{ $insurer->name }}</h5>
+                                        <a href="{{ route('admin.insurerShow', $insurer->id) }}" class="btn btn-pink mr-2">Show details</a>
+                                        <a href="{{ route('admin.insurerChange', $insurer->id) }}" class="btn btn-pink">Change active</a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                     @endforeach
                 </div>
             </div>
