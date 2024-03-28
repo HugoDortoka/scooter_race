@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Competitor;
+use App\Models\Membership;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -35,7 +36,9 @@ class CompetitorController extends Controller
             return Redirect::route('user.login');
         }
         $user = Session::get('user');
-        return view('profile', compact('user'));
+        $id = $user->id;
+        $membership = Membership::where('competitor_id', '=', $id)->first();
+        return view('profile', compact('user', 'membership'));
     }
 
     public function login(){

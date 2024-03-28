@@ -96,7 +96,11 @@ https://templatemo.com/tm-579-cyborg-gaming
                   </div>
                   <div class="col-lg-4 align-self-center">
                     <div class="main-info header-text">
-                      <span>Offline</span>
+                      @if(empty($membership))
+                        <span><a href="{{ route('user.newMembership', $user->id) }}">Make me membership</a></span>
+                      @else
+                        <span>You are a membership</span>
+                      @endif
                       <h4>{{ $user->name }} {{ $user->surname }}</h4>
                       <p>You Haven't Gone Live yet. Go Live By Touching The Button Below.</p>
                       <div class="main-border-button">
