@@ -80,6 +80,9 @@ Route::get('/participants/{courseId}/{competitorId}', [RegistrationController::c
 Route::post('/courses/{id}/addUploadPhotos', [PhotoController::class, 'addUploadPhotos'])->name('admin.courseSaveUploadPhotos');
 
 //CompetitorController
+//ADMIN
+Route::get('/adminCompetitors', [CompetitorController::class, 'index'])->name('admin.competitors');
+Route::get('/adminCompetitors/search', [CompetitorController::class, 'search'])->name('admin.competitorsSearch');
 //USER
 Route::get('/competitors', [CompetitorController::class, 'competitors'])->name('user.competitors');
 Route::get('/profile', [CompetitorController::class, 'profile'])->name('user.profile');

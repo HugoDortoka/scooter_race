@@ -53,7 +53,7 @@
                         <li><a href="{{ route('admin.home') }}" >Races</a></li>
                         <li><a href="{{ route('admin.insurers') }}">Insurers</a></li>
                         <li><a href="{{ route('admin.sponsors') }}" class="active">Sponsors</a></li>
-                        <li><a href="streams.html">Competitors</a></li>
+                        <li><a href="{{ route('admin.competitors') }}">Competitors</a></li>
                         <li><a href="{{ route('admin.logout') }}">Logout<img src="assets/images/profile-header.jpg" alt=""></a></li>
                     </ul>   
                     <a class='menu-trigger'>
@@ -90,6 +90,18 @@
         </div>
     </div>
 </div>
+
+<footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <p>Copyright © 2036 <a href="#">Scooter Leveling</a> Company. All rights reserved. 
+          
+          <br>Design by <a href="https://templatemo.com" target="_blank" title="free CSS templates">Hugo Varela and Lucas Moreno</a></p>
+        </div>
+      </div>
+    </div>
+  </footer>
 
 <!-- Scripts de Bootstrap (JavaScript) -->
 <script src="{{ asset('assets/js/jquery/jquery.min.js') }}"></script>

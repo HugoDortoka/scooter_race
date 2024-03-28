@@ -9,7 +9,20 @@ use Illuminate\Support\Facades\Redirect;
 
 class CompetitorController extends Controller
 {
-    
+    //ADMIN
+    public function index()
+    {
+        if (Session::get('admin') !== 'admin') {
+            return Redirect::route('admin.login');
+        }
+        $competitors = Competitor::all();
+        return view('admin.competitors', compact('competitors'));
+    }
+    public function search(Request $request){
+        $query = $request->input('query');
+        $competitors = Competitor::where('name', 'like', "%$query%")->get();
+        return view('admin.search_competitors', compact('competitors'));
+    }
     //USER
     public function competitors(){
 

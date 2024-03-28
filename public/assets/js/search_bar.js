@@ -2,6 +2,7 @@
 var ubicacionCompleta = window.location.href;
 var url = new URL(ubicacionCompleta);
 var nombreDeArchivo = url.pathname.substring(url.pathname.lastIndexOf('/') + 1) + url.search;
+//console.log(nombreDeArchivo);
 
 // Courses
 function busquedaCourses(searchValue) {
@@ -89,6 +90,38 @@ if (nombreDeArchivo == 'sponsors') {
       $('#searchText').keyup(function () {
           var searchValue = $(this).val();
           busquedaSponsors(searchValue)
+          .then((response) => {
+              $('#bodyList').html(response);
+          })
+          .catch((error) => {
+              alert(error.message);
+          });
+      });
+  });
+}
+
+// Competitors
+function busquedaCompetitors(searchValue) {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      type: 'GET',
+      url: searchCompetitorsRoute,
+      data: { query: searchValue },
+      success: function (response) {
+        resolve(response);
+      },
+      error: function () {
+        reject(new Error('Error in the request with AJAX'));
+      }
+    });
+  });
+}
+
+if (nombreDeArchivo == 'adminCompetitors') {
+  $(document).ready(function () {
+      $('#searchText').keyup(function () {
+          var searchValue = $(this).val();
+          busquedaCompetitors(searchValue)
           .then((response) => {
               $('#bodyList').html(response);
           })
