@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <title>Admin Sponsors Add</title>
     <!-- CSS de Bootstrap -->
 	<link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
 	<!-- Scripts de Bootstrap (JavaScript) -->
@@ -104,6 +104,17 @@
             </div>
         </div>
     </div>
+    <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <p>Copyright © 2036 <a href="#">Scooter Leveling</a> Company. All rights reserved. 
+          
+          <br>Design by <a href="https://templatemo.com" target="_blank" title="free CSS templates">Hugo Varela and Lucas Moreno</a></p>
+        </div>
+      </div>
+    </div>
+  </footer>
     <!-- Scripts -->
     <!-- Bootstrap core JavaScript -->
     <script src="{{ asset('assets/js/jquery/jquery.min.js') }}"></script>

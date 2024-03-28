@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <title>Admin Drag and Drop</title>
     <!-- CSS de Bootstrap -->
 	<link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
 	<!-- Scripts de Bootstrap (JavaScript) -->

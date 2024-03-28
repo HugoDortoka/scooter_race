@@ -76,8 +76,9 @@
                     @foreach($competitors as $competitor)
                         <div class="row justify-content-center">
                             <div>
-                                <div class="races">
-                                    <h5>Name: {{ $competitor->name }} {{ $competitor->surname }}</h5>
+                                <div class="registrations">
+                                    <h5>Name: {{ $competitor->name }}</h5>
+                                    <h5>Surname: {{ $competitor->surname }}</h5>
                                 </div>
                             </div>
                         </div>
