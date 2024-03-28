@@ -2,3 +2,10 @@
     border-radius: 2px;
     height: 60px;
 }
+.signup{
+    margin-top: 40px;
+    text-align: center;
+}
+.signupButton{
+    color: black;
+}

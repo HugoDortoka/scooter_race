@@ -49,7 +49,9 @@
                     </div>
                     <input type="submit" value="LOGIN" class="btn btn-pink btnAdd btnLogin">
                 </form>
-                <a href="{{ route('user.registration') }}">SIGN UP</a>
+                <div class="signup">
+                    <a href="{{ route('user.registration') }}" class="signupButton">SIGN UP</a>
+                </div>
             </div>
         </div>
         <!-- Scripts -->
