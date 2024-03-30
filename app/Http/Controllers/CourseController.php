@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Photo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -169,7 +170,15 @@ class CourseController extends Controller
 
     public function infoRace($id)
     {
+
+        try {
+            // Buscar fotos por el ID del curso
+            $photos = Photo::where('course_id', $id)->get();
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            $photos = null; // O cualquier otro valor por defecto que desees asignar
+        }
+        
         $course = Course::insurerById($id);
-        return view('user.infoRace', compact('course'));
+        return view('user.infoRace', compact('course', 'photos'));
     }
 }
