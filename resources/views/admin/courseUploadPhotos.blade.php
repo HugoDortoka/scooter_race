@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <title>Admin Drag and Drop</title>
     <!-- CSS de Bootstrap -->
 	<link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
 	<!-- Scripts de Bootstrap (JavaScript) -->
@@ -56,7 +56,7 @@
                             <li><a href="{{ route('admin.home') }}" class="active">Races</a></li>
                             <li> <a href="{{ route('admin.insurers') }}">Insurers</a></li>
                             <li><a href="{{ route('admin.sponsors') }}">Sponsors</a></li>
-                            <li><a href="streams.html">Competitors</a></li>
+                            <li><a href="{{ route('admin.competitors') }}">Competitors</a></li>
                             <li><a href="{{ route('admin.logout') }}">Logout<img src="{{ asset('assets/images/profile-header.jpg') }}" alt=""></a></li>
                         </ul>   
                         <a class='menu-trigger'>

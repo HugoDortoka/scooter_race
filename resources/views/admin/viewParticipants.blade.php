@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Home</title>
+    <title>Admin Participants</title>
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Additional CSS Files -->
@@ -29,7 +29,7 @@
                         <li><a href="{{ route('admin.home') }}" class="active">Races</a></li>
                         <li><a href="{{ route('admin.insurers') }}">Insurers</a></li>
                         <li><a href="{{ route('admin.sponsors') }}">Sponsors</a></li>
-                        <li><a href="streams.html">Competitors</a></li>
+                        <li><a href="{{ route('admin.competitors') }}">Competitors</a></li>
                         <li><a href="{{ route('admin.logout') }}">Logout<img src="{{ asset('assets/images/profile-header.jpg') }}" alt=""></a></li>
                     </ul>
                     <a class='menu-trigger'>
@@ -63,6 +63,17 @@
         </div>
     </div>
 </div>
+<footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <p>Copyright © 2036 <a href="#">Scooter Leveling</a> Company. All rights reserved. 
+          
+          <br>Design by <a href="https://templatemo.com" target="_blank" title="free CSS templates">Hugo Varela and Lucas Moreno</a></p>
+        </div>
+      </div>
+    </div>
+  </footer>
 
 <!-- Bootstrap core JavaScript -->
 <script src="{{ asset('assets/js/jquery.min.js') }}"></script>

@@ -14,3 +14,10 @@
 .imgRace{
     height: 200px;
 }
+.signup{
+    margin-top: 40px;
+    text-align: center;
+}
+.signupButton{
+    color: black;
+}

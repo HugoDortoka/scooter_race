@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <title>Admin Home</title>
+    <title>Admin Sponsors</title>
     <!-- CSS de Bootstrap -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Scripts de Bootstrap (JavaScript) -->
@@ -53,7 +53,7 @@
                         <li><a href="{{ route('admin.home') }}" >Races</a></li>
                         <li><a href="{{ route('admin.insurers') }}">Insurers</a></li>
                         <li><a href="{{ route('admin.sponsors') }}" class="active">Sponsors</a></li>
-                        <li><a href="streams.html">Competitors</a></li>
+                        <li><a href="{{ route('admin.competitors') }}">Competitors</a></li>
                         <li><a href="{{ route('admin.logout') }}">Logout<img src="assets/images/profile-header.jpg" alt=""></a></li>
                     </ul>   
                     <a class='menu-trigger'>
@@ -75,21 +75,48 @@
                 <a href="{{ route('admin.sponsorShowAdd') }}" class="btn btn-pink btnAdd">Add</a>
                 <div id="bodyList">
                     @foreach($sponsors as $sponsor)
-                        <div class="row justify-content-center">
-                            <div>
-                                <div class="insurer">
-                                    <h5>Name: {{ $sponsor->name }}</h5>
-                                    <a href="{{ route('admin.sponsorShow', $sponsor->id) }}" class="btn btn-pink mr-2">Show details</a>
-                                    <a href="{{ route('admin.sponsorChange', $sponsor->id) }}" class="btn btn-pink">Change active</a>
+                        <?php
+                            $active = $sponsor->active;
+                        ?>
+                        @if($active == 1)
+                            <div class="row justify-content-center">
+                                <div>
+                                    <div class="insurer">
+                                        <h5>Name: {{ $sponsor->name }}</h5>
+                                        <a href="{{ route('admin.sponsorShow', $sponsor->id) }}" class="btn btn-pink mr-2">Show details</a>
+                                        <a href="{{ route('admin.sponsorChange', $sponsor->id) }}" class="btn btn-pink">Change active</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @else
+                            <div class="row justify-content-center">
+                                <div>
+                                    <div class="insurer transparent">
+                                        <h5>Name: {{ $sponsor->name }}</h5>
+                                        <a href="{{ route('admin.sponsorShow', $sponsor->id) }}" class="btn btn-pink mr-2">Show details</a>
+                                        <a href="{{ route('admin.sponsorChange', $sponsor->id) }}" class="btn btn-pink">Change active</a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                     @endforeach
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <p>Copyright © 2036 <a href="#">Scooter Leveling</a> Company. All rights reserved. 
+          
+          <br>Design by <a href="https://templatemo.com" target="_blank" title="free CSS templates">Hugo Varela and Lucas Moreno</a></p>
+        </div>
+      </div>
+    </div>
+  </footer>
 
 <!-- Scripts de Bootstrap (JavaScript) -->
 <script src="{{ asset('assets/js/jquery/jquery.min.js') }}"></script>

@@ -8,6 +8,7 @@ use App\Http\Controllers\SponsorController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\CompetitorController;
+use App\Http\Controllers\MembershipController;
 
 
 /*
@@ -80,6 +81,9 @@ Route::get('/participants/{courseId}/{competitorId}', [RegistrationController::c
 Route::post('/courses/{id}/addUploadPhotos', [PhotoController::class, 'addUploadPhotos'])->name('admin.courseSaveUploadPhotos');
 
 //CompetitorController
+//ADMIN
+Route::get('/adminCompetitors', [CompetitorController::class, 'index'])->name('admin.competitors');
+Route::get('/adminCompetitors/search', [CompetitorController::class, 'search'])->name('admin.competitorsSearch');
 //USER
 Route::get('/competitors', [CompetitorController::class, 'competitors'])->name('user.competitors');
 Route::get('/profile', [CompetitorController::class, 'profile'])->name('user.profile');
@@ -88,3 +92,7 @@ Route::post('/login', [CompetitorController::class, 'checkLogin'])->name('user.c
 Route::get('/registration', [CompetitorController::class, 'registration'])->name('user.registration');
 Route::post('/registration', [CompetitorController::class, 'insertRegistration'])->name('user.insertRegistration');
 Route::get('/logout', [CompetitorController::class, 'logout'])->name('user.logout');
+
+//MembershipController
+//USER
+Route::get('/profile/membership/{id}', [MembershipController::class, 'new'])->name('user.newMembership');

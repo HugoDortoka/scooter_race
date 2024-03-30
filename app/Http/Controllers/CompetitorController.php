@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Competitor;
+use App\Models\Membership;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -9,7 +10,20 @@ use Illuminate\Support\Facades\Redirect;
 
 class CompetitorController extends Controller
 {
-    
+    //ADMIN
+    public function index()
+    {
+        if (Session::get('admin') !== 'admin') {
+            return Redirect::route('admin.login');
+        }
+        $competitors = Competitor::all();
+        return view('admin.competitors', compact('competitors'));
+    }
+    public function search(Request $request){
+        $query = $request->input('query');
+        $competitors = Competitor::where('name', 'like', "%$query%")->get();
+        return view('admin.search_competitors', compact('competitors'));
+    }
     //USER
     public function competitors(){
 
@@ -22,7 +36,9 @@ class CompetitorController extends Controller
             return Redirect::route('user.login');
         }
         $user = Session::get('user');
-        return view('profile', compact('user'));
+        $id = $user->id;
+        $membership = Membership::where('competitor_id', '=', $id)->first();
+        return view('profile', compact('user', 'membership'));
     }
 
     public function login(){
