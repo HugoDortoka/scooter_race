@@ -112,7 +112,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                         <div class="col col-6"><p>Date: {{ $course->date }}</p></div>
                         <div class="col col-6"><p>Time: {{ $course->time }}</p></div>
                       </div>
-                      <div class="row">
+                      <div class="row mt-4">
                         <div class="col col-6"><p class="priceRace">Price: {{ $course->registration_price }}€</p></div>
                         <div class="col col-6"> <div class="main-button">
                           <a href="{{ route('user.races') }}">Register</a>
@@ -120,7 +120,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                       </div>
                       
                 </div>
-                </div>
+               
               </div>
           </div>
           <!-- ***** Most Popular End ***** -->
@@ -131,21 +131,23 @@ https://templatemo.com/tm-579-cyborg-gaming
               <div class="heading-section">
                 <h4><em>Photos From</em> The Races</h4>
               </div>
-              @if($photos)
-              <div class="row">
-                @foreach($photos as $photo)
-                
-                    <div class="col-lg-4 col-sm-6 mt-4">
-                        <div class="item">
-                            <img src="{{ asset($photo->photo_url) }}" alt="{{ $photo->photo_url }}" title="{{ $photo->photo_url }}" class="imgRace">
-                           
-                        </div>
-                    </div>
-                @endforeach
-              </div>
-                
-              @endif
-             
+              @if($photos->isNotEmpty())
+                  <div class="row">
+                      @foreach($photos as $photo)
+                          <div class="col-lg-4 col-sm-6 mt-4">
+                              <div class="item">
+                                  <img src="{{ asset($photo->photo_url) }}" alt="{{ $photo->photo_url }}" title="{{ $photo->photo_url }}" class="imgRace">
+                              </div>
+                          </div>
+                      @endforeach
+                  </div>
+              @else
+                  <div class="row mt-4">
+                      <div class="col-md-12 text-center">
+                          <p class="h5">ⓘ Photos not available</p>
+                      </div>
+                  </div>
+              @endif  
         </div>
       </div>
     </div>
