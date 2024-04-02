@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Photo;
+use App\Models\Registration;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -180,5 +182,69 @@ class CourseController extends Controller
         
         $course = Course::insurerById($id);
         return view('user.infoRace', compact('course', 'photos'));
+    }
+
+    public function generateUniqueDorsalNumber($courseId) {
+        // Generar un número de dorsal único dentro del mismo curso
+        $dorsalNumber = mt_rand(1000, 9999); // Generar un número aleatorio de 4 dígitos
+    
+        // Verificar si el número de dorsal generado ya existe en el mismo curso
+        $existingDorsal = Registration::where('course_id', $courseId)
+                                        ->where('dorsal_number', $dorsalNumber)
+                                        ->exists();
+    
+        // Si el número de dorsal generado ya existe para el mismo curso, generamos uno nuevo hasta que obtengamos uno único
+        while ($existingDorsal) {
+            $dorsalNumber = mt_rand(1000, 9999); // Generar un nuevo número aleatorio de 4 dígitos
+            $existingDorsal = Registration::where('course_id', $courseId)
+                                            ->where('dorsal_number', $dorsalNumber)
+                                            ->exists();
+        }
+    
+        return $dorsalNumber;
+    }
+
+    public function register($id){
+        if (Session::has('user')) {
+            $user = Session::get('user');
+            //Generar dorsal
+
+            $dorsalNumber = mt_rand(1000, 9999); // Generar un número aleatorio de 4 dígitos
+    
+            // Verificar si el número de dorsal generado ya existe en el mismo curso
+            $existingDorsal = Registration::where('course_id', $id)
+                                            ->where('dorsal_number', $dorsalNumber)
+                                            ->exists();
+        
+            // Si el número de dorsal generado ya existe para el mismo curso, generamos uno nuevo hasta que obtengamos uno único
+            while ($existingDorsal) {
+                $dorsalNumber = mt_rand(1000, 9999); // Generar un nuevo número aleatorio de 4 dígitos
+                $existingDorsal = Registration::where('course_id', $id)
+                                                ->where('dorsal_number', $dorsalNumber)
+                                                ->exists();
+            }
+            // Crear una nueva instancia de Registration
+            $registration = new Registration();
+            $registration->competitor_id = $user->id; // Asignar el ID del usuario como competitor_id
+            $registration->course_id = $id; // Asignar el ID del curso proporcionado como course_id
+            $registration->dorsal_number = $dorsalNumber; // Suponiendo que tienes una función para generar un dorsal único
+ 
+    
+            $registration->save(); // Guardar el registro en la base de datos
+    
+            try {
+                // Buscar fotos por el ID del curso
+                $photos = Photo::where('course_id', $id)->get();
+            } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+                $photos = null; // O cualquier otro valor por defecto que desees asignar
+            }
+            
+            $course = Course::insurerById($id);
+            return view('user.infoRace', compact('course', 'photos'));
+        }
+        else {
+            return "El usuario no está autenticado"; // Puedes manejar el caso donde el usuario no está autenticado
+        }
+        
     }
 }

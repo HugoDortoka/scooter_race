@@ -102,7 +102,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                       <div class="col col-12"><p class="white">{{ $course->description }}</p></div>
                       <div class="row">
                         <div class="col col-6"><p>Unevenness: {{ $course->elevation }}%</p></div>
-                        <div class="col col-6"><p>Distance: {{ $course->distance_km }}km</p></div>
+                        <div class="col col-6"><p>Distance: {{ $course->distance_km }} km</p></div>
                       </div>
                       <div class="row">
                         <div class="col col-6"><p>Max participants: {{ $course->max_participants }}</p></div>
@@ -115,7 +115,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                       <div class="row mt-4">
                         <div class="col col-6"><p class="priceRace">Price: {{ $course->registration_price }}€</p></div>
                         <div class="col col-6"> <div class="main-button">
-                          <a href="{{ route('user.races') }}">Register</a>
+                          <a href="{{ route('user.register', $course->id) }}">Register</a>
                       </div></div>
                       </div>
                       
