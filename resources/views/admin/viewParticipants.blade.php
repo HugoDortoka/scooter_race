@@ -45,20 +45,24 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="page-content">
-                <a href="{{ route('admin.pdfParticipants', $course->id) }}" class="btn btn-pink btnAdd">View participants</a>
-                <div id="bodyList">
-                    @foreach($competitors as $competitor)
-                        <div class="row justify-content-center">
-                            <div>
-                                <div class="registrations">
-                                    <h5>Name: {{ $competitor->name }}</h5>
-                                    <h5>Surname: {{ $competitor->surname }}</h5>
-                                    <a href="{{ route('admin.pdfParticipant', ['courseId' => $course->id, 'competitorId' => $competitor->id]) }}" class="btn btn-pink">View participant</a>
+                @if(count($competitors)===0)
+                    <p>There is no competitor signed up for this race</p>
+                @else
+                    <a href="{{ route('admin.pdfParticipants', $course->id) }}" class="btn btn-pink btnAdd">View participants</a>
+                    <div id="bodyList">
+                        @foreach($competitors as $competitor)
+                            <div class="row justify-content-center">
+                                <div>
+                                    <div class="registrations">
+                                        <h5>Name: {{ $competitor->name }}</h5>
+                                        <h5>Surname: {{ $competitor->surname }}</h5>
+                                        <a href="{{ route('admin.pdfParticipant', ['courseId' => $course->id, 'competitorId' => $competitor->id]) }}" class="btn btn-pink">View participant</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
-                </div>
+                        @endforeach
+                    </div>
+                @endif
             </div>
         </div>
     </div>
