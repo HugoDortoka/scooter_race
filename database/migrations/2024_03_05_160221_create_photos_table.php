@@ -18,6 +18,48 @@ return new class extends Migration
             $table->string('photo_url');
             $table->timestamps();
         });
+
+        DB::table('photos')->insert([
+            'course_id' => 4,
+            'photo_url' => 'img/photos_courses/1711714675_banner-bg.png',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('photos')->insert([
+            'course_id' => 4,
+            'photo_url' => 'img/photos_courses/1711714675_circuito1.jpg',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('photos')->insert([
+            'course_id' => 4,
+            'photo_url' => 'img/photos_courses/1711714676_NIkepromotion.jpg',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('photos')->insert([
+            'course_id' => 4,
+            'photo_url' => 'img/photos_courses/1711789275_img.jpg',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('photos')->insert([
+            'course_id' => 4,
+            'photo_url' => 'img/photos_courses/1711789275_Tulips_10_IMG.jpg',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('photos')->insert([
+            'course_id' => 4,
+            'photo_url' => 'img/photos_courses/1711789343_website.jpg',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 
     /**
