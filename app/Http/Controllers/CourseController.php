@@ -184,26 +184,7 @@ class CourseController extends Controller
         return view('user.infoRace', compact('course', 'photos'));
     }
 
-    public function generateUniqueDorsalNumber($courseId) {
-        // Generar un número de dorsal único dentro del mismo curso
-        $dorsalNumber = mt_rand(1000, 9999); // Generar un número aleatorio de 4 dígitos
     
-        // Verificar si el número de dorsal generado ya existe en el mismo curso
-        $existingDorsal = Registration::where('course_id', $courseId)
-                                        ->where('dorsal_number', $dorsalNumber)
-                                        ->exists();
-    
-        // Si el número de dorsal generado ya existe para el mismo curso, generamos uno nuevo hasta que obtengamos uno único
-        while ($existingDorsal) {
-            $dorsalNumber = mt_rand(1000, 9999); // Generar un nuevo número aleatorio de 4 dígitos
-            $existingDorsal = Registration::where('course_id', $courseId)
-                                            ->where('dorsal_number', $dorsalNumber)
-                                            ->exists();
-        }
-    
-        return $dorsalNumber;
-    }
-
     public function register($id){
         if (Session::has('user')) {
             $user = Session::get('user');

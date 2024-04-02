@@ -24,6 +24,7 @@ return new class extends Migration
             $table->timestamps();
             // Crear un índice único compuesto en dorsal_number y course_id
             $table->unique(['dorsal_number', 'course_id']);
+            $table->unique(['competitor_id', 'course_id']);
         });
     }
 
