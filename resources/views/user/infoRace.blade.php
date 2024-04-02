@@ -109,7 +109,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                         <div class="col col-6"><p>Location: {{ $course->location }}</p></div>
                       </div>
                       <div class="row">
-                        <div class="col col-6"><p>Date: {{ $course->date }}</p></div>
+                        <div class="col col-6"><p>Date: {{ date('d-m-Y', strtotime($course->date)) }}</p></div>
                         <div class="col col-6"><p>Time: {{ $course->time }}</p></div>
                       </div>
                       <div class="row mt-4">
