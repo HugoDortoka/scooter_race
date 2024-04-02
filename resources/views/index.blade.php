@@ -117,7 +117,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                                     <img src="{{ asset($course->map_image) }}" alt="map_image">
                                     <h4>{{ $course->name }}<br><span>Unevenness</span></h4>
                                     <ul>
-                                        <li><i class="fa fa-star"></i> {{ $course->distance_km }}</li>
+                                        <li><i class="fa fa-star"></i> {{ $course->distance_km }} km</li>
                                         <li><i class="fa fa-download"></i> {{ $course->elevation }}%</li>
                                     </ul>
                                   </a>
