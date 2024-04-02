@@ -74,20 +74,20 @@
                         <form action="{{ route('admin.insurerUpdate', $insurer->id) }}" method="post" class="editForm">
                             @csrf
                             <div>
-                                <label for="cif">CIF:</label>
-                                <input type="text" id="cif" name="cif" value="{{ $insurer->CIF }}" readonly >
+                                <label for="cif">CIF</label>
+                                <input type="text" id="cif" name="cif" value="{{ $insurer->CIF }}" readonly>
                             </div>
                             <div>
-                                <label for="name">Nombre:</label>
-                                <input type="text" id="name" name="name" value="{{ $insurer->name }}" >
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" value="{{ $insurer->name }}" required>
                             </div>
                             <div>
-                                <label for="address">Dirección:</label>
-                                <input type="text" id="address" name="address" value="{{ $insurer->address }}" >
+                                <label for="address">Address</label>
+                                <input type="text" id="address" name="address" value="{{ $insurer->address }}" required>
                             </div>
                             <div>
-                                <label for="price">Precio por carrera:</label>
-                                <input type="text" id="price" name="price" value="{{ $insurer->price_per_course }}" >
+                                <label for="price">Price per race</label>
+                                <input type="text" id="price" name="price" min="0" step="0.01" value="{{ $insurer->price_per_course }}" required>
                             </div>
                             <input type="submit" value="Enviar" class="btn btn-pink">
                         </form>

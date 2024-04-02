@@ -71,31 +71,31 @@
             <div class="col-lg-12">
                 <div class="page-content">
                     <div>
-                        <form action="{{ route('admin.sponsorAdd') }}" method="post" enctype="multipart/form-data" class="editForm">
+                        <form action="{{ route('admin.sponsorAdd') }}" method="post" enctype="multipart/form-data" class="editForm" onsubmit="return validateCIF()">
                             @csrf
                             <div>
-                                <label for="cif">CIF:</label>
+                                <label for="cif">CIF</label>
                                 <input type="text" id="cif" name="cif" required>
                             </div>
                             <div>
-                                <label for="name">Nombre:</label>
+                                <label for="name">Name</label>
                                 <input type="text" id="name" name="name" required>
                             </div>
                             <div>
-                                <label for="name">Logo:</label>
+                                <label for="name">Logo</label>
                                 <input type="file" id="logo" name="logo" accept="image/*" required>
                             </div>
                             <div>
-                                <label for="address">Dirección:</label>
+                                <label for="address">Address</label>
                                 <input type="text" id="address" name="address" required>
                             </div>
                             <div>
-                                <label for="principal">Principal:</label>
-                                <input type="checkbox" id="principal" name="principal" required>
+                                <label for="principal">Principal</label>
+                                <input type="checkbox" id="principal" name="principal">
                             </div>
                             <div>
-                                <label for="extra_cost">Coste extra</label>
-                                <input type="number" id="extra_cost" name="extra_cost" required>
+                                <label for="extra_cost">Extra cost</label>
+                                <input type="number" id="extra_cost" name="extra_cost" min="0" step="0.01">
                             </div>
                             <input type="submit" value="Enviar" class="btn btn-pink">
                         </form>
@@ -116,6 +116,7 @@
     </div>
   </footer>
     <!-- Scripts -->
+    <script src="{{ asset('assets/js/validation.js') }}"></script>
     <!-- Bootstrap core JavaScript -->
     <script src="{{ asset('assets/js/jquery/jquery.min.js') }}"></script>
 

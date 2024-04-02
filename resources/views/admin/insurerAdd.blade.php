@@ -71,23 +71,23 @@
             <div class="col-lg-12">
                 <div class="page-content">
                     <div>
-                        <form action="{{ route('admin.insurerAdd') }}" method="post" class="editForm">
+                        <form action="{{ route('admin.insurerAdd') }}" method="post" class="editForm" onsubmit="return validateCIF()">
                             @csrf
                             <div>
-                                <label for="cif">CIF:</label>
+                                <label for="cif">CIF</label>
                                 <input type="text" id="cif" name="cif" required>
                             </div>
                             <div>
-                                <label for="name">Nombre:</label>
+                                <label for="name">Name</label>
                                 <input type="text" id="name" name="name" required>
                             </div>
                             <div>
-                                <label for="address">Dirección:</label>
+                                <label for="address">Address</label>
                                 <input type="text" id="address" name="address" required>
                             </div>
                             <div>
-                                <label for="price">Precio por carrera:</label>
-                                <input type="number" id="price" name="price" required>
+                                <label for="price">Price per race</label>
+                                <input type="number" id="price" name="price" min="0" step="0.01" required>
                             </div>
                             <input type="submit" value="Enviar" class="btn btn-pink">
                         </form>
@@ -108,6 +108,7 @@
     </div>
   </footer>
     <!-- Scripts -->
+    <script src="{{ asset('assets/js/validation.js') }}"></script>
     <!-- Bootstrap core JavaScript -->
     <script src="{{ asset('assets/js/jquery/jquery.min.js') }}"></script>
 

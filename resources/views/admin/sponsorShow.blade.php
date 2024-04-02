@@ -74,28 +74,28 @@
                         <form action="{{ route('admin.sponsorUpdate', $sponsor->id) }}" method="post" enctype="multipart/form-data" class="editForm">
                             @csrf
                             <div>
-                                <label for="cif">CIF:</label>
-                                <input type="text" id="cif" name="cif" value="{{ $sponsor->CIF }}" readonly >
+                                <label for="cif">CIF</label>
+                                <input type="text" id="cif" name="cif" value="{{ $sponsor->CIF }}" readonly>
                             </div>
                             <div>
-                                <label for="name">Nombre:</label>
-                                <input type="text" id="name" name="name" value="{{ $sponsor->name }}" >
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" value="{{ $sponsor->name }}" required>
                             </div>
                             <div>
-                                <label for="logo">Logo:</label>
+                                <label for="logo">Logo</label>
                                 <input type="file" id="logo" name="logo" accept="image/*">
                             </div>
                             <div>
-                                <label for="address">Dirección:</label>
-                                <input type="text" id="address" name="address" value="{{ $sponsor->address }}" >
+                                <label for="address">Address</label>
+                                <input type="text" id="address" name="address" value="{{ $sponsor->address }}" required>
                             </div>
                             <div>
-                                <label for="principal">Principal:</label>
+                                <label for="principal">Principal</label>
                                 <input type="checkbox" id="principal" name="principal" value="1" {{ $sponsor->principal ? 'checked' : '' }}>
                             </div>
                             <div>
-                                <label for="extra_cost">Coste extra</label>
-                                <input type="number" id="extra_cost" name="extra_cost" value="{{ $sponsor->extra_cost }}" >
+                                <label for="extra_cost">Extra cost</label>
+                                <input type="number" id="extra_cost" name="extra_cost" min="0" step="0.01" value="{{ $sponsor->extra_cost }}">
                             </div>
                             <input type="submit" value="Enviar" class="btn btn-pink">
                         </form>

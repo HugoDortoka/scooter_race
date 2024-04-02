@@ -39,7 +39,7 @@
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
                         <a href="{{ route('admin.home') }}" class="logo">
-                            <img src="assets/images/logo.png" alt="">
+                            <img src="{{ asset('assets/images/logo.png') }}" alt="">
                         </a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Search End ***** -->
@@ -101,7 +101,7 @@
                             </div>
                             <div>
                                 <label for="date">Date</label>
-                                <input type="date" id="date" name="date" value="{{ $course->date }}" required>
+                                <input type="date" id="date" name="date" min="{{ date('Y-m-d', strtotime('+1 day')) }}" value="{{ $course->date }}" required>
                             </div>
                             <div>
                                 <label for="time">Time</label>

@@ -89,7 +89,7 @@
                             </div>
                             <div>
                                 <label for="map_image">Map Image</label>
-                                <input type="file" id="map_image" name="map_image" accept="image/*">
+                                <input type="file" id="map_image" name="map_image" accept="image/*" required>
                             </div>
                             <div>
                                 <label for="max_participants">Max Participants</label>
@@ -101,7 +101,7 @@
                             </div>
                             <div>
                                 <label for="date">Date</label>
-                                <input type="date" id="date" name="date" required>
+                                <input type="date" id="date" name="date" min="{{ date('Y-m-d', strtotime('+1 day')) }}" required>
                             </div>
                             <div>
                                 <label for="time">Time</label>
@@ -113,7 +113,7 @@
                             </div>
                             <div>
                                 <label for="promotion_poster">Promotion Poster</label>
-                                <input type="file" id="promotion_poster" name="promotion_poster" accept="image/*">
+                                <input type="file" id="promotion_poster" name="promotion_poster" accept="image/*" required>
                             </div>
                             <div>
                                 <label for="sponsorship_cost">Sponsorship Cost</label>
