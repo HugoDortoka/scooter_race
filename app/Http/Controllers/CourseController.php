@@ -179,17 +179,23 @@ class CourseController extends Controller
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             $photos = null; // O cualquier otro valor por defecto que desees asignar
         }
-        $user = Session::get('user');
         $course = Course::insurerById($id);
         $registration = Registration::where('course_id', $id)->get();
-        return view('user.infoRace', compact('course', 'photos', 'user', 'registration'));
+        if (Session::has('user')) {
+            $user = Session::get('user');
+            return view('user.infoRace', compact('course', 'photos', 'user', 'registration'));
+        }else {
+            $user = null;
+            return view('user.infoRace', compact('course', 'photos', 'user', 'registration'));
+        }
+       
     }
 
     
     public function register($id){
         if (Session::has('user')) {
             $user = Session::get('user');
-            
+
             //Generar dorsal
             $dorsalNumber = mt_rand(1000, 9999); // Generar un número aleatorio de 4 dígitos
     
@@ -223,7 +229,13 @@ class CourseController extends Controller
             
             $course = Course::insurerById($id);
             $registration = Registration::where('course_id', $id)->get();
-            return view('user.infoRace', compact('course', 'photos', 'user', 'registration'));
+            if (Session::has('user')) {
+                $user = Session::get('user');
+                return view('user.infoRace', compact('course', 'photos', 'user', 'registration'));
+            }else {
+                $user = null;
+                return view('user.infoRace', compact('course', 'photos', 'user', 'registration'));
+            }
         }
         else {
             return "El usuario no está autenticado"; // Puedes manejar el caso donde el usuario no está autenticado

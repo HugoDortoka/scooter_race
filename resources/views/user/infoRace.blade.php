@@ -116,10 +116,14 @@ https://templatemo.com/tm-579-cyborg-gaming
                         <div class="col col-6"><p class="priceRace">Price: {{ $course->registration_price }}€</p></div>
                         <div class="col col-6"> 
                           <div class="main-button">
-                            @if ($registration->contains('competitor_id', $user->id))
-                                <p class="priceRace">Registered</p>
+                            @if ($user==null)
+                              <a href="{{ route('user.register', $course->id) }}">Register</a>
                             @else
-                                <a href="{{ route('user.register', $course->id) }}">Register</a>
+                              @if ($registration->contains('competitor_id', $user->id))
+                                  <p class="priceRace">Registered</p>
+                              @else
+                                  <a href="{{ route('user.register', $course->id) }}">Register</a>
+                              @endif
                             @endif
                           </div>
                         </div>
