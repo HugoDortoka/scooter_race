@@ -59,7 +59,7 @@
                         <div class="col-md-6">
                             <label for="birth" class="labelLogin">Date of birth</label><br>
                             <div class="divLogin">
-                                <input type="date" id="birth" name="birth" class="inputLogin" required>
+                                <input type="date" id="birth" name="birth" class="inputLogin" max="{{ date('Y-m-d', strtotime('-1 day')) }}" required>
                             </div>
                             <label for="PRO_OPEN" class="labelLogin">What are you?</label><br>
                             <div class="divLogin">
