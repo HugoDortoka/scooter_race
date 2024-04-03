@@ -35,12 +35,12 @@
             <div class="centrado">
                 <a href="{{ route('user.login') }}"><img src="assets/images/flecha.png" alt="flecha" class="arrowLogin"></a>
                 <h1 class="loginTitulo">Register</h1>
-                <form action="{{ route('user.insertRegistration') }}" method="POST" class="formRegister">
+                <form action="{{ route('user.insertRegistration') }}" method="POST" class="formRegister" onsubmit="return validateForm()">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
                             <label for="dni" class="labelLogin">DNI</label><br>
-                            <div class="divLogin">
+                            <div class="divLogin" id="divDNI">
                                 <input type="text" id="dni" name="dni" class="inputLogin" placeholder="Type your DNI" required>
                             </div>
                             <label for="name" class="labelLogin">Name</label><br>
@@ -70,7 +70,7 @@
                             </div>
                             <div id="federationInput" style="display: none;">
                                 <label for="federation" class="labelLogin">Federation number</label><br>
-                                <div class="divLogin">
+                                <div class="divLogin" id="divFederation">
                                     <input type="text" id="federation" name="federation" class="inputLogin" placeholder="Type your fed. number">
                                 </div>
                             </div>
@@ -86,6 +86,7 @@
         </div>
         <!-- Scripts -->
         <script src="{{ asset('assets/js/federation.js') }}"></script>
+        <script src="{{ asset('assets/js/validation.js') }}"></script>
         <!-- Bootstrap core JavaScript -->
         <script src="{{ asset('assets/js/jquery/jquery.min.js') }}"></script>
 
