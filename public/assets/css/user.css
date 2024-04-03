@@ -24,3 +24,13 @@
 .formRegister{
     width: 600px;
 }
+.btn-pink {
+    background-color: #E75E8D;
+    color: white;
+    border: none;
+    border-radius: 20px;
+}
+.btn-pink:hover {
+    background-color: #d81b60;
+    color: white;
+}

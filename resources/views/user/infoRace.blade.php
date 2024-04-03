@@ -117,12 +117,28 @@ https://templatemo.com/tm-579-cyborg-gaming
                         <div class="col col-6"> 
                           <div class="main-button">
                             @if ($user==null)
-                              <a href="{{ route('user.register', $course->id) }}">Register</a>
+                              <a href="{{ route('user.register2', $course->id) }}">Register</a>
                             @else
                               @if ($registration->contains('competitor_id', $user->id))
-                                  <p class="priceRace">Registered</p>
+                                <p class="priceRace">Registered</p>
                               @else
-                                  <a href="{{ route('user.register', $course->id) }}">Register</a>
+                                @if ($user->PRO==true)
+                                  <a href="{{ route('user.register2', $course->id) }}">Register</a>              
+                                @else
+                                  <form action="{{ route('user.register', $course->id) }}"  method="POST" >
+                                    @csrf
+                                    <select id="insurerId" name="insurerId" required>
+                                      @foreach($insurers as $insurer)
+                                        <option value="{{ $insurer->id }}">{{ $insurer->name }}</option>
+                                      @endforeach
+                                    </select>
+                                    
+                                    <input type="submit" value="Register" class="btn btn-pink">
+                                  </form>
+                                  
+                                  
+                                @endif
+                                  
                               @endif
                             @endif
                           </div>
