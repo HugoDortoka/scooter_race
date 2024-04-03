@@ -36,6 +36,18 @@ return new class extends Migration
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
+        DB::table('competitors')->insert([
+            'DNI' => '44587682C',
+            'name' => 'Juan',
+            'surname' => 'Moreno',
+            'address' => '77 Elm Street, Springfield',
+            'date_of_birth' => '1995-07-03',
+            'PRO' => false,
+            'password' => bcrypt('44587682C'),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 
     /**
