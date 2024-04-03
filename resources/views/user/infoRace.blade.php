@@ -156,15 +156,15 @@ https://templatemo.com/tm-579-cyborg-gaming
                 <h4><em>Photos From</em> The Races</h4>
               </div>
               @if($photos->isNotEmpty())
-                  <div class="row">
-                      @foreach($photos as $photo)
-                          <div class="col-lg-4 col-sm-6 mt-4">
-                              <div class="item">
-                                  <img src="{{ asset($photo->photo_url) }}" alt="{{ $photo->photo_url }}" title="{{ $photo->photo_url }}" class="imgRace">
-                              </div>
-                          </div>
-                      @endforeach
-                  </div>
+                <div class="owl-features owl-carousel">
+                  @foreach($photos as $photo)
+                    <div class="item">
+                      <div class="thumb">
+                        <img src="{{ asset($photo->photo_url) }}" alt="{{ $photo->photo_url }}" title="{{ $photo->photo_url }}" class="imgRace">
+                      </div>
+                    </div>
+                  @endforeach
+                </div>
               @else
                   <div class="row mt-4">
                       <div class="col-md-12 text-center">
