@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/owl.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/user.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/popup.css') }}">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
 <!--
 
@@ -118,6 +119,14 @@ https://templatemo.com/tm-579-cyborg-gaming
                           <div class="main-button">
                             @if ($user==null)
                               <a href="{{ route('user.register2', $course->id) }}">Register</a>
+                              <a href="#myModal" class="trigger-modal">Abrir Modal</a>
+
+                              <div id="myModal" style="display: none;" class="mt-4">
+                                  <!-- Contenido de tu modal aquí -->
+                                  <h2>Mi Modal</h2>
+                                  <p>Contenido del modal...</p>
+                                  <button class="close-modal">Cerrar</button>
+                              </div>
                             @else
                               @if ($registration->contains('competitor_id', $user->id))
                                 <p class="priceRace">Registered</p>
@@ -200,6 +209,15 @@ https://templatemo.com/tm-579-cyborg-gaming
   <script src="{{ asset('assets/js/popup.js') }}"></script>
   <script src="{{ asset('assets/js/custom.js') }}"></script>
 
+  <script>
+    $(document).ready(function() {
+      $('.trigger-modal').leanModal({
+          top: 100,
+          overlay: 0.5,
+          closeButton: ".close-modal"
+      });
+    });
+  </script>
 
   </body>
 
