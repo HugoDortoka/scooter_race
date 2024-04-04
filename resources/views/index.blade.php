@@ -15,6 +15,7 @@
     <!-- Scripts de Bootstrap (JavaScript) -->
     <script src="{{ asset('assets/js/bootstrap.min.js') }}" defer></script>
     <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{{ asset('assets/css/user.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/fontawesome.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/templatemo-cyborg-gaming.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/owl.css') }}">
@@ -187,6 +188,11 @@ https://templatemo.com/tm-579-cyborg-gaming
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
+          <p>
+            @foreach ($sponsorsPrincipal as $sponsorPrincipal)
+              <img src="{{ asset($sponsorPrincipal->logo) }}" alt="" class="sponsorPrincipal">
+            @endforeach
+          </p>
           <p>Copyright © 2036 <a href="#">Scooter Leveling</a> Company. All rights reserved. 
           
           <br>Design by <a href="https://templatemo.com" target="_blank" title="free CSS templates">Hugo Varela and Lucas Moreno</a></p>

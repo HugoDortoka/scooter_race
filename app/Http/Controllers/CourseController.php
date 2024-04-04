@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Sponsor;
 use App\Models\Photo;
 use App\Models\Registration;
 use App\Models\Insurer;
@@ -168,7 +169,8 @@ class CourseController extends Controller
 
     public function home(){
         $courses = Course::take(8)->get();
-        return view('index', compact('courses'));
+        $sponsorsPrincipal = Sponsor::where('principal', 1)->get();
+        return view('index', compact('courses', 'sponsorsPrincipal'));
     }
 
     public function infoRace($id)
