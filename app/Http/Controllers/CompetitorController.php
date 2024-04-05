@@ -82,16 +82,35 @@ class CompetitorController extends Controller
         }
         $password = $request->input('password');
 
-        Competitor::create([
-            'DNI' => $dni,
-            'name' => $name,
-            'surname' => $surname,
-            'address' => $address,
-            'date_of_birth' => $birth,
-            'PRO' => $PRO_OPEN,
-            'federation_number' => $federation,
-            'password' => bcrypt($password),
-        ]);
+        $exist = Competitor::where('DNI', '=', $dni)
+                   ->whereNull('password')
+                   ->first();
+
+        if ($exist === null) {
+            Competitor::create([
+                'DNI' => $dni,
+                'name' => $name,
+                'surname' => $surname,
+                'address' => $address,
+                'date_of_birth' => $birth,
+                'PRO' => $PRO_OPEN,
+                'federation_number' => $federation,
+                'password' => bcrypt($password),
+            ]);
+        } else {
+            Competitor::updateOrCreate(
+                ['DNI' => $dni],
+                [
+                    'name' => $name,
+                    'surname' => $surname,
+                    'address' => $address,
+                    'date_of_birth' => $birth,
+                    'PRO' => $PRO_OPEN,
+                    'federation_number' => $federation,
+                    'password' => bcrypt($password),
+                ]
+            );
+        }
         return Redirect::route('user.login');
     }
 
