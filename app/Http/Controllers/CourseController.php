@@ -325,6 +325,7 @@ class CourseController extends Controller
         }else{
             $federation = null;
         }
+        $password = null;
 
         Competitor::create([
             'DNI' => $dni,
@@ -334,6 +335,7 @@ class CourseController extends Controller
             'date_of_birth' => $birth,
             'PRO' => $PRO_OPEN,
             'federation_number' => $federation,
+            'password' => $password,
         ]);
 
         $competitor = Competitor::where('dni', $dni)->first();
