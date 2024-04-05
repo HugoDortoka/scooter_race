@@ -337,7 +337,7 @@ class CourseController extends Controller
         ]);
 
         $competitor = Competitor::where('dni', $dni)->first();
-        //$insurerId = $request->input('insurerId');
+        $insurerId = $request->input('insurerId');
             //Generar dorsal
             $dorsalNumber = mt_rand(1000, 9999); // Generar un número aleatorio de 4 dígitos
     
