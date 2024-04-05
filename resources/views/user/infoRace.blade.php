@@ -126,7 +126,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                                   <!-- Contenido de tu modal aquí -->
                                   <div class="centrado">
                                     
-                                    <form action="{{ route('user.insertRegistration') }}" method="POST" class="formRegister" onsubmit="return validateForm()">
+                                    <form action="{{ route('user.register3', $course->id) }}" method="POST" class="formRegister" onsubmit="return validateForm()">
                                         @csrf
                                         <div class="row">
                                             <div class="col-md-6">
@@ -152,6 +152,14 @@ https://templatemo.com/tm-579-cyborg-gaming
                                                 <div class="divLogin">
                                                     <input type="date" id="birth" name="birth" class="inputLogin" max="{{ date('Y-m-d', strtotime('-1 day')) }}" required>
                                                 </div>
+                                                <label for="insurerId" class="labelLogin">Choose your Insurer</label><br>
+                                                <div class="divLogin">
+                                                  <select id="insurerId" name="insurerId" class="inputLogin"  required>
+                                                    @foreach($insurers as $insurer)
+                                                      <option value="{{ $insurer->id }}">{{ $insurer->name }}</option>
+                                                    @endforeach
+                                                  </select>
+                                                </div>
                                                 <label for="PRO_OPEN" class="labelLogin">What are you?</label><br>
                                                 <div class="divLogin">
                                                     <select id="PRO_OPEN" name="PRO_OPEN" class="inputLogin" required>
@@ -165,12 +173,10 @@ https://templatemo.com/tm-579-cyborg-gaming
                                                         <input type="text" id="federation" name="federation" class="inputLogin" placeholder="Type your fed. number">
                                                     </div>
                                                 </div>
-                                                <label for="password" class="labelLogin">Password</label><br>
-                                                <div class="divLogin">
-                                                    <input type="password" id="password" name="password" class="inputLogin" placeholder="Type your password" required>
-                                                </div>
+                                                
+                                        
                                             </div>
-                                            <input type="submit" value="Register" class="btn btn-pink btnAdd btnLogin close-modal">
+                                            <input type="submit" value="Register" class="btn btn-pink btnAdd btnLogin">
                                         </div>
                                     </form>
                                 </div>

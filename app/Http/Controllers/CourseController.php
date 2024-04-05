@@ -7,6 +7,7 @@ use App\Models\Sponsor;
 use App\Models\Photo;
 use App\Models\Registration;
 use App\Models\Insurer;
+use App\Models\Competitor;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -184,13 +185,14 @@ class CourseController extends Controller
         }
         $course = Course::insurerById($id);
         $registration = Registration::where('course_id', $id)->get();
+        $insurers = Insurer::all();
         if (Session::has('user')) {
             $user = Session::get('user');
-            $insurers = Insurer::all();
+           
             return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers'));
         }else {
             $user = null;
-            return view('user.infoRace', compact('course', 'photos', 'user', 'registration'));
+            return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers'));
         }
        
     }
@@ -234,13 +236,14 @@ class CourseController extends Controller
             
             $course = Course::insurerById($id);
             $registration = Registration::where('course_id', $id)->get();
+            $insurers = Insurer::all();
             if (Session::has('user')) {
                 $user = Session::get('user');           
-                $insurers = Insurer::all();
+                
                 return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers'));
             }else {
                 $user = null;
-                return view('user.infoRace', compact('course', 'photos', 'user', 'registration'));
+                return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers'));
             }
         }
         else {
@@ -287,20 +290,91 @@ class CourseController extends Controller
             //     $registration = Registration::where('course_id', $id)->get();
             //     return Redirect::route('user.infoRace', compact('course', 'photos', 'user', 'registration'));
             // }
-            
+            $insurers = Insurer::all();
             $registration = Registration::where('course_id', $id)->get();
             if (Session::has('user')) {
                 $user = Session::get('user');           
-                $insurers = Insurer::all();
+                
                 return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers'));
             }else {
                 $user = null;
-                return view('user.infoRace', compact('course', 'photos', 'user', 'registration'));
+                return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers'));
             }
         }
         else {
             return "El usuario no está autenticado"; // Puedes manejar el caso donde el usuario no está autenticado
         }
         
+    }
+      
+    public function register3(Request $request, $id){
+        
+        $dni = $request->input('dni');
+        $name = $request->input('name');
+        $surname = $request->input('surname');
+        $address = $request->input('address');
+        $birth = $request->input('birth');
+        $PRO_OPEN = $request->input('PRO_OPEN');
+        if($PRO_OPEN == "OPEN"){
+            $PRO_OPEN = false;
+        }else{
+            $PRO_OPEN = true;
+        }
+        if ($request->has('federation')){
+            $federation = $request->input('federation');
+        }else{
+            $federation = null;
+        }
+
+        Competitor::create([
+            'DNI' => $dni,
+            'name' => $name,
+            'surname' => $surname,
+            'address' => $address,
+            'date_of_birth' => $birth,
+            'PRO' => $PRO_OPEN,
+            'federation_number' => $federation,
+        ]);
+
+        $competitor = Competitor::where('dni', $dni)->first();
+        //$insurerId = $request->input('insurerId');
+            //Generar dorsal
+            $dorsalNumber = mt_rand(1000, 9999); // Generar un número aleatorio de 4 dígitos
+    
+            // Verificar si el número de dorsal generado ya existe en el mismo curso
+            $existingDorsal = Registration::where('course_id', $id)
+                                            ->where('dorsal_number', $dorsalNumber)
+                                            ->exists();
+        
+            // Si el número de dorsal generado ya existe para el mismo curso, generamos uno nuevo hasta que obtengamos uno único
+            while ($existingDorsal) {
+                $dorsalNumber = mt_rand(1000, 9999); // Generar un nuevo número aleatorio de 4 dígitos
+                $existingDorsal = Registration::where('course_id', $id)
+                                                ->where('dorsal_number', $dorsalNumber)
+                                                ->exists();
+            }
+            // Crear una nueva instancia de Registration
+            $registration = new Registration();
+            $registration->competitor_id = $competitor->id; // Asignar el ID del usuario como competitor_id
+            $registration->course_id = $id; // Asignar el ID del curso proporcionado como course_id
+            $registration->insurer_id = $insurerId; 
+            $registration->dorsal_number = $dorsalNumber; // Suponiendo que tienes una función para generar un dorsal único
+ 
+    
+            $registration->save(); // Guardar el registro en la base de datos
+    
+            try {
+                // Buscar fotos por el ID del curso
+                $photos = Photo::where('course_id', $id)->get();
+            } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+                $photos = null; // O cualquier otro valor por defecto que desees asignar
+            }
+            
+            $course = Course::insurerById($id);
+            $registration = Registration::where('course_id', $id)->get();
+            $insurers = Insurer::all();
+            $user = null;
+            return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers'));
+
     }
 }
