@@ -86,17 +86,23 @@ class CompetitorController extends Controller
                    ->whereNull('password')
                    ->first();
 
+        $exist2 = Competitor::where('DNI', '=', $dni)->first();
+
         if ($exist === null) {
-            Competitor::create([
-                'DNI' => $dni,
-                'name' => $name,
-                'surname' => $surname,
-                'address' => $address,
-                'date_of_birth' => $birth,
-                'PRO' => $PRO_OPEN,
-                'federation_number' => $federation,
-                'password' => bcrypt($password),
-            ]);
+            if ($exist2 !== null) {
+                return Redirect::route('user.login')->with('alert', 'The competitor already exist');
+            } else {
+                Competitor::create([
+                    'DNI' => $dni,
+                    'name' => $name,
+                    'surname' => $surname,
+                    'address' => $address,
+                    'date_of_birth' => $birth,
+                    'PRO' => $PRO_OPEN,
+                    'federation_number' => $federation,
+                    'password' => bcrypt($password),
+                ]);
+            }
         } else {
             Competitor::updateOrCreate(
                 ['DNI' => $dni],

@@ -31,6 +31,11 @@
             </div>
         </div>
         <!-- ***** Preloader End ***** -->
+        @if(session('alert'))
+            <div class="alert alert-warning" id="alert">
+                {{ session('alert') }}
+            </div>
+        @endif
         <div class="containerLogin">
             <div class="centrado">
                 <a href="{{ route('user.home') }}"><img src="assets/images/flecha.png" alt="flecha" class="arrowLogin"></a>
@@ -57,7 +62,7 @@
         <!-- Scripts -->
         <!-- Bootstrap core JavaScript -->
         <script src="{{ asset('assets/js/jquery/jquery.min.js') }}"></script>
-
+        <script src="{{ asset('assets/js/ocultAlert.js') }}"></script>
         <script src="{{ asset('assets/js/isotope.min.js') }}"></script>
         <script src="{{ asset('assets/js/owl-carousel.js') }}"></script>
         <script src="{{ asset('assets/js/tabs.js') }}"></script>
