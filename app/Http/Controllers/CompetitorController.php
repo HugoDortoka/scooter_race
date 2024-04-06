@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Competitor;
 use App\Models\Membership;
+use App\Models\Sponsor;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -26,9 +27,8 @@ class CompetitorController extends Controller
     }
     //USER
     public function competitors(){
-
-
-        return view('competitors');
+        $sponsorsPrincipal = Sponsor::where('principal', 1)->get();
+        return view('competitors', compact('sponsorsPrincipal'));
     }
  
     public function profile(){
@@ -38,7 +38,8 @@ class CompetitorController extends Controller
         $user = Session::get('user');
         $id = $user->id;
         $membership = Membership::where('competitor_id', '=', $id)->first();
-        return view('profile', compact('user', 'membership'));
+        $sponsorsPrincipal = Sponsor::where('principal', 1)->get();
+        return view('profile', compact('user', 'membership', 'sponsorsPrincipal'));
     }
 
     public function login(){

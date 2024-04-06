@@ -159,12 +159,14 @@ class CourseController extends Controller
                 ->take(3)
                 ->get();
 
-        return view('races', compact('recents', 'difficulties'));
+        $sponsorsPrincipal = Sponsor::where('principal', 1)->get();
+        return view('races', compact('recents', 'difficulties', 'sponsorsPrincipal'));
     }
     
     public function allraces(){
         $courses = Course::where('active', 1)->get();
-        return view('user.all_races', compact('courses'));
+        $sponsorsPrincipal = Sponsor::where('principal', 1)->get();
+        return view('user.all_races', compact('courses', 'sponsorsPrincipal'));
     }
 
 
@@ -186,13 +188,14 @@ class CourseController extends Controller
         $course = Course::insurerById($id);
         $registration = Registration::where('course_id', $id)->get();
         $insurers = Insurer::all();
+        $sponsorsPrincipal = Sponsor::where('principal', 1)->get();
         if (Session::has('user')) {
             $user = Session::get('user');
            
-            return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers'));
+            return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal'));
         }else {
             $user = null;
-            return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers'));
+            return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal'));
         }
        
     }
@@ -237,13 +240,14 @@ class CourseController extends Controller
             $course = Course::insurerById($id);
             $registration = Registration::where('course_id', $id)->get();
             $insurers = Insurer::all();
+            $sponsorsPrincipal = Sponsor::where('principal', 1)->get();
             if (Session::has('user')) {
                 $user = Session::get('user');           
                 
-                return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers'));
+                return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal'));
             }else {
                 $user = null;
-                return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers'));
+                return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal'));
             }
         }
         else {
@@ -292,13 +296,13 @@ class CourseController extends Controller
             // }
             $insurers = Insurer::all();
             $registration = Registration::where('course_id', $id)->get();
+            $sponsorsPrincipal = Sponsor::where('principal', 1)->get();
             if (Session::has('user')) {
                 $user = Session::get('user');           
-                
-                return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers'));
+                return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal'));
             }else {
                 $user = null;
-                return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers'));
+                return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal'));
             }
         }
         else {
@@ -376,7 +380,8 @@ class CourseController extends Controller
             $registration = Registration::where('course_id', $id)->get();
             $insurers = Insurer::all();
             $user = null;
-            return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers'));
+            $sponsorsPrincipal = Sponsor::where('principal', 1)->get();
+            return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal'));
 
     }
 }
