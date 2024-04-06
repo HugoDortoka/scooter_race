@@ -115,11 +115,11 @@ https://templatemo.com/tm-579-cyborg-gaming
                             <div class="col-lg-3 col-sm-6">
                                 <div class="item">
                                   <a href="{{ route('user.infoRace', $course->id) }}">
-                                    <img src="{{ asset($course->map_image) }}" alt="map_image">
-                                    <h4>{{ $course->name }}<br><span>Unevenness</span></h4>
+                                    <img src="{{ asset($course->promotion_poster) }}" alt="promotion_poster">
+                                    <h4>{{ $course->name }}<br><span>Date</span></h4>
                                     <ul>
                                         <li><i class="fa fa-star"></i> {{ $course->distance_km }} km</li>
-                                        <li><i class="fa fa-download"></i> {{ $course->elevation }}%</li>
+                                        <li>{{ $course->date }}</li>
                                     </ul>
                                   </a>
                                 </div>

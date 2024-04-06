@@ -9,6 +9,7 @@ use App\Models\Registration;
 use App\Models\Insurer;
 use App\Models\Competitor;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -171,7 +172,14 @@ class CourseController extends Controller
 
 
     public function home(){
-        $courses = Course::take(8)->get();
+        $now = Carbon::now();
+
+        $courses = Course::where('active', 1)
+            ->whereDate('date', '>=', $now->toDateString())
+            ->orderBy('date', 'asc')
+            ->orderBy('time', 'asc')
+            ->take(8)
+            ->get();
         $sponsorsPrincipal = Sponsor::where('principal', 1)->get();
         return view('index', compact('courses', 'sponsorsPrincipal'));
     }
