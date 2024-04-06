@@ -64,6 +64,15 @@
    border-radius: 20px;
   
 }
+.sponsors{
+    grid-template-columns: 1fr 1fr;
+}
+.sponsors input{
+    height: 30px !important;
+}
+.alignLeft{
+    text-align: left;
+}
 @media (max-width: 1400px) {
     .editForm{
         grid-template-columns: 1fr;

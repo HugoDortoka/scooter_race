@@ -125,9 +125,15 @@
                             </div>
                             <div>
                                 <label for="sponsors">Sponsors</label>
-                                <select name="opciones[]" id="opciones" multiple required>
-
-                                </select>
+                                <div class="sponsors">
+                                    @foreach($sponsors as $sponsor)
+                                        <input type="checkbox" name="sponsors[]" id="sponsor{{ $sponsor->id }}" value="{{ $sponsor->id }}">
+                                        <label for="sponsor{{ $sponsor->id }}" class="alignLeft">{{ $sponsor->name }}</label>
+                                    @endforeach
+                                </div>
+                            </div>
+                            <div>
+                                
                             </div>
                             <!-- Agrega aquí más campos si es necesario -->
 

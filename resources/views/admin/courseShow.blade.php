@@ -123,6 +123,19 @@
                                 <label for="registration_price">Registration Price</label>
                                 <input type="number" id="registration_price" name="registration_price" min="0" step="0.01" value="{{ $course->registration_price }}" required>
                             </div>
+                            <div>
+                                <label for="sponsors">Sponsors</label>
+                                <div class="sponsors">
+                                    @foreach($sponsors as $sponsor)
+                                        <input type="checkbox" name="sponsors[]" id="sponsor{{ $sponsor->id }}" value="{{ $sponsor->id }}" 
+                                            {{ $sponsorsCourse->contains($sponsor) ? 'checked' : '' }}>
+                                        <label for="sponsor{{ $sponsor->id }}" class="alignLeft">{{ $sponsor->name }}</label>
+                                    @endforeach
+                                </div>
+                            </div>
+                            <div>
+                                
+                            </div>
                             <!-- Agrega aquí más campos si es necesario -->
                             <a href="{{ route('admin.showParticipants', $course->id) }}" class="btn btn-pink">View participants</a>
                             <input type="submit" value="Save" class="btn btn-pink">

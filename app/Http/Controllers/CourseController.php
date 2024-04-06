@@ -32,7 +32,10 @@ class CourseController extends Controller
             return Redirect::route('admin.login');
         }
         $course = Course::insurerById($id);
-        return view('admin.courseShow', compact('course'));
+        $sponsors = Sponsor::all();
+        $sponsorsId = Courses_sponsor::where('course_id', $id)->pluck('sponsor_id');
+        $sponsorsCourse = Sponsor::whereIn('id', $sponsorsId)->get();
+        return view('admin.courseShow', compact('course', 'sponsors', 'sponsorsCourse'));
     }
     public function showAdd()
     {
@@ -68,6 +71,17 @@ class CourseController extends Controller
         $course->sponsorship_cost = $request->input('sponsorship_cost');
         $course->registration_price = $request->input('registration_price');
         $course->save();
+
+        if (!empty($request->input('sponsors', []))) {
+            $courseId = $course->id;
+            $sponsorsSelected = $request->input('sponsors', []);
+            foreach ($sponsorsSelected as $sponsorId) {
+                $courseSponsor = new Courses_sponsor();
+                $courseSponsor->course_id = $courseId;
+                $courseSponsor->sponsor_id = $sponsorId;
+                $courseSponsor->save();
+            }
+        }
         return Redirect::route('admin.home');
     }
     
@@ -109,6 +123,31 @@ class CourseController extends Controller
         }
 
         $course->update($dataToUpdate);
+
+        $courseId = $course->id;
+        $sponsorsSelected = $request->input('sponsors', []);
+        $oldSponsorsIds = Courses_sponsor::where('course_id', $courseId)->pluck('sponsor_id')->toArray();
+
+        // Insertar nuevos sponsors seleccionados
+        foreach ($sponsorsSelected as $sponsorId) {
+            if (!in_array($sponsorId, $oldSponsorsIds)) {
+                // Insertar solo si el sponsor no estaba asociado antes
+                $courseSponsor = new Courses_sponsor();
+                $courseSponsor->course_id = $courseId;
+                $courseSponsor->sponsor_id = $sponsorId;
+                $courseSponsor->save();
+            }
+        }
+
+        // Eliminar sponsors deseleccionados
+        foreach ($oldSponsorsIds as $oldSponsorId) {
+            if (!in_array($oldSponsorId, $sponsorsSelected)) {
+                // Eliminar solo si el sponsor estaba asociado antes
+                Courses_sponsor::where('course_id', $courseId)
+                     ->where('sponsor_id', $oldSponsorId)
+                     ->delete();
+            }
+        }
         return Redirect::route('admin.home');
     }
 
