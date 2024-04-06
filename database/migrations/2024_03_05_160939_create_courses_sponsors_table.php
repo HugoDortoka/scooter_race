@@ -19,6 +19,146 @@ return new class extends Migration
             $table->foreign('sponsor_id')->references('id')->on('sponsors')->onDelete('cascade');
             $table->timestamps();
         });
+
+        DB::table('courses_sponsors')->insert([
+            'course_id' => 1,
+            'sponsor_id' => 1,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_sponsors')->insert([
+            'course_id' => 1,
+            'sponsor_id' => 3,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_sponsors')->insert([
+            'course_id' => 1,
+            'sponsor_id' => 5,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_sponsors')->insert([
+            'course_id' => 2,
+            'sponsor_id' => 2,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_sponsors')->insert([
+            'course_id' => 2,
+            'sponsor_id' => 4,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_sponsors')->insert([
+            'course_id' => 3,
+            'sponsor_id' => 1,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_sponsors')->insert([
+            'course_id' => 3,
+            'sponsor_id' => 4,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_sponsors')->insert([
+            'course_id' => 4,
+            'sponsor_id' => 2,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_sponsors')->insert([
+            'course_id' => 4,
+            'sponsor_id' => 3,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_sponsors')->insert([
+            'course_id' => 4,
+            'sponsor_id' => 5,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_sponsors')->insert([
+            'course_id' => 5,
+            'sponsor_id' => 2,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_sponsors')->insert([
+            'course_id' => 6,
+            'sponsor_id' => 4,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_sponsors')->insert([
+            'course_id' => 6,
+            'sponsor_id' => 5,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_sponsors')->insert([
+            'course_id' => 7,
+            'sponsor_id' => 1,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_sponsors')->insert([
+            'course_id' => 7,
+            'sponsor_id' => 3,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_sponsors')->insert([
+            'course_id' => 8,
+            'sponsor_id' => 1,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_sponsors')->insert([
+            'course_id' => 8,
+            'sponsor_id' => 2,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_sponsors')->insert([
+            'course_id' => 8,
+            'sponsor_id' => 3,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_sponsors')->insert([
+            'course_id' => 9,
+            'sponsor_id' => 4,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_sponsors')->insert([
+            'course_id' => 9,
+            'sponsor_id' => 5,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 
     /**
