@@ -119,7 +119,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                                     <h4>{{ $course->name }}<br><span>Date</span></h4>
                                     <ul>
                                         <li><i class="fa fa-star"></i> {{ $course->distance_km }} km</li>
-                                        <li>{{ $course->date }}</li>
+                                        <li>{{ date('d-m-Y', strtotime($course->date)) }}</li>
                                     </ul>
                                   </a>
                                 </div>

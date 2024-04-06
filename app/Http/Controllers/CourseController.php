@@ -8,6 +8,7 @@ use App\Models\Photo;
 use App\Models\Registration;
 use App\Models\Insurer;
 use App\Models\Competitor;
+use App\Models\Courses_sponsor;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -198,13 +199,18 @@ class CourseController extends Controller
         $registration = Registration::where('course_id', $id)->get();
         $insurers = Insurer::all();
         $sponsorsPrincipal = Sponsor::where('principal', 1)->get();
+
+        $sponsorsId = Courses_sponsor::where('course_id', $id)->pluck('sponsor_id');
+        $sponsorsCourse = Sponsor::whereIn('id', $sponsorsId)->get();
+
+
         if (Session::has('user')) {
             $user = Session::get('user');
            
-            return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal'));
+            return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse'));
         }else {
             $user = null;
-            return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal'));
+            return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse'));
         }
        
     }
@@ -250,13 +256,16 @@ class CourseController extends Controller
             $registration = Registration::where('course_id', $id)->get();
             $insurers = Insurer::all();
             $sponsorsPrincipal = Sponsor::where('principal', 1)->get();
+            
+            $sponsorsId = Courses_sponsor::where('course_id', $id)->pluck('sponsor_id');
+            $sponsorsCourse = Sponsor::whereIn('id', $sponsorsId)->get();
             if (Session::has('user')) {
                 $user = Session::get('user');           
                 
-                return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal'));
+                return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse'));
             }else {
                 $user = null;
-                return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal'));
+                return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse'));
             }
         }
         else {
@@ -306,12 +315,15 @@ class CourseController extends Controller
             $insurers = Insurer::all();
             $registration = Registration::where('course_id', $id)->get();
             $sponsorsPrincipal = Sponsor::where('principal', 1)->get();
+            
+            $sponsorsId = Courses_sponsor::where('course_id', $id)->pluck('sponsor_id');
+            $sponsorsCourse = Sponsor::whereIn('id', $sponsorsId)->get();
             if (Session::has('user')) {
                 $user = Session::get('user');           
-                return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal'));
+                return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse'));
             }else {
                 $user = null;
-                return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal'));
+                return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse'));
             }
         }
         else {
@@ -390,7 +402,10 @@ class CourseController extends Controller
             $insurers = Insurer::all();
             $user = null;
             $sponsorsPrincipal = Sponsor::where('principal', 1)->get();
-            return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal'));
+            
+            $sponsorsId = Courses_sponsor::where('course_id', $id)->pluck('sponsor_id');
+            $sponsorsCourse = Sponsor::whereIn('id', $sponsorsId)->get();
+            return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse'));
 
     }
 }

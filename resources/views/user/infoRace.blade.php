@@ -208,6 +208,13 @@ https://templatemo.com/tm-579-cyborg-gaming
                       </div> 
                 </div>
               </div>
+              <div class="row mt-4">
+                <div class="col-md-12 text-center">
+                  @foreach ($sponsorsCourse as $sponsorCourse)
+                    <img src="{{ asset($sponsorCourse->logo) }}" alt="{{ asset($sponsorCourse->name) }}" class="sponsorPrincipal">
+                  @endforeach
+                </div>
+              </div>
           </div>
           <!-- ***** Most Popular End ***** -->
 
