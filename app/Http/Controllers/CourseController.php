@@ -38,7 +38,8 @@ class CourseController extends Controller
         if (Session::get('admin') !== 'admin') {
             return Redirect::route('admin.login');
         }
-        return view('admin.courseAdd');
+        $sponsors = Sponsor::all();
+        return view('admin.courseAdd', compact('sponsors'));
     }
     public function add(Request $request)
     {

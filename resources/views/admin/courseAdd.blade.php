@@ -123,6 +123,12 @@
                                 <label for="registration_price">Registration Price</label>
                                 <input type="number" id="registration_price" name="registration_price" min="0" step="0.01" required>
                             </div>
+                            <div>
+                                <label for="sponsors">Sponsors</label>
+                                <select name="opciones[]" id="opciones" multiple required>
+
+                                </select>
+                            </div>
                             <!-- Agrega aquí más campos si es necesario -->
 
                             <input type="submit" value="Enviar" class="btn btn-pink">
