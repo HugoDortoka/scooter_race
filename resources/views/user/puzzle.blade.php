@@ -16,18 +16,19 @@
 			<div id="title">
 				<h1>Solve the puzzle by dragging the pieces in the grid</h1>
 				<video autoplay muted loop>
-					<source src="vid.mp4" type="video/mp4">
+					<source src="{{ asset('img/puzzle/vid.mp4') }}" type="video/mp4">
 					There is sopoused to be a video, but your browser doesn't support it 
 				</video>
 				<h2>Preview</h2>
-				<img alt="Puzzle preview" src="puzzle.jpg">
+				<img alt="Puzzle preview" src="{{ asset('img/puzzle/puzzle.jpg') }}">
 				<p id="warning">This game can't be played on this device</p>
 			</div>
 			<div id="puzzle">
 				<div id="piecesBox"></div>
 			</div>
 		</div>
-		<script src="script.js"></script>
+        <script src="{{ asset('assets/js/puzzle.js') }}"></script>
+
 	</body>
 
 </html>
