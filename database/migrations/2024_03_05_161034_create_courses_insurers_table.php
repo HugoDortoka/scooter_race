@@ -19,6 +19,146 @@ return new class extends Migration
             $table->foreign('insurer_id')->references('id')->on('insurers')->onDelete('cascade');
             $table->timestamps();
         });
+
+        DB::table('courses_insurers')->insert([
+            'course_id' => 1,
+            'insurer_id' => 1,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_insurers')->insert([
+            'course_id' => 1,
+            'insurer_id' => 3,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_insurers')->insert([
+            'course_id' => 1,
+            'insurer_id' => 5,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_insurers')->insert([
+            'course_id' => 2,
+            'insurer_id' => 2,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_insurers')->insert([
+            'course_id' => 2,
+            'insurer_id' => 4,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_insurers')->insert([
+            'course_id' => 3,
+            'insurer_id' => 1,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_insurers')->insert([
+            'course_id' => 3,
+            'insurer_id' => 4,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_insurers')->insert([
+            'course_id' => 4,
+            'insurer_id' => 2,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_insurers')->insert([
+            'course_id' => 4,
+            'insurer_id' => 3,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_insurers')->insert([
+            'course_id' => 4,
+            'insurer_id' => 5,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_insurers')->insert([
+            'course_id' => 5,
+            'insurer_id' => 2,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_insurers')->insert([
+            'course_id' => 6,
+            'insurer_id' => 4,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_insurers')->insert([
+            'course_id' => 6,
+            'insurer_id' => 5,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_insurers')->insert([
+            'course_id' => 7,
+            'insurer_id' => 1,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_insurers')->insert([
+            'course_id' => 7,
+            'insurer_id' => 3,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_insurers')->insert([
+            'course_id' => 8,
+            'insurer_id' => 1,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_insurers')->insert([
+            'course_id' => 8,
+            'insurer_id' => 2,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_insurers')->insert([
+            'course_id' => 8,
+            'insurer_id' => 3,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_insurers')->insert([
+            'course_id' => 9,
+            'insurer_id' => 4,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('courses_insurers')->insert([
+            'course_id' => 9,
+            'insurer_id' => 5,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 
     /**

@@ -133,7 +133,13 @@
                                 </div>
                             </div>
                             <div>
-                                
+                                <label for="insurers">Insurers</label>
+                                <div class="sponsors">
+                                    @foreach($insurers as $insurer)
+                                        <input type="checkbox" name="insurers[]" id="insurer{{ $insurer->id }}" value="{{ $insurer->id }}">
+                                        <label for="insurer{{ $insurer->id }}" class="alignLeft">{{ $insurer->name }}</label>
+                                    @endforeach
+                                </div>
                             </div>
                             <!-- Agrega aquí más campos si es necesario -->
 

@@ -9,6 +9,7 @@ use App\Models\Registration;
 use App\Models\Insurer;
 use App\Models\Competitor;
 use App\Models\Courses_sponsor;
+use App\Models\Courses_insurer;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -33,9 +34,12 @@ class CourseController extends Controller
         }
         $course = Course::insurerById($id);
         $sponsors = Sponsor::all();
+        $insurers = Insurer::all();
         $sponsorsId = Courses_sponsor::where('course_id', $id)->pluck('sponsor_id');
         $sponsorsCourse = Sponsor::whereIn('id', $sponsorsId)->get();
-        return view('admin.courseShow', compact('course', 'sponsors', 'sponsorsCourse'));
+        $insurersId = Courses_insurer::where('course_id', $id)->pluck('insurer_id');
+        $insurersCourse = Insurer::whereIn('id', $insurersId)->get();
+        return view('admin.courseShow', compact('course', 'sponsors', 'insurers', 'sponsorsCourse', 'insurersCourse'));
     }
     public function showAdd()
     {
@@ -43,7 +47,8 @@ class CourseController extends Controller
             return Redirect::route('admin.login');
         }
         $sponsors = Sponsor::all();
-        return view('admin.courseAdd', compact('sponsors'));
+        $insurers = Insurer::all();
+        return view('admin.courseAdd', compact('sponsors', 'insurers'));
     }
     public function add(Request $request)
     {
@@ -72,14 +77,25 @@ class CourseController extends Controller
         $course->registration_price = $request->input('registration_price');
         $course->save();
 
+        $courseId = $course->id;
+
         if (!empty($request->input('sponsors', []))) {
-            $courseId = $course->id;
             $sponsorsSelected = $request->input('sponsors', []);
             foreach ($sponsorsSelected as $sponsorId) {
                 $courseSponsor = new Courses_sponsor();
                 $courseSponsor->course_id = $courseId;
                 $courseSponsor->sponsor_id = $sponsorId;
                 $courseSponsor->save();
+            }
+        }
+
+        if (!empty($request->input('insurers', []))) {
+            $insurersSelected = $request->input('insurers', []);
+            foreach ($insurersSelected as $insurerId) {
+                $courseInsurer = new Courses_insurer();
+                $courseInsurer->course_id = $courseId;
+                $courseInsurer->insurer_id = $insurerId;
+                $courseInsurer->save();
             }
         }
         return Redirect::route('admin.home');
@@ -127,6 +143,8 @@ class CourseController extends Controller
         $courseId = $course->id;
         $sponsorsSelected = $request->input('sponsors', []);
         $oldSponsorsIds = Courses_sponsor::where('course_id', $courseId)->pluck('sponsor_id')->toArray();
+        $insurersSelected = $request->input('insurers', []);
+        $oldInsurersIds = Courses_insurer::where('course_id', $courseId)->pluck('insurer_id')->toArray();
 
         // Insertar nuevos sponsors seleccionados
         foreach ($sponsorsSelected as $sponsorId) {
@@ -145,6 +163,27 @@ class CourseController extends Controller
                 // Eliminar solo si el sponsor estaba asociado antes
                 Courses_sponsor::where('course_id', $courseId)
                      ->where('sponsor_id', $oldSponsorId)
+                     ->delete();
+            }
+        }
+
+        // Insertar nuevos insurers seleccionados
+        foreach ($insurersSelected as $insurerId) {
+            if (!in_array($insurerId, $oldInsurersIds)) {
+                // Insertar solo si el sponsor no estaba asociado antes
+                $courseInsurer = new Courses_insurer();
+                $courseInsurer->course_id = $courseId;
+                $courseInsurer->insurer_id = $insurerId;
+                $courseInsurer->save();
+            }
+        }
+
+        // Eliminar insurers deseleccionados
+        foreach ($oldInsurersIds as $oldInsurerId) {
+            if (!in_array($oldInsurerId, $insurersSelected)) {
+                // Eliminar solo si el sponsor estaba asociado antes
+                Courses_insurer::where('course_id', $courseId)
+                     ->where('insurer_id', $oldInsurerId)
                      ->delete();
             }
         }
