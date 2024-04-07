@@ -183,6 +183,7 @@ https://templatemo.com/tm-579-cyborg-gaming
       </div>
     </div>
   </div>
+  <a href="{{ route('user.puzzle') }}">Puzzle</a>
   
   <footer>
     <div class="container">

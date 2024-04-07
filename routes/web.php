@@ -26,7 +26,7 @@ use App\Http\Controllers\MembershipController;
 //     return view('index');
 // });
 Route::get('/', [CourseController::class, 'home'])->name('user.home');
-
+Route::get('/puzzle', [CourseController::class, 'puzzle'])->name('user.puzzle');
 
 //AdministradorController
 Route::get('/adminLogin', [AdministratorController::class, 'login'])->name('admin.login');

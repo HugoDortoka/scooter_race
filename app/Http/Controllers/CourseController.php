@@ -224,6 +224,9 @@ class CourseController extends Controller
         $sponsorsPrincipal = Sponsor::where('principal', 1)->get();
         return view('index', compact('courses', 'sponsorsPrincipal'));
     }
+    public function puzzle(){
+        return view('user.puzzle');
+    }
 
     public function infoRace($id)
     {
