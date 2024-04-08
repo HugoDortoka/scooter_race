@@ -19,6 +19,7 @@
 	</head>
 
 	<body>
+		<div id="timer">Tiempo restante: <span id="time">5:00</span></div>
 		<div id="screen">
 			<div id="title">
 				<h1>Solve the puzzle by dragging the pieces in the grid</h1>
