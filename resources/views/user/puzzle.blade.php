@@ -5,7 +5,14 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Puzzle game</title>
-        <link rel="stylesheet" href="{{ asset('assets/css/puzzle.css') }}">
+		<!-- Additional CSS Files -->
+		<link rel="stylesheet" href="{{ asset('assets/css/puzzle.css') }}">
+		<link rel="stylesheet" href="{{ asset('assets/css/user.css') }}">
+		<link rel="stylesheet" href="{{ asset('assets/css/fontawesome.css') }}">
+		<link rel="stylesheet" href="{{ asset('assets/css/templatemo-cyborg-gaming.css') }}">
+		<link rel="stylesheet" href="{{ asset('assets/css/owl.css') }}">
+		<link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
+		<link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
