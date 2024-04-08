@@ -131,11 +131,13 @@ function makeAnimationPieces() {
 	setTimeout(()=>{
 		removePieces();
 
-		// Esto comentado es para reinciar el puzzle una vez lo has acabado pero queremos que salga un codigo de descuento
-		// setTimeout(()=>{
-		// 	sortPieces(piecesNumber);
-		// 	pieces = document.querySelectorAll(".grid-piece");
-		// 	callEvents();
-		// },1300);
+		// Mostrar el código de descuento
+        const discountCode = "7AS23HJ";
+        const discountElement = document.getElementById("discount");
+		discountElement.style.top = "0px";
+        discountElement.textContent = "Discount code: " + discountCode;
+        // Puedes personalizar el estilo del elemento de descuento aquí si es necesario
+        document.body.appendChild(discountElement);
+
 	},3100);
 }

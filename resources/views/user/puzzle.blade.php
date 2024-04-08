@@ -34,6 +34,7 @@
 				<div id="piecesBox"></div>
 			</div>
 		</div>
+		<div id="discount" class="divDiscount"></div>
         <script src="{{ asset('assets/js/puzzle.js') }}"></script>
 
 	</body>
