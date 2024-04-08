@@ -130,10 +130,12 @@ function makeAnimationPieces() {
 	}
 	setTimeout(()=>{
 		removePieces();
-		setTimeout(()=>{
-			sortPieces(piecesNumber);
-			pieces = document.querySelectorAll(".grid-piece");
-			callEvents();
-		},1300);
+
+		// Esto comentado es para reinciar el puzzle una vez lo has acabado pero queremos que salga un codigo de descuento
+		// setTimeout(()=>{
+		// 	sortPieces(piecesNumber);
+		// 	pieces = document.querySelectorAll(".grid-piece");
+		// 	callEvents();
+		// },1300);
 	},3100);
 }
