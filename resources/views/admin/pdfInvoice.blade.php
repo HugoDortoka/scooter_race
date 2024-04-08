@@ -16,10 +16,22 @@
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous"
         />
+
+        <!-- Custom CSS -->
+        <style>
+            .pdf{
+                width: 100%;
+            }
+            .pdf th, td{
+                border: 1px solid black;
+                text-align: center;
+                padding: 10px;
+            }
+        </style>
     </head>
 
     <body>
-        <table>
+        <table class="pdf">
             <thead>
                 <tr>
                     <th>CIF</th>
