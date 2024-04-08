@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sponsor;
+use App\Models\Courses_sponsor;
+use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class SponsorController extends Controller
 {
@@ -93,5 +97,20 @@ class SponsorController extends Controller
         $query = $request->input('query');
         $sponsors = Sponsor::where('name', 'like', "%$query%")->get();
         return view('admin.search_sponsors', compact('sponsors'));
+    }
+
+    public function printInvoice($id){
+        $coursesCost = 0;
+        $sponsor = Sponsor::findOrFail($id);
+        $courseSponsors = Courses_sponsor::where('sponsor_id', $id)->get();
+        foreach ($courseSponsors as $courseSponsor) {
+            $course = Course::find($courseSponsor->course_id);
+            $coursesCost += $course->sponsorship_cost;
+        }
+        if($sponsor->extra_cost !== null){
+            $coursesCost += $sponsor->extra_cost;
+        }
+        $pdf = Pdf::loadView('admin.pdfInvoice', compact('sponsor', 'coursesCost'));
+        return $pdf->stream();
     }
 }

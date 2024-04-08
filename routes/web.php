@@ -68,6 +68,7 @@ Route::post('/registered/{id}', [CourseController::class, 'register3'])->name('u
 //ADMIN
 Route::get('/sponsors', [SponsorController::class, 'index'])->name('admin.sponsors');
 Route::get('/sponsors/{id}', [SponsorController::class, 'show'])->name('admin.sponsorShow');
+Route::get('/sponsors/printInvoice/{id}', [SponsorController::class, 'printInvoice'])->name('admin.printInvoice');
 Route::post('/sponsors/{id}', [SponsorController::class, 'update'])->name('admin.sponsorUpdate');
 Route::get('/sponsorAdd', [SponsorController::class, 'showAdd'])->name('admin.sponsorShowAdd');
 Route::post('/sponsorAdd', [SponsorController::class, 'add'])->name('admin.sponsorAdd');

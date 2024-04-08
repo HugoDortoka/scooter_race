@@ -97,7 +97,8 @@
                                 <label for="extra_cost">Extra cost</label>
                                 <input type="number" id="extra_cost" name="extra_cost" min="0" step="0.01" value="{{ $sponsor->extra_cost }}">
                             </div>
-                            <input type="submit" value="Enviar" class="btn btn-pink">
+                            <a href="{{ route('admin.printInvoice', $sponsor->id) }}" class="btn btn-pink">Print invoice</a>
+                            <input type="submit" value="Save" class="btn btn-pink">
                         </form>
                     </div>
                 </div>

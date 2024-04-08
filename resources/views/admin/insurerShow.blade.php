@@ -89,7 +89,7 @@
                                 <label for="price">Price per race</label>
                                 <input type="text" id="price" name="price" min="0" step="0.01" value="{{ $insurer->price_per_course }}" required>
                             </div>
-                            <input type="submit" value="Enviar" class="btn btn-pink">
+                            <input type="submit" value="Save" class="btn btn-pink">
                         </form>
                     </div>
                 </div>
