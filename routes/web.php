@@ -61,7 +61,7 @@ Route::get('/allraces', [CourseController::class, 'allraces'])->name('user.allra
 Route::get('/infoRace/{id}', [CourseController::class, 'infoRace'])->name('user.infoRace');
 Route::post('/registered/{id}', [CourseController::class, 'register'])->name('user.register');
 Route::get('/registered/{id}', [CourseController::class, 'register2'])->name('user.register2');
-Route::post('/registered/{id}', [CourseController::class, 'register3'])->name('user.register3');
+Route::post('/unregistered/{id}', [CourseController::class, 'register3'])->name('user.register3');
 
 
 //SponsorController
