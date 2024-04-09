@@ -278,7 +278,10 @@ class CourseController extends Controller
         }
         $course = Course::insurerById($id);
         $registration = Registration::where('course_id', $id)->get();
-        $insurers = Insurer::all();
+
+        $insurers_id = Courses_insurer::where('course_id', $id)->pluck('insurer_id');
+        $insurers = Insurer::whereIn('id', $insurers_id)->get();
+
         $sponsorsPrincipal = Sponsor::where('principal', 1)->get();
 
         $sponsorsId = Courses_sponsor::where('course_id', $id)->pluck('sponsor_id');
@@ -335,9 +338,11 @@ class CourseController extends Controller
             
             $course = Course::insurerById($id);
             $registration = Registration::where('course_id', $id)->get();
-            $insurers = Insurer::all();
-            $sponsorsPrincipal = Sponsor::where('principal', 1)->get();
             
+            $insurers_id = Courses_insurer::where('course_id', $id)->pluck('insurer_id');
+            $insurers = Insurer::whereIn('id', $insurers_id)->get();
+            
+            $sponsorsPrincipal = Sponsor::where('principal', 1)->get();
             $sponsorsId = Courses_sponsor::where('course_id', $id)->pluck('sponsor_id');
             $sponsorsCourse = Sponsor::whereIn('id', $sponsorsId)->get();
             if (Session::has('user')) {
@@ -480,7 +485,8 @@ class CourseController extends Controller
             
             $course = Course::insurerById($id);
             $registration = Registration::where('course_id', $id)->get();
-            $insurers = Insurer::all();
+            $insurers_id = Courses_insurer::where('course_id', $id)->pluck('insurer_id');
+            $insurers = Insurer::whereIn('id', $insurers_id)->get();
             $user = null;
             $sponsorsPrincipal = Sponsor::where('principal', 1)->get();
             
