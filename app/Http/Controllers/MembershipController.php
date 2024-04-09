@@ -17,7 +17,7 @@ class MembershipController extends Controller
         $membership->subscription_date = date('Y-m-d');
         $membership->subscription_finish = date('Y-m-d', strtotime('+1 year'));
         $membership->annual_fee = 200;
-        $membership->paid = 0;
+        $membership->paid = 1;
         $membership->discount = 20;
         $membership->save();
         return Redirect::route('user.profile');
