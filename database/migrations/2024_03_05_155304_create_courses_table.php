@@ -34,7 +34,7 @@ return new class extends Migration
             'description' => 'Is an exciting electric scooter race that challenges participants to demonstrate their skill and speed on a course full of obstacles and curves',
             'elevation' => 10,
             'map_image' => 'img/map_images/1710867860_Lightning Speed.png',
-            'max_participants' => 20,
+            'max_participants' => 1,
             'distance_km' => 10.5,
             'date' => '2025-01-07',
             'time' => '09:00:00',

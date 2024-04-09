@@ -119,70 +119,76 @@ https://templatemo.com/tm-579-cyborg-gaming
                         <div class="col col-6"> 
                           <div>
                             @if ($user==null)
-                              <a href="#myModal" class="trigger-modal btn btn-pink">Register</a>
+                              @if ($course->max_participants <= $registrationCount)
+                                <p class="priceRace">Sold out</p>
+                              @else
+                                <a href="#myModal" class="trigger-modal btn btn-pink">Register</a>
 
-                              <div id="myModal" style="display: none;">
-                                  <!-- Contenido de tu modal aquí -->
-                                  <div class="centrado">
-                                    
-                                    <form action="{{ route('user.register3', $course->id) }}" method="POST" class="formRegister" onsubmit="return validateForm()">
-                                        @csrf
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label for="dni" class="labelLogin">DNI</label><br>
-                                                <div class="divLogin" id="divDNI">
-                                                    <input type="text" id="dni" name="dni" class="inputLogin" placeholder="Type your DNI" required>
-                                                </div>
-                                                <label for="name" class="labelLogin">Name</label><br>
-                                                <div class="divLogin">
-                                                    <input type="text" id="name" name="name" class="inputLogin" placeholder="Type your name" required>
-                                                </div>
-                                                <label for="surname" class="labelLogin">Surname</label><br>
-                                                <div class="divLogin">
-                                                    <input type="text" id="surname" name="surname" class="inputLogin" placeholder="Type your surname" required>
-                                                </div>
-                                                <label for="address" class="labelLogin">Address</label><br>
-                                                <div class="divLogin">
-                                                    <input type="text" id="address" name="address" class="inputLogin" placeholder="Type your address" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="birth" class="labelLogin">Date of birth</label><br>
-                                                <div class="divLogin">
-                                                    <input type="date" id="birth" name="birth" class="inputLogin" max="{{ date('Y-m-d', strtotime('-1 day')) }}" required>
-                                                </div>
-                                               
-                                                <label for="PRO_OPEN" class="labelLogin">What are you?</label><br>
-                                                <div class="divLogin">
-                                                    <select id="PRO_OPEN" name="PRO_OPEN" class="inputLogin" required>
-                                                        <option value="OPEN">OPEN</option>
-                                                        <option value="PRO">PRO</option>
+                                <div id="myModal" style="display: none;">
+                                    <!-- Contenido de tu modal aquí -->
+                                    <div class="centrado">
+                                      
+                                      <form action="{{ route('user.register3', $course->id) }}" method="POST" class="formRegister" onsubmit="return validateForm()">
+                                          @csrf
+                                          <div class="row">
+                                              <div class="col-md-6">
+                                                  <label for="dni" class="labelLogin">DNI</label><br>
+                                                  <div class="divLogin" id="divDNI">
+                                                      <input type="text" id="dni" name="dni" class="inputLogin" placeholder="Type your DNI" required>
+                                                  </div>
+                                                  <label for="name" class="labelLogin">Name</label><br>
+                                                  <div class="divLogin">
+                                                      <input type="text" id="name" name="name" class="inputLogin" placeholder="Type your name" required>
+                                                  </div>
+                                                  <label for="surname" class="labelLogin">Surname</label><br>
+                                                  <div class="divLogin">
+                                                      <input type="text" id="surname" name="surname" class="inputLogin" placeholder="Type your surname" required>
+                                                  </div>
+                                                  <label for="address" class="labelLogin">Address</label><br>
+                                                  <div class="divLogin">
+                                                      <input type="text" id="address" name="address" class="inputLogin" placeholder="Type your address" required>
+                                                  </div>
+                                              </div>
+                                              <div class="col-md-6">
+                                                  <label for="birth" class="labelLogin">Date of birth</label><br>
+                                                  <div class="divLogin">
+                                                      <input type="date" id="birth" name="birth" class="inputLogin" max="{{ date('Y-m-d', strtotime('-1 day')) }}" required>
+                                                  </div>
+                                                
+                                                  <label for="PRO_OPEN" class="labelLogin">What are you?</label><br>
+                                                  <div class="divLogin">
+                                                      <select id="PRO_OPEN" name="PRO_OPEN" class="inputLogin" required>
+                                                          <option value="OPEN">OPEN</option>
+                                                          <option value="PRO">PRO</option>
+                                                      </select>
+                                                  </div>
+                                                  <div id="federationInput" style="display: none;">
+                                                      <label for="federation" class="labelLogin">Federation number</label><br>
+                                                      <div class="divLogin" id="divFederation">
+                                                          <input type="text" id="federation" name="federation" class="inputLogin" placeholder="Type your fed. number">
+                                                      </div>
+                                                  </div>
+                                                  <label for="insurerId" class="labelLogin">Choose your Insurer</label><br>
+                                                  <div class="divLogin">
+                                                    <select id="insurerId" name="insurerId" class="inputLogin"  required>
+                                                      @foreach($insurers as $insurer)
+                                                        <option value="{{ $insurer->id }}">{{ $insurer->name }}</option>
+                                                      @endforeach
                                                     </select>
-                                                </div>
-                                                <div id="federationInput" style="display: none;">
-                                                    <label for="federation" class="labelLogin">Federation number</label><br>
-                                                    <div class="divLogin" id="divFederation">
-                                                        <input type="text" id="federation" name="federation" class="inputLogin" placeholder="Type your fed. number">
-                                                    </div>
-                                                </div>
-                                                <label for="insurerId" class="labelLogin">Choose your Insurer</label><br>
-                                                <div class="divLogin">
-                                                  <select id="insurerId" name="insurerId" class="inputLogin"  required>
-                                                    @foreach($insurers as $insurer)
-                                                      <option value="{{ $insurer->id }}">{{ $insurer->name }}</option>
-                                                    @endforeach
-                                                  </select>
-                                                </div>
-                                        
-                                            </div>
-                                            <input type="submit" value="Register" class="btn btn-pink btnAdd btnLogin">
-                                        </div>
-                                    </form>
+                                                  </div>
+                                          
+                                              </div>
+                                              <input type="submit" value="Register" class="btn btn-pink btnAdd btnLogin">
+                                          </div>
+                                      </form>
+                                  </div>
                                 </div>
-                              </div>
+                              @endif
                             @else
                               @if ($registration->contains('competitor_id', $user->id))
                                 <p class="priceRace">Registered</p>
+                              @elseif ($course->max_participants <= $registrationCount)
+                                <p class="priceRace">Sold out</p>
                               @else
                                 @if ($user->PRO==true)
                                   <a href="{{ route('user.register2', $course->id) }}" class="btn btn-pink">Register</a>              
