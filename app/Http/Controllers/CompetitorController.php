@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Competitor;
 use App\Models\Membership;
 use App\Models\Sponsor;
+use App\Models\Registration;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -39,7 +40,8 @@ class CompetitorController extends Controller
         $id = $user->id;
         $membership = Membership::where('competitor_id', '=', $id)->first();
         $sponsorsPrincipal = Sponsor::where('principal', 1)->get();
-        return view('profile', compact('user', 'membership', 'sponsorsPrincipal'));
+        $myRegistrations = Registration::myRegisters($user->id);
+        return view('profile', compact('user', 'membership', 'sponsorsPrincipal', 'myRegistrations'));
     }
 
     public function login(){

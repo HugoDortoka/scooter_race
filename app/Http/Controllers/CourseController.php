@@ -261,7 +261,16 @@ class CourseController extends Controller
             ->take(8)
             ->get();
         $sponsorsPrincipal = Sponsor::where('principal', 1)->get();
-        return view('index', compact('courses', 'sponsorsPrincipal'));
+        if (Session::has('user')) {
+            $user = Session::get('user');
+            $myRegistrations = Registration::myRegisters($user->id);
+            return view('index', compact('courses', 'sponsorsPrincipal', 'myRegistrations', 'user'));    
+        }
+        else{
+            $user = null;
+            return view('index', compact('courses', 'sponsorsPrincipal', 'user'));    
+        }
+        
     }
     public function puzzle(){
         return view('user.puzzle');

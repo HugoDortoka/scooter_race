@@ -198,36 +198,24 @@ https://templatemo.com/tm-579-cyborg-gaming
               <div class="heading-section">
                 <h4><em>Your Gaming</em> Library</h4>
               </div>
-              <div class="item">
-                <ul>
-                  <li><img src="assets/images/game-01.jpg" alt="" class="templatemo-item"></li>
-                  <li><h4>Dota 2</h4><span>Sandbox</span></li>
-                  <li><h4>Date Added</h4><span>24/08/2036</span></li>
-                  <li><h4>Hours Played</h4><span>634 H 22 Mins</span></li>
-                  <li><h4>Currently</h4><span>Downloaded</span></li>
-                  <li><div class="main-border-button border-no-active"><a href="#">Donwloaded</a></div></li>
-                </ul>
-              </div>
-              <div class="item">
-                <ul>
-                  <li><img src="assets/images/game-02.jpg" alt="" class="templatemo-item"></li>
-                  <li><h4>Fortnite</h4><span>Sandbox</span></li>
-                  <li><h4>Date Added</h4><span>22/06/2036</span></li>
-                  <li><h4>Hours Played</h4><span>745 H 22 Mins</span></li>
-                  <li><h4>Currently</h4><span>Downloaded</span></li>
-                  <li><div class="main-border-button border-no-active"><a href="#">Donwloaded</a></div></li>
-                </ul>
-              </div>
-              <div class="item last-item">
-                <ul>
-                  <li><img src="assets/images/game-03.jpg" alt="" class="templatemo-item"></li>
-                  <li><h4>CS-GO</h4><span>Sandbox</span></li>
-                  <li><h4>Date Added</h4><span>21/04/2022</span></li>
-                  <li><h4>Hours Played</h4><span>632 H 46 Mins</span></li>
-                  <li><h4>Currently</h4><span>Downloaded</span></li>
-                  <li><div class="main-border-button border-no-active"><a href="#">Donwloaded</a></div></li>
-                </ul>
-              </div>
+              @if (count($myRegistrations)===0)
+                  <div class="col-md-12 text-center mb-4">
+                    <p class="h5">ⓘ No registers</p>
+                  </div>
+                @else
+                  @foreach ($myRegistrations as $myRegistration)
+                    <div class="item">
+                      <ul>
+                        <li><img src="{{ asset($myRegistration->map_image) }}" alt="{{ $myRegistration->name }}"  class="difficult"></li>
+                        <li><h4>Race</h4><span>{{ $myRegistration->name }}</span></li>
+                        <li><h4>Date</h4><span>{{ $myRegistration->date }}</span></li>
+                        <li><h4>Location</h4><span>{{ $myRegistration->location }}</span></li>
+                        <li><h4>Hour</h4><span>{{ $myRegistration->time }}</span></li>
+                        <li><div class="main-border-button border-no-active"><a href="#">Drop out</a></div></li>
+                      </ul>
+                    </div>
+                  @endforeach
+                @endif
             </div>
           </div>
           <!-- ***** Gaming Library End ***** -->
