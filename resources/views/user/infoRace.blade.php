@@ -130,7 +130,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                                     <!-- Contenido de tu modal aquí -->
                                     <div class="centrado">
                                       
-                                      <form action="{{ route('user.register3', $course->id) }}" method="POST" class="formRegister" onsubmit="return validateForm()">
+                                      <form action="{{ route('user.register3', $course->id) }}" method="POST" class="formRegister" id="registerNoRegister-form">
                                           @csrf
                                           <div class="row">
                                               <div class="col-md-6">
@@ -180,9 +180,10 @@ https://templatemo.com/tm-579-cyborg-gaming
                                                   </div>
                                           
                                               </div>
-                                              <input type="submit" value="Register" class="btn btn-pink btnAdd btnLogin">
+                                              <a href="#" class="button btn-pink btnAdd btnLogin" id="registerNoRegister-button">Register</a>
                                           </div>
                                       </form>
+                                      <div id="paypal-button-container" class="divPayPal" style="display: none;"></div>
                                   </div>
                                 </div>
                               @endif
@@ -281,6 +282,7 @@ https://templatemo.com/tm-579-cyborg-gaming
   </script>
   <script src="{{ asset('assets/js/paypalPRO.js') }}"></script>
   <script src="{{ asset('assets/js/paypalNoPRO.js') }}"></script>
+  <script src="{{ asset('assets/js/paypalNoRegister.js') }}"></script>
   <!-- Bootstrap core JavaScript -->
   <script src="{{ asset('assets/js/jquery/jquery.min.js') }}"></script>
 
