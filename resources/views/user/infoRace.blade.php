@@ -196,7 +196,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                                   <span><a href="#" class="button btn-pink" id="registerPRO-button">Register</a></span>
                                   <div id="paypal-button-container" class="divPayPal" style="display: none;"></div>
                                 @else
-                                  <form action="{{ route('user.register', $course->id) }}"  method="POST" >
+                                  <form action="{{ route('user.register', $course->id) }}" id="registerNoPRO-form" method="POST" >
                                     @csrf
                                     <select id="insurerId" name="insurerId" required>
                                       @foreach($insurers as $insurer)
@@ -204,10 +204,9 @@ https://templatemo.com/tm-579-cyborg-gaming
                                       @endforeach
                                     </select>
                                     
-                                    <input type="submit" value="Register" class="btn btn-pink">
+                                    <span><a href="#" class="button btn-pink" id="registerNoPRO-button">Register</a></span>
                                   </form>
-                                  
-                                  
+                                  <div id="paypal-button-container" class="divPayPal" style="display: none;"></div>
                                 @endif
                                   
                               @endif
@@ -281,6 +280,7 @@ https://templatemo.com/tm-579-cyborg-gaming
     var price = "{{ $course->registration_price }}";
   </script>
   <script src="{{ asset('assets/js/paypalPRO.js') }}"></script>
+  <script src="{{ asset('assets/js/paypalNoPRO.js') }}"></script>
   <!-- Bootstrap core JavaScript -->
   <script src="{{ asset('assets/js/jquery/jquery.min.js') }}"></script>
 
