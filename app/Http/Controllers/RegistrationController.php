@@ -10,9 +10,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
-//para los pdf
+// para los pdf
 use Barryvdh\DomPDF\Facade\Pdf;
 
+// para el QR
+use Endroid\QrCode\QrCode;
+use Endroid\QrCode\Writer\PngWriter;
 
 class RegistrationController extends Controller
 {
@@ -63,4 +66,22 @@ class RegistrationController extends Controller
         return $pdf->stream();
     }
     
+    public function showQR($competitorId)
+    {
+        // Número del dorsal
+        $dorsalNumber = $competitorId;
+    
+        // Crear un objeto QrCode
+        $qrCode = new QrCode($dorsalNumber);
+        $qrCode->setSize(400); // Tamaño del código QR (en este caso, 400x400 píxeles)
+    
+        // Renderizar el código QR en un objeto PngResult
+        $pngWriter = new PngWriter();
+        $qrCodeResult = $pngWriter->write($qrCode);
+    
+        // Obtener el URI de datos de la imagen PNG
+        $dataUri = $qrCodeResult->getDataUri();
+    
+        return view('admin.qr', ['qrCodeImage' => $dataUri]);
+    }
 }

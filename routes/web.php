@@ -82,6 +82,9 @@ Route::get('/sponsor/search', [SponsorController::class, 'search'])->name('admin
 Route::get('/participants/{courseId}', [RegistrationController::class, 'showParticipants'])->name('admin.showParticipants');
 Route::get('/participants/{courseId}/pdf', [RegistrationController::class, 'pdf'])->name('admin.pdfParticipants');
 Route::get('/participants/{courseId}/{competitorId}', [RegistrationController::class, 'pdfIndividual'])->name('admin.pdfParticipant');
+Route::get('/qr/{competitorId}', [RegistrationController::class, 'showQR'])->name('admin.showQR');
+
+
 
 //PhotoController
 Route::post('/courses/{id}/addUploadPhotos', [PhotoController::class, 'addUploadPhotos'])->name('admin.courseSaveUploadPhotos');
