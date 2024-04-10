@@ -170,15 +170,16 @@ https://templatemo.com/tm-579-cyborg-gaming
                                                           <input type="text" id="federation" name="federation" class="inputLogin" placeholder="Type your fed. number">
                                                       </div>
                                                   </div>
-                                                  <label for="insurerId" class="labelLogin">Choose your Insurer</label><br>
-                                                  <div class="divLogin">
-                                                    <select id="insurerId" name="insurerId" class="inputLogin"  required>
-                                                      @foreach($insurers as $insurer)
-                                                        <option value="{{ $insurer->id }}">{{ $insurer->name }}</option>
-                                                      @endforeach
-                                                    </select>
+                                                  <div id="insurerInput">
+                                                    <label for="insurerId" class="labelLogin">Choose your Insurer</label><br>
+                                                    <div class="divLogin">
+                                                      <select id="insurerId" name="insurerId" class="inputLogin"  required>
+                                                        @foreach($insurers as $insurer)
+                                                          <option value="{{ $insurer->id }}">{{ $insurer->name }}</option>
+                                                        @endforeach
+                                                      </select>
+                                                    </div>
                                                   </div>
-                                          
                                               </div>
                                               <a href="#" class="button btn-pink btnAdd btnLogin" id="registerNoRegister-button">Register</a>
                                           </div>

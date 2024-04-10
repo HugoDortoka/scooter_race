@@ -9,9 +9,23 @@ document.getElementById('registerNoRegister-button').addEventListener('click', f
         return;
     }
 
-    var isValidForm = window.validateForm();
-    
+    var requiredFields = document.querySelectorAll('[required]');
+
+    var isValidForm = true;
+    requiredFields.forEach(function(field) {
+        if (!field.value.trim()) {
+            isValidForm = false;
+        }
+    });
+
     if (!isValidForm) {
+        alert('Please complete all required fields');
+        return;
+    }
+    
+    var isValidDNI = window.validateForm();
+    
+    if (!isValidDNI) {
         return;
     }
 
