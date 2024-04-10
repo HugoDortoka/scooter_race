@@ -44,6 +44,15 @@ class CompetitorController extends Controller
         return view('profile', compact('user', 'membership', 'sponsorsPrincipal', 'myRegistrations'));
     }
 
+    public function dropOut2($idCourse){
+        $user = Session::get('user');        
+        Registration::where('course_id', $idCourse)
+                    ->where('competitor_id', $user->id)
+                    ->delete();
+        return redirect()->route('user.profile');
+    }
+    
+
     public function login(){
         return view('user.login');
     }

@@ -211,7 +211,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                         <li><h4>Date</h4><span>{{ $myRegistration->date }}</span></li>
                         <li><h4>Location</h4><span>{{ $myRegistration->location }}</span></li>
                         <li><h4>Hour</h4><span>{{ $myRegistration->time }}</span></li>
-                        <li><div class="main-border-button border-no-active"><a href="#">Drop out</a></div></li>
+                        <li><div class="main-border-button border-no-active"><a href="{{ route('user.dropOut2', $myRegistration->id) }}">Drop out</a></div></li>
                       </ul>
                     </div>
                   @endforeach

@@ -62,6 +62,8 @@ Route::get('/infoRace/{id}', [CourseController::class, 'infoRace'])->name('user.
 Route::post('/registered/{id}', [CourseController::class, 'register'])->name('user.register');
 Route::get('/registered/{id}', [CourseController::class, 'register2'])->name('user.register2');
 Route::post('/unregistered/{id}', [CourseController::class, 'register3'])->name('user.register3');
+Route::get('/dropout/{id}', [CourseController::class, 'dropOut'])->name('user.dropOut');
+
 
 
 //SponsorController
@@ -96,6 +98,7 @@ Route::post('/login', [CompetitorController::class, 'checkLogin'])->name('user.c
 Route::get('/registration', [CompetitorController::class, 'registration'])->name('user.registration');
 Route::post('/registration', [CompetitorController::class, 'insertRegistration'])->name('user.insertRegistration');
 Route::get('/logout', [CompetitorController::class, 'logout'])->name('user.logout');
+Route::get('/dropoutProfile/{id}', [CompetitorController::class, 'dropOut2'])->name('user.dropOut2');
 
 //MembershipController
 //USER

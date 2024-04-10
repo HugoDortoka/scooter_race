@@ -510,4 +510,12 @@ class CourseController extends Controller
             return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse', 'registrationCount'));
 
     }
+    public function dropOut($idCourse){
+        $user = Session::get('user');        
+        Registration::where('course_id', $idCourse)
+                    ->where('competitor_id', $user->id)
+                    ->delete();
+        return redirect()->route('user.home');
+    }
+
 }
