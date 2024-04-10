@@ -29,6 +29,10 @@ document.getElementById('registerNoRegister-button').addEventListener('click', f
         return;
     }
 
+    var selectElement = document.getElementById('insurerId');
+    var selectedOption = selectElement.options[selectElement.selectedIndex];
+    var selectedPrice = selectedOption.getAttribute('data-price');
+
     paypalButtonContainer.innerHTML = '';
 
     paypal.Buttons({
@@ -43,7 +47,7 @@ document.getElementById('registerNoRegister-button').addEventListener('click', f
         return actions.order.create({
         purchase_units: [{
             amount: {
-            value: price,
+            value: parseFloat(selectedPrice) + parseFloat(price),
             }
         }]
         })

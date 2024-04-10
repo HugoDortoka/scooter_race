@@ -15,6 +15,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class CourseController extends Controller
 {
@@ -356,13 +357,19 @@ class CourseController extends Controller
             $sponsorsPrincipal = Sponsor::where('principal', 1)->get();
             $sponsorsId = Courses_sponsor::where('course_id', $id)->pluck('sponsor_id');
             $sponsorsCourse = Sponsor::whereIn('id', $sponsorsId)->get();
+            $insurerPrice = Insurer::where('id', $insurerId)->first();
+            $price = $course->registration_price + $insurerPrice->price_per_course;
+            $pdfPath = public_path('pdf/Inscription.pdf');
             if (Session::has('user')) {
-                $user = Session::get('user');           
-                
-                return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse', 'registrationCount'));
+                $user = Session::get('user');          
+                $pdf = Pdf::loadView('user.pdfInscription', compact('course', 'price'));
+                $pdf->save($pdfPath);
+                return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse', 'registrationCount', 'pdfPath'));
             }else {
                 $user = null;
-                return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse', 'registrationCount'));
+                $pdf = Pdf::loadView('user.pdfInscription', compact('course', 'price'));
+                $pdf->save($pdfPath);
+                return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse', 'registrationCount', 'pdfPath'));
             }
         }
         else {
@@ -417,12 +424,18 @@ class CourseController extends Controller
             
             $sponsorsId = Courses_sponsor::where('course_id', $id)->pluck('sponsor_id');
             $sponsorsCourse = Sponsor::whereIn('id', $sponsorsId)->get();
+            $price = $course->registration_price;
+            $pdfPath = public_path('pdf/Inscription.pdf');
             if (Session::has('user')) {
-                $user = Session::get('user');           
-                return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse', 'registrationCount'));
+                $user = Session::get('user'); 
+                $pdf = Pdf::loadView('user.pdfInscription', compact('course', 'price'));
+                $pdf->save($pdfPath);          
+                return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse', 'registrationCount', 'pdfPath'));
             }else {
                 $user = null;
-                return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse', 'registrationCount'));
+                $pdf = Pdf::loadView('user.pdfInscription', compact('course', 'price'));
+                $pdf->save($pdfPath);
+                return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse', 'registrationCount', 'pdfPath'));
             }
         }
         else {
@@ -507,7 +520,12 @@ class CourseController extends Controller
             
             $sponsorsId = Courses_sponsor::where('course_id', $id)->pluck('sponsor_id');
             $sponsorsCourse = Sponsor::whereIn('id', $sponsorsId)->get();
-            return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse', 'registrationCount'));
+            $insurerPrice = Insurer::where('id', $insurerId)->first();
+            $price = $course->registration_price + $insurerPrice->price_per_course;
+            $pdfPath = public_path('pdf/Inscription.pdf');
+            $pdf = Pdf::loadView('user.pdfInscription', compact('course', 'price'));
+            $pdf->save($pdfPath);
+            return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse', 'registrationCount', 'pdfPath'));
 
     }
     public function dropOut($idCourse){
