@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Membership;
+use App\Models\Competitor;
+use App\Models\Sponsor;
+use App\Models\Registration;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class MembershipController extends Controller
 {
@@ -20,6 +24,15 @@ class MembershipController extends Controller
         $membership->paid = 1;
         $membership->discount = 20;
         $membership->save();
-        return Redirect::route('user.profile');
+        $competitor = Competitor::where('id', '=', $id)->first();
+        $pdfPath = public_path('pdf/Inscription.pdf');
+        $pdf = Pdf::loadView('user.pdfMembership', compact('competitor', 'membership'));
+        $pdf->save($pdfPath);
+        $user = Session::get('user');
+        $id = $user->id;
+        $membership = Membership::where('competitor_id', '=', $id)->first();
+        $sponsorsPrincipal = Sponsor::where('principal', 1)->get();
+        $myRegistrations = Registration::myRegisters($user->id);
+        return view('profile', compact('user', 'membership', 'sponsorsPrincipal', 'myRegistrations', 'pdfPath'));
     }
 }

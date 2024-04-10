@@ -55,7 +55,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="{{ route('user.home') }}" class="logo">
-                        <img src="assets/images/logo.png" alt="">
+                        <img src="{{ asset('assets/images/logo.png') }}" alt="">
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Search End ***** -->
@@ -71,7 +71,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                         <li><a href="{{ route('user.home') }}">Home</a></li>
                         <li><a href="{{ route('user.races') }}">Races</a></li>
                         <li><a href="{{ route('user.competitors') }}">Competitors</a></li>
-                        <li><a href="{{ route('user.profile') }}"  class="active">Profile <img src="assets/images/profile-header.jpg" alt=""></a></li>
+                        <li><a href="{{ route('user.profile') }}"  class="active">Profile <img src="{{ asset('assets/images/profile-header.jpg') }}" alt=""></a></li>
                     </ul>   
                     <a class='menu-trigger'>
                         <span>Menu</span>
@@ -95,7 +95,7 @@ https://templatemo.com/tm-579-cyborg-gaming
               <div class="main-profile ">
                 <div class="row">
                   <div class="col-lg-4">
-                    <img src="assets/images/profile.jpg" alt="" style="border-radius: 23px;">
+                    <img src="{{ asset('assets/images/profile.jpg') }}" alt="" style="border-radius: 23px;">
                   </div>
                   <div class="col-lg-4 align-self-center">
                     <div class="main-info header-text">
@@ -133,7 +133,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                         <div class="col-lg-3 col-sm-6">
                           <div class="item">
                             <div class="thumb">
-                              <img src="assets/images/clip-01.jpg" alt="" style="border-radius: 23px;">
+                              <img src="{{ asset('assets/images/clip-01.jpg') }}" alt="" style="border-radius: 23px;">
                               <a href="https://www.youtube.com/watch?v=r1b03uKWk_M" target="_blank"><i class="fa fa-play"></i></a>
                             </div>
                             <div class="down-content">
@@ -145,7 +145,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                         <div class="col-lg-3 col-sm-6">
                           <div class="item">
                             <div class="thumb">
-                              <img src="assets/images/clip-02.jpg" alt="" style="border-radius: 23px;">
+                              <img src="{{ asset('assets/images/clip-02.jpg') }}" alt="" style="border-radius: 23px;">
                               <a href="https://www.youtube.com/watch?v=r1b03uKWk_M" target="_blank"><i class="fa fa-play"></i></a>
                             </div>
                             <div class="down-content">
@@ -157,7 +157,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                         <div class="col-lg-3 col-sm-6">
                           <div class="item">
                             <div class="thumb">
-                              <img src="assets/images/clip-03.jpg" alt="" style="border-radius: 23px;">
+                              <img src="{{ asset('assets/images/clip-03.jpg') }}" alt="" style="border-radius: 23px;">
                               <a href="https://www.youtube.com/watch?v=r1b03uKWk_M" target="_blank"><i class="fa fa-play"></i></a>
                             </div>
                             <div class="down-content">
@@ -169,7 +169,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                         <div class="col-lg-3 col-sm-6">
                           <div class="item">
                             <div class="thumb">
-                              <img src="assets/images/clip-04.jpg" alt="" style="border-radius: 23px;">
+                              <img src="{{ asset('assets/images/clip-04.jpg') }}" alt="" style="border-radius: 23px;">
                               <a href="https://www.youtube.com/watch?v=r1b03uKWk_M" target="_blank"><i class="fa fa-play"></i></a>
                             </div>
                             <div class="down-content">
@@ -246,6 +246,9 @@ https://templatemo.com/tm-579-cyborg-gaming
   <script>
     var membership = "{{ route('user.newMembership', $user->id) }}";
   </script>
+  @if(isset($pdfPath))
+    <script src="{{ asset('assets/js/downloadPdf.js') }}"></script>
+  @endif
   <script src="{{ asset('assets/js/paypalMembership.js') }}"></script>
   <!-- Bootstrap core JavaScript -->
   <script src="{{ asset('assets/js/jquery/jquery.min.js') }}"></script>
