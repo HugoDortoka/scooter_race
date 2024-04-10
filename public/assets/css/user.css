@@ -38,3 +38,12 @@
     height: 150px;
     width: 150px;
 }
+.button{
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.divPayPal{
+    margin-top: 10px;
+}

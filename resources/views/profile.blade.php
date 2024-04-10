@@ -246,7 +246,7 @@ https://templatemo.com/tm-579-cyborg-gaming
   <script>
     var membership = "{{ route('user.newMembership', $user->id) }}";
   </script>
-  <script src="{{ asset('assets/js/paypal.js') }}"></script>
+  <script src="{{ asset('assets/js/paypalMembership.js') }}"></script>
   <!-- Bootstrap core JavaScript -->
   <script src="{{ asset('assets/js/jquery/jquery.min.js') }}"></script>
 

@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/user.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/popup.css') }}">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <!-- PayPal -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AWCZuF2EUtzd3XMufIfqko8x_19V9q1zGTnbUXYIi5lU5sLXdpOyHNX_8mRJHvBDolqRKwVr3QpZfn-2&currency=EUR"></script>
 <!--
 
 TemplateMo 579 Cyborg Gaming
@@ -191,7 +193,8 @@ https://templatemo.com/tm-579-cyborg-gaming
                                 <p class="priceRace">Sold out</p>
                               @else
                                 @if ($user->PRO==true)
-                                  <a href="{{ route('user.register2', $course->id) }}" class="btn btn-pink">Register</a>              
+                                  <span><a href="#" class="button btn-pink" id="registerPRO-button">Register</a></span>
+                                  <div id="paypal-button-container" class="divPayPal" style="display: none;"></div>
                                 @else
                                   <form action="{{ route('user.register', $course->id) }}"  method="POST" >
                                     @csrf
@@ -273,6 +276,11 @@ https://templatemo.com/tm-579-cyborg-gaming
   <!-- Scripts -->
   <script src="{{ asset('assets/js/federation.js') }}"></script>
   <script src="{{ asset('assets/js/validation.js') }}"></script>
+  <script>
+    var registerPRO = "{{ route('user.register2', $course->id) }}";
+    var price = "{{ $course->registration_price }}";
+  </script>
+  <script src="{{ asset('assets/js/paypalPRO.js') }}"></script>
   <!-- Bootstrap core JavaScript -->
   <script src="{{ asset('assets/js/jquery/jquery.min.js') }}"></script>
 
