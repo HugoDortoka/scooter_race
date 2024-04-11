@@ -39,7 +39,12 @@ class InsurerController extends Controller
         $insurer->name = $request->input('name');
         $insurer->address = $request->input('address');
         $insurer->price_per_course = $request->input('price');
-        $insurer->save();
+        $repeat = Insurer::where('CIF', $insurer->CIF)->get();
+        if ($repeat->count() > 0) {
+            // The insurer is already on the BBDD
+        }else{
+            $insurer->save();
+        }
         return Redirect::route('admin.insurers');
     }
     

@@ -57,46 +57,49 @@ class CourseController extends Controller
         $course->name = $request->input('name');
         $course->description = $request->input('description');
         $course->elevation = $request->input('elevation');
-        $mapImage = $request->file('map_image');
-        $mapImageExtension = $mapImage->getClientOriginalExtension();
-        $mapImageName = time() . '_' . $request->input('name') . '.' . $mapImageExtension;
-        $mapImage->move(public_path('img/map_images'), $mapImageName);
-        $mapImagePath = 'img/map_images/' . $mapImageName;
-        $course->map_image = $mapImagePath;
         $course->max_participants = $request->input('max_participants');
         $course->distance_km = $request->input('distance_km');
         $course->date = $request->input('date');
         $course->time = $request->input('time');
         $course->location = $request->input('location');
-        $promotionPoster = $request->file('promotion_poster');
-        $promotionPosterExtension = $promotionPoster->getClientOriginalExtension();
-        $promotionPosterName = time() . '_' . $request->input('name') . '.' . $promotionPosterExtension;
-        $promotionPoster->move(public_path('img/promotion_posters'), $promotionPosterName);
-        $promotionPosterPath = 'img/promotion_posters/' . $promotionPosterName;
-        $course->promotion_poster = $promotionPosterPath;
         $course->sponsorship_cost = $request->input('sponsorship_cost');
         $course->registration_price = $request->input('registration_price');
-        $course->save();
-
-        $courseId = $course->id;
-
-        if (!empty($request->input('sponsors', []))) {
-            $sponsorsSelected = $request->input('sponsors', []);
-            foreach ($sponsorsSelected as $sponsorId) {
-                $courseSponsor = new Courses_sponsor();
-                $courseSponsor->course_id = $courseId;
-                $courseSponsor->sponsor_id = $sponsorId;
-                $courseSponsor->save();
+        $repeat = Course::where('name', $course->name)->get();
+        if ($repeat->count() > 0) {
+            // The course is already on the BBDD
+        }else{
+            $mapImage = $request->file('map_image');
+            $mapImageExtension = $mapImage->getClientOriginalExtension();
+            $mapImageName = time() . '_' . $request->input('name') . '.' . $mapImageExtension;
+            $mapImage->move(public_path('img/map_images'), $mapImageName);
+            $mapImagePath = 'img/map_images/' . $mapImageName;
+            $course->map_image = $mapImagePath;
+            $promotionPoster = $request->file('promotion_poster');
+            $promotionPosterExtension = $promotionPoster->getClientOriginalExtension();
+            $promotionPosterName = time() . '_' . $request->input('name') . '.' . $promotionPosterExtension;
+            $promotionPoster->move(public_path('img/promotion_posters'), $promotionPosterName);
+            $promotionPosterPath = 'img/promotion_posters/' . $promotionPosterName;
+            $course->promotion_poster = $promotionPosterPath;
+            $course->save();
+            $courseId = $course->id;
+            if (!empty($request->input('sponsors', []))) {
+                $sponsorsSelected = $request->input('sponsors', []);
+                foreach ($sponsorsSelected as $sponsorId) {
+                    $courseSponsor = new Courses_sponsor();
+                    $courseSponsor->course_id = $courseId;
+                    $courseSponsor->sponsor_id = $sponsorId;
+                    $courseSponsor->save();
+                }
             }
-        }
-
-        if (!empty($request->input('insurers', []))) {
-            $insurersSelected = $request->input('insurers', []);
-            foreach ($insurersSelected as $insurerId) {
-                $courseInsurer = new Courses_insurer();
-                $courseInsurer->course_id = $courseId;
-                $courseInsurer->insurer_id = $insurerId;
-                $courseInsurer->save();
+    
+            if (!empty($request->input('insurers', []))) {
+                $insurersSelected = $request->input('insurers', []);
+                foreach ($insurersSelected as $insurerId) {
+                    $courseInsurer = new Courses_insurer();
+                    $courseInsurer->course_id = $courseId;
+                    $courseInsurer->insurer_id = $insurerId;
+                    $courseInsurer->save();
+                }
             }
         }
         return Redirect::route('admin.home');
@@ -331,15 +334,23 @@ class CourseController extends Controller
                                                 ->exists();
             }
             // Crear una nueva instancia de Registration
-            $registration = new Registration();
-            $registration->competitor_id = $user->id; // Asignar el ID del usuario como competitor_id
-            $registration->course_id = $id; // Asignar el ID del curso proporcionado como course_id
-            $registration->insurer_id = $insurerId; 
-            $registration->dorsal_number = $dorsalNumber; // Suponiendo que tienes una función para generar un dorsal único
- 
-    
-            $registration->save(); // Guardar el registro en la base de datos
-    
+            $register = new Registration();
+            $register->competitor_id = $user->id; // Asignar el ID del usuario como competitor_id
+            $register->course_id = $id; // Asignar el ID del curso proporcionado como course_id
+            $register->insurer_id = $insurerId; 
+            $register->dorsal_number = $dorsalNumber; // Suponiendo que tienes una función para generar un dorsal único
+            $repeat = Registration::repeat($register->competitor_id, $register->course_id);
+            $course = Course::insurerById($id);
+            $insurerPrice = Insurer::where('id', $insurerId)->first();
+            $price = $course->registration_price + $insurerPrice->price_per_course;
+            if ($repeat->count() > 0) {
+                // The registration is already on the BBDD
+            }else{
+                $register->save(); // Guardar el registro en la base de datos
+                $pdfPath = public_path('pdf/Inscription.pdf');
+                $pdf = Pdf::loadView('user.pdfInscription', compact('course', 'price'));
+                $pdf->save($pdfPath);
+            }
             try {
                 // Buscar fotos por el ID del curso
                 $photos = Photo::where('course_id', $id)->get();
@@ -347,7 +358,6 @@ class CourseController extends Controller
                 $photos = null; // O cualquier otro valor por defecto que desees asignar
             }
             
-            $course = Course::insurerById($id);
             $registration = Registration::where('course_id', $id)->get();
             $registrationCount = Registration::where('course_id', $id)->count();
             
@@ -357,19 +367,23 @@ class CourseController extends Controller
             $sponsorsPrincipal = Sponsor::where('principal', 1)->get();
             $sponsorsId = Courses_sponsor::where('course_id', $id)->pluck('sponsor_id');
             $sponsorsCourse = Sponsor::whereIn('id', $sponsorsId)->get();
-            $insurerPrice = Insurer::where('id', $insurerId)->first();
-            $price = $course->registration_price + $insurerPrice->price_per_course;
-            $pdfPath = public_path('pdf/Inscription.pdf');
-            if (Session::has('user')) {
-                $user = Session::get('user');          
-                $pdf = Pdf::loadView('user.pdfInscription', compact('course', 'price'));
-                $pdf->save($pdfPath);
-                return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse', 'registrationCount', 'pdfPath'));
-            }else {
-                $user = null;
-                $pdf = Pdf::loadView('user.pdfInscription', compact('course', 'price'));
-                $pdf->save($pdfPath);
-                return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse', 'registrationCount', 'pdfPath'));
+            
+            if (isset($pdfPath)) {
+                if (Session::has('user')) {
+                    $user = Session::get('user');          
+                    return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse', 'registrationCount', 'pdfPath'));
+                }else {
+                    $user = null;
+                    return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse', 'registrationCount', 'pdfPath'));
+                }
+            }else{
+                if (Session::has('user')) {
+                    $user = Session::get('user');          
+                    return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse', 'registrationCount'));
+                }else {
+                    $user = null;
+                    return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse', 'registrationCount'));
+                }
             }
         }
         else {
@@ -396,13 +410,21 @@ class CourseController extends Controller
                                                 ->exists();
             }
             // Crear una nueva instancia de Registration
-            $registration = new Registration();
-            $registration->competitor_id = $user->id; // Asignar el ID del usuario como competitor_id
-            $registration->course_id = $id; // Asignar el ID del curso proporcionado como course_id
-            $registration->dorsal_number = $dorsalNumber; // Suponiendo que tienes una función para generar un dorsal único
-            $registration->save();
-
+            $register = new Registration();
+            $register->competitor_id = $user->id; // Asignar el ID del usuario como competitor_id
+            $register->course_id = $id; // Asignar el ID del curso proporcionado como course_id
+            $register->dorsal_number = $dorsalNumber; // Suponiendo que tienes una función para generar un dorsal único
+            $repeat = Registration::repeat($register->competitor_id, $register->course_id);
             $course = Course::insurerById($id);
+            $price = $course->registration_price;
+            if ($repeat->count() > 0) {
+                // The registration is already on the BBDD
+            }else{
+                $register->save(); // Guardar el registro en la base de datos
+                $pdfPath = public_path('pdf/Inscription.pdf');
+                $pdf = Pdf::loadView('user.pdfInscription', compact('course', 'price'));
+                $pdf->save($pdfPath);
+            }
             try {
                 // Buscar fotos por el ID del curso
                 $photos = Photo::where('course_id', $id)->get();
@@ -411,7 +433,7 @@ class CourseController extends Controller
             }
            
             // try{
-            //     $registration->save(); // Guardar el registro en la base de datos
+            //     $register->save(); // Guardar el registro en la base de datos
             // } catch (\Exception $e) {
             //     $registration = Registration::where('course_id', $id)->get();
             //     return Redirect::route('user.infoRace', compact('course', 'photos', 'user', 'registration'));
@@ -424,18 +446,23 @@ class CourseController extends Controller
             
             $sponsorsId = Courses_sponsor::where('course_id', $id)->pluck('sponsor_id');
             $sponsorsCourse = Sponsor::whereIn('id', $sponsorsId)->get();
-            $price = $course->registration_price;
-            $pdfPath = public_path('pdf/Inscription.pdf');
-            if (Session::has('user')) {
-                $user = Session::get('user'); 
-                $pdf = Pdf::loadView('user.pdfInscription', compact('course', 'price'));
-                $pdf->save($pdfPath);          
-                return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse', 'registrationCount', 'pdfPath'));
-            }else {
-                $user = null;
-                $pdf = Pdf::loadView('user.pdfInscription', compact('course', 'price'));
-                $pdf->save($pdfPath);
-                return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse', 'registrationCount', 'pdfPath'));
+            
+            if (isset($pdfPath)) {
+                if (Session::has('user')) {
+                    $user = Session::get('user');         
+                    return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse', 'registrationCount', 'pdfPath'));
+                }else {
+                    $user = null;
+                    return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse', 'registrationCount', 'pdfPath'));
+                }
+            }else{
+                if (Session::has('user')) {
+                    $user = Session::get('user');         
+                    return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse', 'registrationCount'));
+                }else {
+                    $user = null;
+                    return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse', 'registrationCount'));
+                }
             }
         }
         else {
@@ -463,71 +490,82 @@ class CourseController extends Controller
             $federation = null;
         }
         $password = null;
-
-        Competitor::create([
-            'DNI' => $dni,
-            'name' => $name,
-            'surname' => $surname,
-            'address' => $address,
-            'date_of_birth' => $birth,
-            'PRO' => $PRO_OPEN,
-            'federation_number' => $federation,
-            'password' => $password,
-        ]);
+        $repeat = Competitor::checkDNI($dni);
+        if ($repeat !== null) {
+            // The competitor is already on the BBDD
+        }else{
+            Competitor::create([
+                'DNI' => $dni,
+                'name' => $name,
+                'surname' => $surname,
+                'address' => $address,
+                'date_of_birth' => $birth,
+                'PRO' => $PRO_OPEN,
+                'federation_number' => $federation,
+                'password' => $password,
+            ]);
+        }
 
         $competitor = Competitor::where('dni', $dni)->first();
         $insurerId = $request->input('insurerId');
-            //Generar dorsal
-            $dorsalNumber = mt_rand(1000, 9999); // Generar un número aleatorio de 4 dígitos
+        //Generar dorsal
+        $dorsalNumber = mt_rand(1000, 9999); // Generar un número aleatorio de 4 dígitos
+
+        // Verificar si el número de dorsal generado ya existe en el mismo curso
+        $existingDorsal = Registration::where('course_id', $id)
+                                        ->where('dorsal_number', $dorsalNumber)
+                                        ->exists();
     
-            // Verificar si el número de dorsal generado ya existe en el mismo curso
+        // Si el número de dorsal generado ya existe para el mismo curso, generamos uno nuevo hasta que obtengamos uno único
+        while ($existingDorsal) {
+            $dorsalNumber = mt_rand(1000, 9999); // Generar un nuevo número aleatorio de 4 dígitos
             $existingDorsal = Registration::where('course_id', $id)
                                             ->where('dorsal_number', $dorsalNumber)
                                             ->exists();
-        
-            // Si el número de dorsal generado ya existe para el mismo curso, generamos uno nuevo hasta que obtengamos uno único
-            while ($existingDorsal) {
-                $dorsalNumber = mt_rand(1000, 9999); // Generar un nuevo número aleatorio de 4 dígitos
-                $existingDorsal = Registration::where('course_id', $id)
-                                                ->where('dorsal_number', $dorsalNumber)
-                                                ->exists();
-            }
-            // Crear una nueva instancia de Registration
-            $registration = new Registration();
-            $registration->competitor_id = $competitor->id; // Asignar el ID del usuario como competitor_id
-            $registration->course_id = $id; // Asignar el ID del curso proporcionado como course_id
-            $registration->insurer_id = $insurerId; 
-            $registration->dorsal_number = $dorsalNumber; // Suponiendo que tienes una función para generar un dorsal único
- 
-    
-            $registration->save(); // Guardar el registro en la base de datos
-    
-            try {
-                // Buscar fotos por el ID del curso
-                $photos = Photo::where('course_id', $id)->get();
-            } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-                $photos = null; // O cualquier otro valor por defecto que desees asignar
-            }
-            
-            $course = Course::insurerById($id);
-            $registration = Registration::where('course_id', $id)->get();
-            $registrationCount = Registration::where('course_id', $id)->count();
-
-            $insurers_id = Courses_insurer::where('course_id', $id)->pluck('insurer_id');
-            $insurers = Insurer::whereIn('id', $insurers_id)->get();
-            $user = null;
-            $sponsorsPrincipal = Sponsor::where('principal', 1)->get();
-            
-            $sponsorsId = Courses_sponsor::where('course_id', $id)->pluck('sponsor_id');
-            $sponsorsCourse = Sponsor::whereIn('id', $sponsorsId)->get();
-            $insurerPrice = Insurer::where('id', $insurerId)->first();
-            $price = $course->registration_price + $insurerPrice->price_per_course;
+        }
+        // Crear una nueva instancia de Registration
+        $register = new Registration();
+        $register->competitor_id = $competitor->id; // Asignar el ID del usuario como competitor_id
+        $register->course_id = $id; // Asignar el ID del curso proporcionado como course_id
+        $register->insurer_id = $insurerId; 
+        $register->dorsal_number = $dorsalNumber; // Suponiendo que tienes una función para generar un dorsal único
+        $repeat = Registration::repeat($register->competitor_id, $register->course_id);
+        $course = Course::insurerById($id);
+        $insurerPrice = Insurer::where('id', $insurerId)->first();
+        $price = $course->registration_price + $insurerPrice->price_per_course;
+        if ($repeat->count() > 0) {
+            // The registration is already on the BBDD
+        }else{
+            $register->save();
             $pdfPath = public_path('pdf/Inscription.pdf');
             $pdf = Pdf::loadView('user.pdfInscription', compact('course', 'price'));
             $pdf->save($pdfPath);
-            return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse', 'registrationCount', 'pdfPath'));
+        }
+        try {
+            // Buscar fotos por el ID del curso
+            $photos = Photo::where('course_id', $id)->get();
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            $photos = null; // O cualquier otro valor por defecto que desees asignar
+        }
+        
+        $registration = Registration::where('course_id', $id)->get();
+        $registrationCount = Registration::where('course_id', $id)->count();
 
+        $insurers_id = Courses_insurer::where('course_id', $id)->pluck('insurer_id');
+        $insurers = Insurer::whereIn('id', $insurers_id)->get();
+        $user = null;
+        $sponsorsPrincipal = Sponsor::where('principal', 1)->get();
+        
+        $sponsorsId = Courses_sponsor::where('course_id', $id)->pluck('sponsor_id');
+        $sponsorsCourse = Sponsor::whereIn('id', $sponsorsId)->get();
+        
+        if (isset($pdfPath)){
+            return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse', 'registrationCount', 'pdfPath'));
+        }else{
+            return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse', 'registrationCount'));
+        }    
     }
+
     public function dropOut($idCourse){
         $user = Session::get('user');        
         Registration::where('course_id', $idCourse)

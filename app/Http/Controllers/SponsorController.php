@@ -43,18 +43,22 @@ class SponsorController extends Controller
         $sponsor = new Sponsor();
         $sponsor->CIF = $request->input('cif');
         $sponsor->name = $request->input('name');
-        $logo = $request->file('logo');
-        $logoExtension = $logo->getClientOriginalExtension();
-        $logoName = time() . '_' . $request->input('name') . '.' . $logoExtension;
-        $logo->move(public_path('img/sponsors'), $logoName);
-        $logoPath = 'img/sponsors/' . $logoName;
-        $sponsor->logo = $logoPath;
         $sponsor->address = $request->input('address');
-        
         $principal = $request->has('principal');
         $sponsor->principal = $principal;
         $sponsor->extra_cost = $request->input('extra_cost');
-        $sponsor->save();
+        $repeat = Sponsor::where('CIF', $sponsor->CIF)->get();
+        if ($repeat->count() > 0) {
+            // The sponsor is already on the BBDD
+        }else{
+            $logo = $request->file('logo');
+            $logoExtension = $logo->getClientOriginalExtension();
+            $logoName = time() . '_' . $request->input('name') . '.' . $logoExtension;
+            $logo->move(public_path('img/sponsors'), $logoName);
+            $logoPath = 'img/sponsors/' . $logoName;
+            $sponsor->logo = $logoPath;
+            $sponsor->save();
+        }
         return Redirect::route('admin.sponsors');
     }
     

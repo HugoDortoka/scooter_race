@@ -23,4 +23,9 @@ class Competitor extends Model
 
         return null;
     }
+
+    public static function checkDNI($dni) {
+        $competitor = Competitor::where('dni', $dni)->first();
+        return $competitor;
+    }
 }

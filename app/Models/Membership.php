@@ -11,4 +11,9 @@ class Membership extends Model
     protected $fillable = [
         'competitor_id', 'subscription_date', 'subscription_finish', 'annual_fee', 'paid', 'discount'
     ];
+
+    public static function repeat($membershipId){
+        $repeat = Membership::where('competitor_id', $membershipId)->get();
+        return $repeat;
+    }
 }

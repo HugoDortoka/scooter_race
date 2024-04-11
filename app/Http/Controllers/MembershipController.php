@@ -23,16 +23,25 @@ class MembershipController extends Controller
         $membership->annual_fee = 200;
         $membership->paid = 1;
         $membership->discount = 20;
-        $membership->save();
-        $competitor = Competitor::where('id', '=', $id)->first();
-        $pdfPath = public_path('pdf/Inscription.pdf');
-        $pdf = Pdf::loadView('user.pdfMembership', compact('competitor', 'membership'));
-        $pdf->save($pdfPath);
+        $repeat = Membership::repeat($membership->competitor_id);
+        if ($repeat->count() > 0) {
+            // The membership is already on the BBDD
+        }else{
+            $membership->save();
+            $competitor = Competitor::where('id', '=', $id)->first();
+            $pdfPath = public_path('pdf/Inscription.pdf');
+            $pdf = Pdf::loadView('user.pdfMembership', compact('competitor', 'membership'));
+            $pdf->save($pdfPath);
+        }
         $user = Session::get('user');
         $id = $user->id;
         $membership = Membership::where('competitor_id', '=', $id)->first();
         $sponsorsPrincipal = Sponsor::where('principal', 1)->get();
         $myRegistrations = Registration::myRegisters($user->id);
-        return view('profile', compact('user', 'membership', 'sponsorsPrincipal', 'myRegistrations', 'pdfPath'));
+        if (isset($pdfPath)) {
+            return view('profile', compact('user', 'membership', 'sponsorsPrincipal', 'myRegistrations', 'pdfPath'));
+        } else {
+            return view('profile', compact('user', 'membership', 'sponsorsPrincipal', 'myRegistrations'));
+        } 
     }
 }
