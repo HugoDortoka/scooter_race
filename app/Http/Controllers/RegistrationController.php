@@ -72,10 +72,10 @@ class RegistrationController extends Controller
     {
         
         // Número del dorsal
+        $dorsalUrl = "http://127.0.0.1:8000/finishTime/" . Registration::dorsalQr($courseId, $competitorId) . "/" . $courseId;
         $dorsalNumber = Registration::dorsalQr($courseId, $competitorId);
-    
         // Crear un objeto QrCode
-        $qrCode = new QrCode($dorsalNumber);
+        $qrCode = new QrCode($dorsalUrl);
         $qrCode->setSize(400); // Tamaño del código QR (en este caso, 400x400 píxeles)
     
         // Renderizar el código QR en un objeto PngResult
