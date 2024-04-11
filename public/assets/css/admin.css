@@ -10,7 +10,7 @@
 }
 .registrations{
     display: grid;
-    grid-template-columns: 20% 59% 14%;
+    grid-template-columns: 20% 45% 14% 14%;
     gap: 2%;
     background-color: #0DCAF0;
     color: white;
