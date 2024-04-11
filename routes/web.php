@@ -83,7 +83,9 @@ Route::get('/participants/{courseId}', [RegistrationController::class, 'showPart
 Route::get('/participants/{courseId}/pdf', [RegistrationController::class, 'pdf'])->name('admin.pdfParticipants');
 Route::get('/participants/{courseId}/{competitorId}', [RegistrationController::class, 'pdfIndividual'])->name('admin.pdfParticipant');
 Route::get('/qr/{courseId}/{competitorId}', [RegistrationController::class, 'showQR'])->name('admin.showQR');
+Route::get('/qr/{courseId}', [RegistrationController::class, 'showQRs'])->name('admin.showQRs');
 Route::get('/finishTime/{dorsalNumber}/{courseId}', [RegistrationController::class, 'finishTime'])->name('admin.finishTime');
+
 
 
 //PhotoController

@@ -70,22 +70,22 @@ class RegistrationController extends Controller
     
     public function showQR($courseId, $competitorId)
     {
-        
-        // Número del dorsal
         $dorsalUrl = "http://127.0.0.1:8000/finishTime/" . Registration::dorsalQr($courseId, $competitorId) . "/" . $courseId;
         $dorsalNumber = Registration::dorsalQr($courseId, $competitorId);
         // Crear un objeto QrCode
         $qrCode = new QrCode($dorsalUrl);
-        $qrCode->setSize(400); // Tamaño del código QR (en este caso, 400x400 píxeles)
+        $qrCode->setSize(400); 
     
-        // Renderizar el código QR en un objeto PngResult
         $pngWriter = new PngWriter();
         $qrCodeResult = $pngWriter->write($qrCode);
     
-        // Obtener el URI de datos de la imagen PNG
         $dataUri = $qrCodeResult->getDataUri();
+
+        // Cargar la vista PDF y pasar los datos del participante y del competidor
+        $pdf = Pdf::loadView('admin.qr', ['qrCodeImage' => $dataUri, 'dorsalNumber' => $dorsalNumber, 'courseId' => $courseId]);
     
-        return view('admin.qr', ['qrCodeImage' => $dataUri, 'dorsalNumber' => $dorsalNumber, 'courseId' => $courseId]);
+        // Devolver el PDF como stream
+        return $pdf->stream();
     }
     public function finishTime($dorsalNumber, $courseId)
     {
@@ -102,6 +102,38 @@ class RegistrationController extends Controller
         //return redirect()->back()->with('success', 'Finish time updated successfully');
         return view('admin.finishTime');
     }
+
+    public function showQRs($courseId)
+    {
+        $competitors = Registration::where('course_id', $courseId)->get();
+
+        $qrCodesData = [];
+        foreach ($competitors as $competitor) {
+
+            $dorsalUrl = "http://127.0.0.1:8000/finishTime/" . $competitor->dorsal_number . "/" . $courseId;
+
+            $qrCode = new QrCode($dorsalUrl);
+            $qrCode->setSize(400); // Tamaño del código QR (en este caso, 400x400 píxeles)
+            
+            $pngWriter = new PngWriter();
+            $qrCodeResult = $pngWriter->write($qrCode);
+            
+            $dataUri = $qrCodeResult->getDataUri();
+            
+            $qrCodesData[] = [
+                'qrCodeImage' => $dataUri,
+                'dorsalNumber' => $competitor->dorsal_number,
+                'courseId' => $courseId
+            ];
+        }
+
+        // Cargar la vista PDF y pasar los datos del participante y del competidor
+        $pdf = Pdf::loadView('admin.qrs', ['qrCodesData' => $qrCodesData]);
+    
+        // Devolver el PDF como stream
+        return $pdf->stream();
+    }
+
 }
        
     

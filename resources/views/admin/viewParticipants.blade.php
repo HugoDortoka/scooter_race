@@ -49,6 +49,7 @@
                     <p>There is no competitor signed up for this race</p>
                 @else
                     <a href="{{ route('admin.pdfParticipants', $course->id) }}" class="btn btn-pink btnAdd">View participants</a>
+                    <a href="{{ route('admin.showQRs', $course->id) }}" class="btn btn-pink btnAdd">View QRs</a>
                     <div id="bodyList">
                         @foreach($competitors as $competitor)
 
