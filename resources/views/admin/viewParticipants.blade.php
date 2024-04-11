@@ -57,7 +57,7 @@
                                     <div class="registrations">
                                         <h5>Name: {{ $competitor->name }}</h5>
                                         <h5>Surname: {{ $competitor->surname }}</h5>
-                                        <a href="{{ route('admin.showQR', $competitor->id) }}" class="btn btn-pink">View QR</a>
+                                        <a href="{{ route('admin.showQR', ['courseId' => $course->id, 'competitorId' => $competitor->id]) }}" class="btn btn-pink">View QR</a>
                                         <a href="{{ route('admin.pdfParticipant', ['courseId' => $course->id, 'competitorId' => $competitor->id]) }}" class="btn btn-pink">View participant</a>
                                     </div>
                                 </div>

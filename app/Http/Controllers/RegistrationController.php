@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
+use Carbon\Carbon;
+
 // para los pdf
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -66,10 +68,11 @@ class RegistrationController extends Controller
         return $pdf->stream();
     }
     
-    public function showQR($competitorId)
+    public function showQR($courseId, $competitorId)
     {
+        
         // Número del dorsal
-        $dorsalNumber = $competitorId;
+        $dorsalNumber = Registration::dorsalQr($courseId, $competitorId);
     
         // Crear un objeto QrCode
         $qrCode = new QrCode($dorsalNumber);
@@ -82,6 +85,24 @@ class RegistrationController extends Controller
         // Obtener el URI de datos de la imagen PNG
         $dataUri = $qrCodeResult->getDataUri();
     
-        return view('admin.qr', ['qrCodeImage' => $dataUri]);
+        return view('admin.qr', ['qrCodeImage' => $dataUri, 'dorsalNumber' => $dorsalNumber, 'courseId' => $courseId]);
+    }
+    public function finishTime($dorsalNumber, $courseId)
+    {
+        // Find the registration with the given dorsal number and course ID
+        $registration = Registration::where('dorsal_number', $dorsalNumber)
+                                    ->where('course_id', $courseId)
+                                    ->first();
+
+        // If registration found, update Finish_Time with current time
+        if ($registration) {
+            $registration->update(['Finish_Time' => Carbon::now()]);
+        }
+
+        //return redirect()->back()->with('success', 'Finish time updated successfully');
+        return view('admin.finishTime');
     }
 }
+       
+    
+
