@@ -34,6 +34,7 @@
         <table class="pdf">
             <thead>
                 <tr>
+                    <th>DNI</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Dorsal</th>
@@ -41,6 +42,7 @@
             </thead>
             <tbody>
                 <tr>
+                    <td>{{$competitor->DNI}}</td>
                     <td>{{$competitor->name}}</td>
                     <td>{{$competitor->surname}}</td>
                     @foreach($participants as $participant)
