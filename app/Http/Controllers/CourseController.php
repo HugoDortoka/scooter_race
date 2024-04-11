@@ -10,6 +10,7 @@ use App\Models\Insurer;
 use App\Models\Competitor;
 use App\Models\Courses_sponsor;
 use App\Models\Courses_insurer;
+use App\Models\Company;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -347,8 +348,9 @@ class CourseController extends Controller
                 // The registration is already on the BBDD
             }else{
                 $register->save(); // Guardar el registro en la base de datos
+                $company = Company::ourCompany();
                 $pdfPath = public_path('pdf/Inscription.pdf');
-                $pdf = Pdf::loadView('user.pdfInscription', compact('course', 'price'));
+                $pdf = Pdf::loadView('user.pdfInscription', compact('course', 'price', 'company'));
                 $pdf->save($pdfPath);
             }
             try {
@@ -421,8 +423,9 @@ class CourseController extends Controller
                 // The registration is already on the BBDD
             }else{
                 $register->save(); // Guardar el registro en la base de datos
+                $company = Company::ourCompany();
                 $pdfPath = public_path('pdf/Inscription.pdf');
-                $pdf = Pdf::loadView('user.pdfInscription', compact('course', 'price'));
+                $pdf = Pdf::loadView('user.pdfInscription', compact('course', 'price', 'company'));
                 $pdf->save($pdfPath);
             }
             try {
@@ -537,8 +540,9 @@ class CourseController extends Controller
             // The registration is already on the BBDD
         }else{
             $register->save();
+            $company = Company::ourCompany();
             $pdfPath = public_path('pdf/Inscription.pdf');
-            $pdf = Pdf::loadView('user.pdfInscription', compact('course', 'price'));
+            $pdf = Pdf::loadView('user.pdfInscription', compact('course', 'price', 'company'));
             $pdf->save($pdfPath);
         }
         try {

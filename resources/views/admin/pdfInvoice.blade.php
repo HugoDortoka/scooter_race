@@ -31,6 +31,10 @@
     </head>
 
     <body>
+        <h1>{{$company->name}}</h1>
+        <p>CIF: {{$company->CIF}}</p>
+        <p>Address: {{$company->address}}</p>
+        <p>Email: {{$company->email}}</p>
         <table class="pdf">
             <thead>
                 <tr>
@@ -45,7 +49,7 @@
                     <td>{{$sponsor->CIF}}</td>
                     <td>{{$sponsor->name}}</td>
                     <td>{{$sponsor->address}}</td>
-                    <td>{{$coursesCost}}</td>
+                    <td>{{$coursesCost}}€</td>
                 </tr>
             </tbody>
 

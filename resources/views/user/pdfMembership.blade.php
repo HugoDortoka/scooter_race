@@ -31,11 +31,15 @@
     </head>
 
     <body>
+        <h1>{{$company->name}}</h1>
+        <p>CIF: {{$company->CIF}}</p>
+        <p>Address: {{$company->address}}</p>
+        <p>Email: {{$company->email}}</p>
         <table class="pdf">
             <thead>
-                <h1>{{$competitor->name}} {{$competitor->surname}}</h1>
                 <tr>
                     <th>DNI</th>
+                    <th>Name</th>
                     <th>Subscription date</th>
                     <th>Subscription finish</th>
                     <th>Discount</th>
@@ -45,6 +49,7 @@
             <tbody>
                 <tr>
                     <td>{{$competitor->DNI}}</td>
+                    <td>{{$competitor->name}}</td>
                     <td>{{ date('d-m-Y', strtotime($membership->subscription_date)) }}</td>
                     <td>{{ date('d-m-Y', strtotime($membership->subscription_finish)) }}</td>
                     <td>{{$membership->discount}}%</td>

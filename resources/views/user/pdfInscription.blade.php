@@ -31,10 +31,14 @@
     </head>
 
     <body>
+        <h1>{{$company->name}}</h1>
+        <p>CIF: {{$company->CIF}}</p>
+        <p>Address: {{$company->address}}</p>
+        <p>Email: {{$company->email}}</p>
         <table class="pdf">
             <thead>
-                <h1>{{$course->name}}</h1>
                 <tr>
+                    <th>Name</th>
                     <th>Date</th>
                     <th>Time</th>
                     <th>Location</th>
@@ -43,6 +47,7 @@
             </thead>
             <tbody>
                 <tr>
+                    <td>{{$course->name}}</td>
                     <td>{{date('d-m-Y', strtotime($course->date))}}</td>
                     <td>{{$course->time}}</td>
                     <td>{{$course->location}}</td>

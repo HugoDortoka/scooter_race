@@ -6,6 +6,7 @@ use App\Models\Membership;
 use App\Models\Competitor;
 use App\Models\Sponsor;
 use App\Models\Registration;
+use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -29,8 +30,9 @@ class MembershipController extends Controller
         }else{
             $membership->save();
             $competitor = Competitor::where('id', '=', $id)->first();
+            $company = Company::ourCompany();
             $pdfPath = public_path('pdf/Inscription.pdf');
-            $pdf = Pdf::loadView('user.pdfMembership', compact('competitor', 'membership'));
+            $pdf = Pdf::loadView('user.pdfMembership', compact('competitor', 'membership', 'company'));
             $pdf->save($pdfPath);
         }
         $user = Session::get('user');

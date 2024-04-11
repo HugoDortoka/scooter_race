@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Sponsor;
 use App\Models\Courses_sponsor;
 use App\Models\Course;
+use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -114,7 +115,8 @@ class SponsorController extends Controller
         if($sponsor->extra_cost !== null){
             $coursesCost += $sponsor->extra_cost;
         }
-        $pdf = Pdf::loadView('admin.pdfInvoice', compact('sponsor', 'coursesCost'));
+        $company = Company::ourCompany();
+        $pdf = Pdf::loadView('admin.pdfInvoice', compact('sponsor', 'coursesCost', 'company'));
         return $pdf->stream();
     }
 }
