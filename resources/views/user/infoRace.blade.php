@@ -295,6 +295,11 @@ https://templatemo.com/tm-579-cyborg-gaming
   <script src="{{ asset('assets/js/paypalPRO.js') }}"></script>
   <script src="{{ asset('assets/js/paypalNoPRO.js') }}"></script>
   <script src="{{ asset('assets/js/paypalNoRegister.js') }}"></script>
+  @if(isset($membership))
+    <script>
+      var discount = "{{ $membership->discount }}";
+    </script>
+  @endif
   @if(isset($pdfPath))
     <script src="{{ asset('assets/js/downloadPdf.js') }}"></script>
   @endif

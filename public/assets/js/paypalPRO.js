@@ -20,10 +20,15 @@ document.getElementById('registerPRO-button').addEventListener('click', function
         tagline: false
     },
     createOrder: function(data, actions){
+        var totalPrice = price;
+        if (typeof discount !== 'undefined') {
+            var discountAmount = (parseFloat(discount) / 100) * totalPrice;
+            totalPrice -= discountAmount;
+        }
         return actions.order.create({
         purchase_units: [{
             amount: {
-            value: price,
+            value: totalPrice.toFixed(2),
             }
         }]
         })

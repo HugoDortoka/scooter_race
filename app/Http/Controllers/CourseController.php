@@ -11,6 +11,7 @@ use App\Models\Competitor;
 use App\Models\Courses_sponsor;
 use App\Models\Courses_insurer;
 use App\Models\Company;
+use App\Models\Membership;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -305,8 +306,8 @@ class CourseController extends Controller
 
         if (Session::has('user')) {
             $user = Session::get('user');
-           
-            return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse', 'registrationCount'));
+            $membership = Membership::discount($user->id);
+            return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse', 'registrationCount', 'membership'));
         }else {
             $user = null;
             return view('user.infoRace', compact('course', 'photos', 'user', 'registration','insurers', 'sponsorsPrincipal', 'sponsorsCourse', 'registrationCount'));

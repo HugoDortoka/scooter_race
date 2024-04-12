@@ -16,4 +16,9 @@ class Membership extends Model
         $repeat = Membership::where('competitor_id', $membershipId)->get();
         return $repeat;
     }
+
+    public static function discount($id){
+        $membership = Membership::where('competitor_id', $id)->first();
+        return $membership;
+    }
 }
