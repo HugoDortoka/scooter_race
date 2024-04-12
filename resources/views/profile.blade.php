@@ -106,7 +106,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                         <span>You are a membership</span>
                       @endif
                       <h4>{{ $user->name }} {{ $user->surname }}</h4>
-                      <p>You Haven't Gone Live yet. Go Live By Touching The Button Below.</p>
+                      <p>These are your profile stats</p>
                       <div class="main-border-button">
                         <a href="{{ route('user.logout') }}">LOGOUT</a>
                       </div>
@@ -114,77 +114,11 @@ https://templatemo.com/tm-579-cyborg-gaming
                   </div>
                   <div class="col-lg-4 align-self-center">
                     <ul>
-                      <li>Games Downloaded <span>3</span></li>
-                      <li>Friends Online <span>16</span></li>
-                      <li>Live Streams <span>None</span></li>
-                      <li>Clips <span>29</span></li>
+                      <li>Next races <span>3</span></li>
+                      <li>Finished races<span>16</span></li>
+                      <li>Membership <span>None</span></li>
+                      <li>Wins <span>4</span></li>
                     </ul>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-lg-12">
-                    <div class="clips">
-                      <div class="row">
-                        <div class="col-lg-12">
-                          <div class="heading-section">
-                            <h4><em>Your Most Popular</em> Clips</h4>
-                          </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                          <div class="item">
-                            <div class="thumb">
-                              <img src="{{ asset('assets/images/clip-01.jpg') }}" alt="" style="border-radius: 23px;">
-                              <a href="https://www.youtube.com/watch?v=r1b03uKWk_M" target="_blank"><i class="fa fa-play"></i></a>
-                            </div>
-                            <div class="down-content">
-                              <h4>First Clip</h4>
-                              <span><i class="fa fa-eye"></i> 250</span>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                          <div class="item">
-                            <div class="thumb">
-                              <img src="{{ asset('assets/images/clip-02.jpg') }}" alt="" style="border-radius: 23px;">
-                              <a href="https://www.youtube.com/watch?v=r1b03uKWk_M" target="_blank"><i class="fa fa-play"></i></a>
-                            </div>
-                            <div class="down-content">
-                              <h4>Second Clip</h4>
-                              <span><i class="fa fa-eye"></i> 183</span>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                          <div class="item">
-                            <div class="thumb">
-                              <img src="{{ asset('assets/images/clip-03.jpg') }}" alt="" style="border-radius: 23px;">
-                              <a href="https://www.youtube.com/watch?v=r1b03uKWk_M" target="_blank"><i class="fa fa-play"></i></a>
-                            </div>
-                            <div class="down-content">
-                              <h4>Third Clip</h4>
-                              <span><i class="fa fa-eye"></i> 141</span>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                          <div class="item">
-                            <div class="thumb">
-                              <img src="{{ asset('assets/images/clip-04.jpg') }}" alt="" style="border-radius: 23px;">
-                              <a href="https://www.youtube.com/watch?v=r1b03uKWk_M" target="_blank"><i class="fa fa-play"></i></a>
-                            </div>
-                            <div class="down-content">
-                              <h4>Fourth Clip</h4>
-                              <span><i class="fa fa-eye"></i> 91</span>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-lg-12">
-                          <div class="main-button">
-                            <a href="#">Load More Clips</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>

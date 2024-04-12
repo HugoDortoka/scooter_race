@@ -145,8 +145,8 @@ https://templatemo.com/tm-579-cyborg-gaming
                     <div class="icon">
                       <img src="assets/images/service-01.jpg" alt="" style="max-width: 60px; border-radius: 50%;">
                     </div>
-                    <h4>Go To Your Profile</h4>
-                    <p>Cyborg Gaming is free HTML CSS website template provided by TemplateMo. This is Bootstrap v5.2.0 layout.</p>
+                    <h4>Go With Your ID</h4>
+                    <p>Go with your ID to the selected booth to pick up your bib number and QR code. There they will give you more information.</p>
                   </div>
                 </div>
                 <div class="col-lg-4">
@@ -154,8 +154,8 @@ https://templatemo.com/tm-579-cyborg-gaming
                     <div class="icon">
                       <img src="assets/images/service-02.jpg" alt="" style="max-width: 60px; border-radius: 50%;">
                     </div>
-                    <h4>Live Stream Button</h4>
-                    <p>If you wish to support us, you can make a <a href="https://paypal.me/templatemo" target="_blank">small contribution via PayPal</a> to info [at] templatemo.com</p>
+                    <h4>Starting Point</h4>
+                    <p>Go to the indicated point where the race starts and there they will give you a position to start.</p>
                   </div>
                 </div>
                 <div class="col-lg-4">
@@ -163,8 +163,8 @@ https://templatemo.com/tm-579-cyborg-gaming
                     <div class="icon">
                       <img src="assets/images/service-03.jpg" alt="" style="max-width: 60px; border-radius: 50%;">
                     </div>
-                    <h4>You Are Live</h4>
-                    <p>You are not allowed to redistribute this template's downloadable ZIP file on any other template collection website.</p>
+                    <h4>The Race Begins</h4>
+                    <p>When you finish the race there will be a person indicated to scan the QR code to mark your time.</p>
                   </div>
                 </div>
                 <div class="col-lg-12">
