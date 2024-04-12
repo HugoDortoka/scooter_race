@@ -21,8 +21,13 @@ return new class extends Migration
             $table->boolean('PRO')->default(false);
             $table->string('federation_number')->nullable();
             $table->string('password')->nullable();
+            $table->char('sex', 1)->nullable();
+            $table->integer('age')->unsigned()->nullable();
+            $table->integer('points')->default(0);
             $table->timestamps();
         });
+
+        DB::statement("ALTER TABLE competitors ADD CONSTRAINT sex_constraint CHECK (sex IN ('m', 'f'))");
 
         DB::table('competitors')->insert([
             'DNI' => '28148365E',
@@ -33,6 +38,8 @@ return new class extends Migration
             'PRO' => true,
             'federation_number' => 'FED123456',
             'password' => bcrypt('28148365E'),
+            'sex' => 'f',
+            'age' => 25,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -45,6 +52,8 @@ return new class extends Migration
             'date_of_birth' => '1995-07-03',
             'PRO' => false,
             'password' => bcrypt('44587682C'),
+            'sex' => 'm',
+            'age' => 33,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
