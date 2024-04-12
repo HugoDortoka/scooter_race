@@ -38,6 +38,7 @@ return new class extends Migration
             'federation_number' => 'FED123456',
             'password' => bcrypt('28148365E'),
             'sex' => 'm',
+            'points' => 1000,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -51,6 +52,7 @@ return new class extends Migration
             'PRO' => false,
             'password' => bcrypt('44587682C'),
             'sex' => 'm',
+            'points' => 1000,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -65,6 +67,7 @@ return new class extends Migration
             'federation_number' => 'FED987654321',
             'password' => bcrypt('65040649F'),
             'sex' => 'f',
+            'points' => 1000,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -78,6 +81,7 @@ return new class extends Migration
             'PRO' => false,
             'password' => bcrypt('50808329H'),
             'sex' => 'm',
+            'points' => 1000,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -91,6 +95,7 @@ return new class extends Migration
             'PRO' => false,
             'password' => bcrypt('12198874L'),
             'sex' => 'f',
+            'points' => 1000,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -105,6 +110,7 @@ return new class extends Migration
             'federation_number' => 'FED246813579',
             'password' => bcrypt('34207843N'),
             'sex' => 'f',
+            'points' => 2000,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -118,6 +124,7 @@ return new class extends Migration
             'PRO' => false,
             'password' => bcrypt('63417053G'),
             'sex' => 'm',
+            'points' => 3000,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -132,6 +139,7 @@ return new class extends Migration
             'federation_number' => 'FED531246978',
             'password' => bcrypt('62748041Q'),
             'sex' => 'f',
+            'points' => 10000,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -145,6 +153,7 @@ return new class extends Migration
             'PRO' => false,
             'password' => bcrypt('59472579F'),
             'sex' => 'f',
+            'points' => 9500,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -158,6 +167,7 @@ return new class extends Migration
             'PRO' => false,
             'password' => bcrypt('65255109S'),
             'sex' => 'm',
+            'points' => 4000,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -172,6 +182,7 @@ return new class extends Migration
             'federation_number' => 'FED765432109',
             'password' => bcrypt('09397812N'),
             'sex' => 'm',
+            'points' => 6000,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -185,6 +196,7 @@ return new class extends Migration
             'PRO' => false,
             'password' => bcrypt('39753342G'),
             'sex' => 'f',
+            'points' => 8000,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -198,6 +210,7 @@ return new class extends Migration
             'PRO' => false,
             'password' => bcrypt('35940033A'),
             'sex' => 'm',
+            'points' => 2200,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -211,6 +224,7 @@ return new class extends Migration
             'PRO' => false,
             'password' => bcrypt('07072181A'),
             'sex' => 'm',
+            'points' => 7000,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -224,6 +238,7 @@ return new class extends Migration
             'PRO' => false,
             'password' => bcrypt('75100270A'),
             'sex' => 'f',
+            'points' => 5000,
             'created_at' => now(),
             'updated_at' => now(),
         ]);

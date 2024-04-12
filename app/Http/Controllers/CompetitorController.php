@@ -29,7 +29,14 @@ class CompetitorController extends Controller
     //USER
     public function competitors(){
         $sponsorsPrincipal = Sponsor::where('principal', 1)->get();
-        return view('competitors', compact('sponsorsPrincipal'));
+        $topGeneral = Competitor::topGeneral();
+        $topMale = Competitor::topMale();
+        $topFemale = Competitor::topFemale();
+        $topMaster20 = Competitor::topMaster20();
+        $topMaster30 = Competitor::topMaster30();
+        $topMaster40 = Competitor::topMaster40();
+
+        return view('competitors', compact('sponsorsPrincipal', 'topGeneral', 'topMale', 'topFemale', 'topMaster20', 'topMaster30', 'topMaster40'));
     }
  
     public function profile(){
@@ -137,4 +144,6 @@ class CompetitorController extends Controller
         Session::flush();
         return redirect()->route('user.home');
     }
+
+
 }

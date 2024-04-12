@@ -95,46 +95,13 @@ https://templatemo.com/tm-579-cyborg-gaming
                     <h4><em>Top</em> General</h4>
                   </div>
                   <ul>
-                    <li>
-                      <span>01</span>
-                      <img src="assets/images/avatar-01.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                      <h6><i class="fa fa-check"></i> LahutaM</h6>
-                      <div class="main-button">
-                        <a href="#">Follow</a>
-                      </div>
-                    </li>
-                    <li>
-                      <span>02</span>
-                      <img src="assets/images/avatar-02.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                      <h6><i class="fa fa-check"></i> Kengan</h6>
-                      <div class="main-button">
-                        <a href="#">Follow</a>
-                      </div>
-                    </li>
-                    <li>
-                      <span>03</span>
-                      <img src="assets/images/avatar-03.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                      <h6><i class="fa fa-check"></i> Areluwa</h6>
-                      <div class="main-button">
-                        <a href="#">Follow</a>
-                      </div>
-                    </li>
-                    <li>
-                      <span>04</span>
-                      <img src="assets/images/avatar-04.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                      <h6><i class="fa fa-check"></i> Omeg</h6>
-                      <div class="main-button">
-                        <a href="#">Follow</a>
-                      </div>
-                    </li>
-                    <li>
-                      <span>05</span>
-                      <img src="assets/images/avatar-01.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                      <h6><i class="fa fa-check"></i> GangTeam</h6>
-                      <div class="main-button">
-                        <a href="#">Follow</a>
-                      </div>
-                    </li>
+                  @foreach($topGeneral as $key => $competitor)
+                      <li>
+                          <span>{{ str_pad($key + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                          <img src="assets/images/avatar-02.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
+                          <h6><i class="fa fa-check"></i> {{ $competitor->name }} {{ $competitor->surname }}</h6>
+                      </li>
+                  @endforeach
                   </ul>
               </div>
             </div>
@@ -145,46 +112,13 @@ https://templatemo.com/tm-579-cyborg-gaming
                     <h4><em>Top</em> Male</h4>
                   </div>
                   <ul>
-                    <li>
-                      <span>01</span>
-                      <img src="assets/images/avatar-01.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                      <h6><i class="fa fa-check"></i> LahutaM</h6>
-                      <div class="main-button">
-                        <a href="#">Follow</a>
-                      </div>
-                    </li>
-                    <li>
-                      <span>02</span>
-                      <img src="assets/images/avatar-02.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                      <h6><i class="fa fa-check"></i> Kengan</h6>
-                      <div class="main-button">
-                        <a href="#">Follow</a>
-                      </div>
-                    </li>
-                    <li>
-                      <span>03</span>
-                      <img src="assets/images/avatar-03.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                      <h6><i class="fa fa-check"></i> Areluwa</h6>
-                      <div class="main-button">
-                        <a href="#">Follow</a>
-                      </div>
-                    </li>
-                    <li>
-                      <span>04</span>
-                      <img src="assets/images/avatar-04.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                      <h6><i class="fa fa-check"></i> Omeg</h6>
-                      <div class="main-button">
-                        <a href="#">Follow</a>
-                      </div>
-                    </li>
-                    <li>
-                      <span>05</span>
-                      <img src="assets/images/avatar-01.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                      <h6><i class="fa fa-check"></i> GangTeam</h6>
-                      <div class="main-button">
-                        <a href="#">Follow</a>
-                      </div>
-                    </li>
+                  @foreach($topMale as $key => $competitor)
+                      <li>
+                          <span>{{ str_pad($key + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                          <img src="assets/images/avatar-02.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
+                          <h6><i class="fa fa-check"></i> {{ $competitor->name }} {{ $competitor->surname }}</h6>
+                      </li>
+                  @endforeach
                   </ul>
                 
                 </div>
@@ -197,46 +131,13 @@ https://templatemo.com/tm-579-cyborg-gaming
                   <h4><em>Top</em> Female</h4>
                 </div>
                 <ul>
-                  <li>
-                    <span>01</span>
-                    <img src="assets/images/avatar-01.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                    <h6><i class="fa fa-check"></i> LahutaM</h6>
-                    <div class="main-button">
-                      <a href="#">Follow</a>
-                    </div>
-                  </li>
-                  <li>
-                    <span>02</span>
-                    <img src="assets/images/avatar-02.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                    <h6><i class="fa fa-check"></i> Kengan</h6>
-                    <div class="main-button">
-                      <a href="#">Follow</a>
-                    </div>
-                  </li>
-                  <li>
-                    <span>03</span>
-                    <img src="assets/images/avatar-03.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                    <h6><i class="fa fa-check"></i> Areluwa</h6>
-                    <div class="main-button">
-                      <a href="#">Follow</a>
-                    </div>
-                  </li>
-                  <li>
-                    <span>04</span>
-                    <img src="assets/images/avatar-04.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                    <h6><i class="fa fa-check"></i> Omeg</h6>
-                    <div class="main-button">
-                      <a href="#">Follow</a>
-                    </div>
-                  </li>
-                  <li>
-                    <span>05</span>
-                    <img src="assets/images/avatar-01.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                    <h6><i class="fa fa-check"></i> GangTeam</h6>
-                    <div class="main-button">
-                      <a href="#">Follow</a>
-                    </div>
-                  </li>
+                @foreach($topFemale as $key => $competitor)
+                      <li>
+                          <span>{{ str_pad($key + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                          <img src="assets/images/avatar-02.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
+                          <h6><i class="fa fa-check"></i> {{ $competitor->name }} {{ $competitor->surname }}</h6>
+                      </li>
+                @endforeach
                 </ul>
               </div>
             </div>
@@ -248,46 +149,13 @@ https://templatemo.com/tm-579-cyborg-gaming
                     <h4><em>Top</em> Master 20</h4>
                   </div>
                   <ul>
-                    <li>
-                      <span>01</span>
-                      <img src="assets/images/avatar-01.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                      <h6><i class="fa fa-check"></i> LahutaM</h6>
-                      <div class="main-button">
-                        <a href="#">Follow</a>
-                      </div>
-                    </li>
-                    <li>
-                      <span>02</span>
-                      <img src="assets/images/avatar-02.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                      <h6><i class="fa fa-check"></i> Kengan</h6>
-                      <div class="main-button">
-                        <a href="#">Follow</a>
-                      </div>
-                    </li>
-                    <li>
-                      <span>03</span>
-                      <img src="assets/images/avatar-03.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                      <h6><i class="fa fa-check"></i> Areluwa</h6>
-                      <div class="main-button">
-                        <a href="#">Follow</a>
-                      </div>
-                    </li>
-                    <li>
-                      <span>04</span>
-                      <img src="assets/images/avatar-04.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                      <h6><i class="fa fa-check"></i> Omeg</h6>
-                      <div class="main-button">
-                        <a href="#">Follow</a>
-                      </div>
-                    </li>
-                    <li>
-                      <span>05</span>
-                      <img src="assets/images/avatar-01.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                      <h6><i class="fa fa-check"></i> GangTeam</h6>
-                      <div class="main-button">
-                        <a href="#">Follow</a>
-                      </div>
-                    </li>
+                  @foreach($topMaster20 as $key => $competitor)
+                      <li>
+                          <span>{{ str_pad($key + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                          <img src="assets/images/avatar-02.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
+                          <h6><i class="fa fa-check"></i> {{ $competitor->name }} {{ $competitor->surname }}</h6>
+                      </li>
+                  @endforeach
                   </ul>
               </div>
             </div>
@@ -298,46 +166,13 @@ https://templatemo.com/tm-579-cyborg-gaming
                     <h4><em>Top</em> Master 30</h4>
                   </div>
                   <ul>
-                    <li>
-                      <span>01</span>
-                      <img src="assets/images/avatar-01.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                      <h6><i class="fa fa-check"></i> LahutaM</h6>
-                      <div class="main-button">
-                        <a href="#">Follow</a>
-                      </div>
-                    </li>
-                    <li>
-                      <span>02</span>
-                      <img src="assets/images/avatar-02.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                      <h6><i class="fa fa-check"></i> Kengan</h6>
-                      <div class="main-button">
-                        <a href="#">Follow</a>
-                      </div>
-                    </li>
-                    <li>
-                      <span>03</span>
-                      <img src="assets/images/avatar-03.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                      <h6><i class="fa fa-check"></i> Areluwa</h6>
-                      <div class="main-button">
-                        <a href="#">Follow</a>
-                      </div>
-                    </li>
-                    <li>
-                      <span>04</span>
-                      <img src="assets/images/avatar-04.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                      <h6><i class="fa fa-check"></i> Omeg</h6>
-                      <div class="main-button">
-                        <a href="#">Follow</a>
-                      </div>
-                    </li>
-                    <li>
-                      <span>05</span>
-                      <img src="assets/images/avatar-01.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                      <h6><i class="fa fa-check"></i> GangTeam</h6>
-                      <div class="main-button">
-                        <a href="#">Follow</a>
-                      </div>
-                    </li>
+                  @foreach($topMaster30 as $key => $competitor)
+                      <li>
+                          <span>{{ str_pad($key + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                          <img src="assets/images/avatar-02.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
+                          <h6><i class="fa fa-check"></i> {{ $competitor->name }} {{ $competitor->surname }}</h6>
+                      </li>
+                  @endforeach
                   </ul>
                 
                 </div>
@@ -350,46 +185,13 @@ https://templatemo.com/tm-579-cyborg-gaming
                   <h4><em>Top</em> Master 40</h4>
                 </div>
                 <ul>
-                  <li>
-                    <span>01</span>
-                    <img src="assets/images/avatar-01.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                    <h6><i class="fa fa-check"></i> LahutaM</h6>
-                    <div class="main-button">
-                      <a href="#">Follow</a>
-                    </div>
-                  </li>
-                  <li>
-                    <span>02</span>
-                    <img src="assets/images/avatar-02.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                    <h6><i class="fa fa-check"></i> Kengan</h6>
-                    <div class="main-button">
-                      <a href="#">Follow</a>
-                    </div>
-                  </li>
-                  <li>
-                    <span>03</span>
-                    <img src="assets/images/avatar-03.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                    <h6><i class="fa fa-check"></i> Areluwa</h6>
-                    <div class="main-button">
-                      <a href="#">Follow</a>
-                    </div>
-                  </li>
-                  <li>
-                    <span>04</span>
-                    <img src="assets/images/avatar-04.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                    <h6><i class="fa fa-check"></i> Omeg</h6>
-                    <div class="main-button">
-                      <a href="#">Follow</a>
-                    </div>
-                  </li>
-                  <li>
-                    <span>05</span>
-                    <img src="assets/images/avatar-01.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
-                    <h6><i class="fa fa-check"></i> GangTeam</h6>
-                    <div class="main-button">
-                      <a href="#">Follow</a>
-                    </div>
-                  </li>
+                @foreach($topMaster40 as $key => $competitor)
+                      <li>
+                          <span>{{ str_pad($key + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                          <img src="assets/images/avatar-02.jpg" alt="" style="max-width: 46px; border-radius: 50%; margin-right: 15px;">
+                          <h6><i class="fa fa-check"></i> {{ $competitor->name }} {{ $competitor->surname }}</h6>
+                      </li>
+                @endforeach
                 </ul>
               </div>
             </div>
