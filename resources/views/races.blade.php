@@ -169,7 +169,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                 </div>
                 <div class="col-lg-12">
                   <div class="main-button">
-                    <a href="profile.html">Go To Profile</a>
+                    <a href="{{ route('user.profile') }}">Go To Profile</a>
                   </div>
                 </div>
               </div>

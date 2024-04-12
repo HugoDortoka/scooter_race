@@ -104,6 +104,12 @@ Route::get('/registration', [CompetitorController::class, 'registration'])->name
 Route::post('/registration', [CompetitorController::class, 'insertRegistration'])->name('user.insertRegistration');
 Route::get('/logout', [CompetitorController::class, 'logout'])->name('user.logout');
 Route::get('/dropoutProfile/{id}', [CompetitorController::class, 'dropOut2'])->name('user.dropOut2');
+Route::get('/competitors/PDFGeneral', [CompetitorController::class, 'competitorsPDFGeneral'])->name('user.competitorsPDFGeneral');
+Route::get('/competitors/PDFMale', [CompetitorController::class, 'competitorsPDFMale'])->name('user.competitorsPDFMale');
+Route::get('/competitors/PDFFemale', [CompetitorController::class, 'competitorsPDFFemale'])->name('user.competitorsPDFFemale');
+Route::get('/competitors/PDF20', [CompetitorController::class, 'competitorsPDF20'])->name('user.competitorsPDF20');
+Route::get('/competitors/PDF30', [CompetitorController::class, 'competitorsPDF30'])->name('user.competitorsPDF30');
+Route::get('/competitors/PDF40', [CompetitorController::class, 'competitorsPDF40'])->name('user.competitorsPDF40');
 
 //MembershipController
 //USER

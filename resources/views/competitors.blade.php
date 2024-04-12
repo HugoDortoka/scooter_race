@@ -143,6 +143,17 @@ https://templatemo.com/tm-579-cyborg-gaming
             </div>
           </div>
           <div class="row mt-4">
+            <div class="main-button col-lg-4 d-flex justify-content-center align-items-center">
+              <a href="{{ route('user.competitorsPDFGeneral') }}">Download PDF</a>
+            </div>
+            <div class="main-button col-lg-4 d-flex justify-content-center align-items-center">
+              <a href="{{ route('user.competitorsPDFMale') }}">Download PDF</a>
+            </div>
+            <div class="main-button col-lg-4 d-flex justify-content-center align-items-center">
+              <a href="{{ route('user.competitorsPDFFemale') }}">Download PDF</a>
+            </div>
+          </div>
+          <div class="row mt-4">
             <div class="col col-lg-4">
               <div class="top-streamers">
                   <div class="heading-section">
@@ -194,6 +205,17 @@ https://templatemo.com/tm-579-cyborg-gaming
                 @endforeach
                 </ul>
               </div>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="main-button col-lg-4 d-flex justify-content-center align-items-center">
+              <a href="{{ route('user.competitorsPDF20') }}">Download PDF</a>
+            </div>
+            <div class="main-button col-lg-4 d-flex justify-content-center align-items-center">
+              <a href="{{ route('user.competitorsPDF30') }}">Download PDF</a>
+            </div>
+            <div class="main-button col-lg-4 d-flex justify-content-center align-items-center">
+              <a href="{{ route('user.competitorsPDF40') }}">Download PDF</a>
             </div>
           </div>
  

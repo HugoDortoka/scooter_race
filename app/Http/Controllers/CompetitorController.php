@@ -9,6 +9,7 @@ use App\Models\Registration;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class CompetitorController extends Controller
 {
@@ -143,6 +144,54 @@ class CompetitorController extends Controller
     {
         Session::flush();
         return redirect()->route('user.home');
+    }
+
+    public function competitorsPDFGeneral(){
+        $competitors = Competitor::topGeneral();
+        
+        $pdf = Pdf::loadView('user.pdfCompetitors', compact('competitors'));
+        $fileName = 'competitors.pdf';
+        return $pdf->download($fileName);
+    }
+
+    public function competitorsPDFMale(){
+        $competitors = Competitor::topMale();
+    
+        $pdf = Pdf::loadView('user.pdfCompetitors', compact('competitors'));
+        $fileName = 'competitors.pdf';
+        return $pdf->download($fileName);
+    }
+
+    public function competitorsPDFFemale(){
+        $competitors = Competitor::topFemale();
+    
+        $pdf = Pdf::loadView('user.pdfCompetitors', compact('competitors'));
+        $fileName = 'competitors.pdf';
+        return $pdf->download($fileName);
+    }
+
+    public function competitorsPDF20(){
+        $competitors = Competitor::topMaster20();
+    
+        $pdf = Pdf::loadView('user.pdfCompetitors', compact('competitors'));
+        $fileName = 'competitors.pdf';
+        return $pdf->download($fileName);
+    }
+
+    public function competitorsPDF30(){
+        $competitors = Competitor::topMaster30();
+    
+        $pdf = Pdf::loadView('user.pdfCompetitors', compact('competitors'));
+        $fileName = 'competitors.pdf';
+        return $pdf->download($fileName);
+    }
+
+    public function competitorsPDF40(){
+        $competitors = Competitor::topMaster40();
+    
+        $pdf = Pdf::loadView('user.pdfCompetitors', compact('competitors'));
+        $fileName = 'competitors.pdf';
+        return $pdf->download($fileName);
     }
 
 
