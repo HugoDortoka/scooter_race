@@ -26,6 +26,7 @@ return new class extends Migration
             $table->decimal('sponsorship_cost', 8, 2);
             $table->decimal('registration_price', 8, 2);
             $table->boolean('active')->default(true);
+            $table->boolean('pointed')->default(false);
             $table->timestamps();
         });
 

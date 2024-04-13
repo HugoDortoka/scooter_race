@@ -50,6 +50,9 @@
                 @else
                     <a href="{{ route('admin.pdfParticipants', $course->id) }}" class="btn btn-pink btnAdd">View participants</a>
                     <a href="{{ route('admin.showQRs', $course->id) }}" class="btn btn-pink btnAdd">View QRs</a>
+                    @if (strtotime($course->date) <= time() && $course->pointed == 0)
+                        <a href="{{ route('admin.points', $course->id) }}" class="btn btn-pink btnAdd">Points</a>
+                    @endif
                     <div id="bodyList">
                         @foreach($competitors as $competitor)
 

@@ -5,6 +5,7 @@ use App\Models\Competitor;
 use App\Models\Membership;
 use App\Models\Sponsor;
 use App\Models\Registration;
+use App\Models\Course;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -194,5 +195,16 @@ class CompetitorController extends Controller
         return $pdf->download($fileName);
     }
 
-
+    public function points($idCourse){
+        $participants = Registration::participants($idCourse);
+        $max_points = 1000;
+        foreach ($participants as $participant) {
+            if ($max_points > 0) {
+                Competitor::updatePoints($participant->competitor_id, $max_points);
+                $max_points -= 100;
+            }
+        }
+        Course::updatePointed($idCourse);
+        return Redirect::route('admin.showParticipants', ['courseId' => $idCourse]);
+    }
 }

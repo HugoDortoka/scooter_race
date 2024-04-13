@@ -45,4 +45,11 @@ class Registration extends Model
                            ->get();
         return $repeat;
     }
+
+    public static function participants($course_id){
+        $participants = Registration::where('course_id', $course_id)
+                                ->orderBy('Finish_Time')
+                                ->get();
+        return $participants;
+    }
 }

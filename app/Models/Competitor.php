@@ -74,4 +74,9 @@ class Competitor extends Model
         ->get();
         return $competitors;
     }
+
+    public static  function updatePoints($competitor_id, $points){
+        Competitor::where('id', $competitor_id)
+                ->increment('points', $points);
+    }
 }

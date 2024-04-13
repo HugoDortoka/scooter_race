@@ -95,6 +95,7 @@ Route::post('/courses/{id}/addUploadPhotos', [PhotoController::class, 'addUpload
 //ADMIN
 Route::get('/adminCompetitors', [CompetitorController::class, 'index'])->name('admin.competitors');
 Route::get('/adminCompetitors/search', [CompetitorController::class, 'search'])->name('admin.competitorsSearch');
+Route::get('/points/{id}', [CompetitorController::class, 'points'])->name('admin.points');
 //USER
 Route::get('/competitors', [CompetitorController::class, 'competitors'])->name('user.competitors');
 Route::get('/profile', [CompetitorController::class, 'profile'])->name('user.profile');

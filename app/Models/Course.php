@@ -20,4 +20,9 @@ class Course extends Model
     {
         return self::findOrFail($id);
     }
+
+    public static  function updatePointed($idCourse){
+        Course::where('id', $idCourse)
+                ->update(['pointed' => 1]);
+    }
 }
