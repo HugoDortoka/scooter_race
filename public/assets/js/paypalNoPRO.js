@@ -28,11 +28,12 @@ document.getElementById('registerNoPRO-button').addEventListener('click', functi
         if (typeof discount !== 'undefined') {
             var discountAmount = (parseFloat(discount) / 100) * totalPrice;
             totalPrice -= discountAmount;
+            totalPrice = totalPrice.toFixed(2);
         }
         return actions.order.create({
         purchase_units: [{
             amount: {
-            value: totalPrice.toFixed(2),
+            value: totalPrice,
             }
         }]
         })
