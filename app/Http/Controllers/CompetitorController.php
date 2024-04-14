@@ -196,15 +196,18 @@ class CompetitorController extends Controller
     }
 
     public function points($idCourse){
-        $participants = Registration::participants($idCourse);
-        $max_points = 1000;
-        foreach ($participants as $participant) {
-            if ($max_points > 0) {
-                Competitor::updatePoints($participant->competitor_id, $max_points);
-                $max_points -= 100;
+        $course = Course::findOrFail($idCourse);
+        if ($course->pointed == 0) {
+            $participants = Registration::participants($idCourse);
+            $max_points = 1000;
+            foreach ($participants as $participant) {
+                if ($max_points > 0) {
+                    Competitor::updatePoints($participant->competitor_id, $max_points);
+                    $max_points -= 100;
+                }
             }
+            Course::updatePointed($idCourse);
         }
-        Course::updatePointed($idCourse);
         return Redirect::route('admin.showParticipants', ['courseId' => $idCourse]);
     }
 }
