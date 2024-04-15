@@ -53,23 +53,15 @@ https://templatemo.com/tm-579-cyborg-gaming
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="{{ route('user.home') }}" class="logo">
-                        <img src="assets/images/logo.png" alt="">
+                        <img src="{{ asset('assets/images/logo.png') }}" alt="logo">
                     </a>
                     <!-- ***** Logo End ***** -->
-                    <!-- ***** Search End ***** -->
-                    <div class="search-input">
-                      <form id="search" action="#">
-                        <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
-                        <i class="fa fa-search"></i>
-                      </form>
-                    </div>
-                    <!-- ***** Search End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li><a href="{{ route('user.home') }}" >Home</a></li>
                         <li><a href="{{ route('user.races') }}">Races</a></li>
                         <li><a href="{{ route('user.competitors') }}">Competitors</a></li>
-                        <li><a href="{{ route('user.profile') }}">Profile <img src="assets/images/profile-header.jpg" alt=""></a></li>
+                        <li><a href="{{ route('user.profile') }}">Profile <img src="{{ asset('assets/images/profile-header.jpg') }}" alt="profile"></a></li>
                     </ul>   
                     <a class='menu-trigger'>
                         <span>Menu</span>

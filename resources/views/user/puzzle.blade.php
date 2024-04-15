@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Puzzle game</title>
+		<title>Scooter Leveling</title>
 		<!-- Additional CSS Files -->
 		<link rel="stylesheet" href="{{ asset('assets/css/puzzle.css') }}">
 		<link rel="stylesheet" href="{{ asset('assets/css/user.css') }}">

@@ -8,7 +8,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <title>Cyborg - Awesome HTML5 Template</title>
+    <title>Scooter Leveling</title>
 
     <!-- CSS de Bootstrap -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -53,23 +53,15 @@ https://templatemo.com/tm-579-cyborg-gaming
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="{{ route('user.home') }}" class="logo">
-                        <img src="assets/images/logo.png" alt="">
+                        <img src="{{ asset('assets/images/logo.png') }}" alt="logo">
                     </a>
                     <!-- ***** Logo End ***** -->
-                    <!-- ***** Search End ***** -->
-                    <div class="search-input">
-                      <form id="search" action="#">
-                        <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
-                        <i class="fa fa-search"></i>
-                      </form>
-                    </div>
-                    <!-- ***** Search End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li><a href="{{ route('user.home') }}" >Home</a></li>
                         <li><a href="{{ route('user.races') }}">Races</a></li>
                         <li><a href="{{ route('user.competitors') }}" class="active">Competitors</a></li>
-                        <li><a href="{{ route('user.profile') }}">Profile <img src="assets/images/profile-header.jpg" alt=""></a></li>
+                        <li><a href="{{ route('user.profile') }}">Profile <img src="{{ asset('assets/images/profile-header.jpg') }}" alt="profile"></a></li>
                     </ul>   
                     <a class='menu-trigger'>
                         <span>Menu</span>
