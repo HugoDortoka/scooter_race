@@ -278,6 +278,25 @@ class CourseController extends Controller
         }
         
     }
+
+    public function win(){
+        $user = Session::get('user');
+        Competitor::where('id', $user->id)
+            ->update(['discount' => 1]);
+        $user2 = Competitor::findOrFail($user->id);
+        Session::put('user', $user2);
+        return Redirect::route('user.home');
+    }
+    public function lose(){
+        $user = Session::get('user');
+        Competitor::where('id', $user->id)
+            ->update(['discount' => 2]);
+        $user2 = Competitor::findOrFail($user->id);
+        Session::put('user', $user2);
+        return Redirect::route('user.home');
+        
+    }
+
     public function puzzle(){
         return view('user.puzzle');
     }

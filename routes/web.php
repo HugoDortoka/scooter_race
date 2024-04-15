@@ -63,6 +63,9 @@ Route::post('/registered/{id}', [CourseController::class, 'register'])->name('us
 Route::get('/registered/{id}', [CourseController::class, 'register2'])->name('user.register2');
 Route::post('/unregistered/{id}', [CourseController::class, 'register3'])->name('user.register3');
 Route::get('/dropout/{id}', [CourseController::class, 'dropOut'])->name('user.dropOut');
+Route::get('/win', [CourseController::class, 'win'])->name('user.win');
+Route::get('/lose', [CourseController::class, 'lose'])->name('user.lose');
+
 
 
 

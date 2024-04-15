@@ -7,7 +7,7 @@ const timerElement = document.getElementById("timer");
 const timeDisplay = document.getElementById("time");
 const piecesNumber = 18;
 let pieces;
-let timeLeft = 2; // 5 minutos en segundos
+let timeLeft = 300; // 5 minutos en segundos
 
 
 
@@ -147,7 +147,7 @@ function makeAnimationPieces() {
 		
 		// Redirigir a la página deseada después de 3.1 segundos (3100 milisegundos)
 		setTimeout(() => {
-			window.location.href = "/"; // Cambia esto por la URL de tu página en Laravel
+			window.location.href = "/win"; // Cambia esto por la URL de tu página en Laravel
 		}, 3100);
 		
 		clearInterval(timer);
@@ -176,7 +176,7 @@ function countdown() {
 		discountElement.style.top = "0px"; // Ajusta el estilo según sea necesario
 		// Redirigir a la página deseada después de 3.1 segundos (3100 milisegundos)
 		setTimeout(() => {
-			window.location.href = "/"; // Cambia esto por la URL de tu página en Laravel
+			window.location.href = "/lose"; // Cambia esto por la URL de tu página en Laravel
 		}, 3100);
 		
 		return;
