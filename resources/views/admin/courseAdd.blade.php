@@ -39,24 +39,16 @@
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
                         <a href="{{ route('admin.home') }}" class="logo">
-                            <img src="assets/images/logo.png" alt="">
+                            <img src="{{ asset('assets/images/logo.png') }}" alt="logo">
                         </a>
                         <!-- ***** Logo End ***** -->
-                        <!-- ***** Search End ***** -->
-                        <div class="search-input">
-                        <form id="search" action="#">
-                            <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
-                            <i class="fa fa-search"></i>
-                        </form>
-                        </div>
-                        <!-- ***** Search End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
                             <li><a href="{{ route('admin.home') }}" class="active">Races</a></li>
                             <li> <a href="{{ route('admin.insurers') }}">Insurers</a></li>
                             <li><a href="{{ route('admin.sponsors') }}">Sponsors</a></li>
                             <li><a href="{{ route('admin.competitors') }}">Competitors</a></li>
-                            <li><a href="{{ route('admin.logout') }}">Logout<img src="assets/images/profile-header.jpg" alt=""></a></li>
+                            <li><a href="{{ route('admin.logout') }}">Logout<img src="{{ asset('assets/images/profile-header.jpg') }}" alt="profile"></a></li>
                         </ul>   
                         <a class='menu-trigger'>
                             <span>Menu</span>

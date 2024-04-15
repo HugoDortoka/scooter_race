@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Código QR</title>
+    <title>QR code</title>
 </head>
 <body>
     <h2>Dorsal: {{$dorsalNumber}}</h2>

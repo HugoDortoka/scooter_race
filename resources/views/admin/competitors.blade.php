@@ -38,7 +38,7 @@
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="{{ route('admin.home') }}" class="logo">
-                        <img src="assets/images/logo.png" alt="">
+                        <img src="{{ asset('assets/images/logo.png') }}" alt="logo">
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Search End ***** -->
@@ -55,7 +55,7 @@
                         <li> <a href="{{ route('admin.insurers') }}">Insurers</a></li>
                         <li><a href="{{ route('admin.sponsors') }}">Sponsors</a></li>
                         <li><a href="{{ route('admin.competitors') }}" class="active">Competitors</a></li>
-                        <li><a href="{{ route('admin.logout') }}">Logout<img src="assets/images/profile-header.jpg" alt=""></a></li>
+                        <li><a href="{{ route('admin.logout') }}">Logout<img src="{{ asset('assets/images/profile-header.jpg') }}" alt="profile"></a></li>
                     </ul>   
                     <a class='menu-trigger'>
                         <span>Menu</span>
