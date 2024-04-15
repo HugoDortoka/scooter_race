@@ -236,17 +236,11 @@ class CourseController extends Controller
     }
     //USER
     public function races(){
-        $recents = Course::where('active', 1)
-                ->orderBy('date', 'desc')
-                ->orderBy('time', 'asc')
-                ->get();
+        $recents = Course::recentCourses();
 
-        $difficulties = Course::where('active', 1)
-                ->orderBy('elevation', 'desc')
-                ->take(3)
-                ->get();
+        $difficulties = Course::difficultCourses();
 
-        $sponsorsPrincipal = Sponsor::where('principal', 1)->get();
+        $sponsorsPrincipal = Sponsor::principal();
         return view('races', compact('recents', 'difficulties', 'sponsorsPrincipal'));
     }
     

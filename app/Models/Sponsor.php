@@ -22,4 +22,9 @@ class Sponsor extends Model
         return self::findOrFail($id);
     }
 
+    public static  function principal(){
+        $sponsorsPrincipal = Sponsor::where('principal', 1)->get();
+        return $sponsorsPrincipal;
+    }
+
 }

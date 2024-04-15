@@ -25,4 +25,20 @@ class Course extends Model
         Course::where('id', $idCourse)
                 ->update(['pointed' => 1]);
     }
+
+    public static  function recentCourses(){
+        $recents = Course::where('active', 1)
+                ->orderBy('date', 'desc')
+                ->orderBy('time', 'asc')
+                ->get();
+        return $recents;
+    }
+
+    public static  function difficultCourses(){
+        $difficulties = Course::where('active', 1)
+                ->orderBy('elevation', 'desc')
+                ->take(3)
+                ->get();
+        return $difficulties;
+    }
 }
