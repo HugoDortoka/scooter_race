@@ -93,10 +93,10 @@ https://templatemo.com/tm-579-cyborg-gaming
                       <div class="thumb">
                         <img src="{{ asset($recent->promotion_poster) }}" alt="{{ $recent->name }}">
                       </div>
-                      <h4>{{ $recent->name }}</h4>
+                      <h4>{{ $recent->name }}<br><span>Elevation</span></h4>
                       <ul>
-                          <li><i class="fa fa-eye"></i> {{ $recent->distance_km }} km</li>
-                          <li><i class="fa fa-gamepad"></i> {{ $recent->elevation }}%</li>
+                          <li><i class="fa fa-star"></i> {{ $recent->distance_km }} km</li>
+                          <li>{{ $recent->elevation }}%</li>
                       </ul>
                     </div>
                   @endforeach
