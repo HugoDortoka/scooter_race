@@ -338,6 +338,11 @@ class CourseController extends Controller
     public function register(Request $request, $id){
         if (Session::has('user')) {
             $user = Session::get('user');
+            Competitor::where('id', $user->id) ->update(['discount' => 2]);
+            $user2 = Competitor::findOrFail($user->id);
+            Session::put('user', $user2);
+            $user = Session::get('user');
+            
             $insurerId = $request->input('insurerId');
             //Generar dorsal
             $dorsalNumber = mt_rand(1000, 9999); // Generar un número aleatorio de 4 dígitos
@@ -415,6 +420,10 @@ class CourseController extends Controller
     }
     public function register2($id){
         if (Session::has('user')) {
+            $user = Session::get('user');
+            Competitor::where('id', $user->id) ->update(['discount' => 2]);
+            $user2 = Competitor::findOrFail($user->id);
+            Session::put('user', $user2);
             $user = Session::get('user');
             //Generar dorsal
             $dorsalNumber = mt_rand(1000, 9999); // Generar un número aleatorio de 4 dígitos

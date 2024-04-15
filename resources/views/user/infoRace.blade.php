@@ -287,6 +287,13 @@ https://templatemo.com/tm-579-cyborg-gaming
   <script src="{{ asset('assets/js/paypalPRO.js') }}"></script>
   <script src="{{ asset('assets/js/paypalNoPRO.js') }}"></script>
   <script src="{{ asset('assets/js/paypalNoRegister.js') }}"></script>
+  @if(isset($user))
+    @if($user->discount===1)
+      <script>
+        var discountPuzzle = 5;
+      </script>
+    @endif
+  @endif
   @if(isset($membership))
     <script>
       var discount = "{{ $membership->discount }}";

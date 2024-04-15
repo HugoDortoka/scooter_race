@@ -148,7 +148,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                       <ul>
                         <li><img src="{{ asset($myRegistration->map_image) }}" alt="{{ $myRegistration->name }}"  class="difficult"></li>
                         <li><h4>Race</h4><span>{{ $myRegistration->name }}</span></li>
-                        <li><h4>Date</h4><span>{{ $myRegistration->date }}</span></li>
+                        <li><h4>Date</h4><span>{{ date('d-m-Y', strtotime($myRegistration->date)) }}</span></li>
                         <li><h4>Location</h4><span>{{ $myRegistration->location }}</span></li>
                         <li><h4>Hour</h4><span>{{ $myRegistration->time }}</span></li>
                         <li><div class="main-border-button border-no-active"><a href="{{ route('user.dropOut', $myRegistration->id) }}">Drop out</a></div></li>
