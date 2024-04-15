@@ -7,7 +7,7 @@ const timerElement = document.getElementById("timer");
 const timeDisplay = document.getElementById("time");
 const piecesNumber = 18;
 let pieces;
-let timeLeft = 300; // 5 minutos en segundos
+let timeLeft = 2; // 5 minutos en segundos
 
 
 
@@ -138,12 +138,17 @@ function makeAnimationPieces() {
 		removePieces();
 
 		// Mostrar el código de descuento
-		const discountCode = "7AS23HJ";
+		const discountCode = "You've won a discount on the next race!";
 		discountElement.style.top = "0px";
 		discountElement.style.height = "100%";
-		discountElement.textContent = "Discount code: " + discountCode;
+		discountElement.textContent = discountCode;
 		// Puedes personalizar el estilo del elemento de descuento aquí si es necesario
 		document.body.appendChild(discountElement);
+		
+		// Redirigir a la página deseada después de 3.1 segundos (3100 milisegundos)
+		setTimeout(() => {
+			window.location.href = "/"; // Cambia esto por la URL de tu página en Laravel
+		}, 3100);
 		
 		clearInterval(timer);
 
@@ -169,6 +174,11 @@ function countdown() {
 		discountElement.textContent = "¡Has perdido!";
 		discountElement.style.height = "100%";
 		discountElement.style.top = "0px"; // Ajusta el estilo según sea necesario
+		// Redirigir a la página deseada después de 3.1 segundos (3100 milisegundos)
+		setTimeout(() => {
+			window.location.href = "/"; // Cambia esto por la URL de tu página en Laravel
+		}, 3100);
+		
 		return;
 	}
 	timeLeft--;

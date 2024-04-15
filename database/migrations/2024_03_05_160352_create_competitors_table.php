@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('password')->nullable();
             $table->char('sex', 1)->nullable();
             $table->integer('points')->default(0);
+            $table->integer('discount')->default(0);
             $table->timestamps();
         });
 
@@ -39,6 +40,7 @@ return new class extends Migration
             'password' => bcrypt('28148365E'),
             'sex' => 'm',
             'points' => 1000,
+            'discount' => 1,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
