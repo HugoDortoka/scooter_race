@@ -90,14 +90,16 @@ https://templatemo.com/tm-579-cyborg-gaming
                 <div class="owl-features owl-carousel">
                   @foreach($recents as $recent)
                     <div class="item">
-                      <div class="thumb">
-                        <img src="{{ asset($recent->promotion_poster) }}" alt="{{ $recent->name }}">
-                      </div>
-                      <h4>{{ $recent->name }}<br><span>Elevation</span></h4>
-                      <ul>
-                          <li><i class="fa fa-star"></i> {{ $recent->distance_km }} km</li>
-                          <li>{{ $recent->elevation }}%</li>
-                      </ul>
+                      <a href="{{ route('user.infoRace', $recent->id) }}">
+                        <div class="thumb">
+                          <img src="{{ asset($recent->promotion_poster) }}" alt="{{ $recent->name }}">
+                        </div>
+                        <h4>{{ $recent->name }}<br><span>Elevation</span></h4>
+                        <ul>
+                            <li><i class="fa fa-star"></i> {{ $recent->distance_km }} km</li>
+                            <li>{{ $recent->elevation }}%</li>
+                        </ul>
+                      </a>
                     </div>
                   @endforeach
                 </div>
@@ -110,11 +112,13 @@ https://templatemo.com/tm-579-cyborg-gaming
                 </div>
                 <ul>
                   @foreach($difficulties as $difficult)
-                    <li>
-                      <img src="{{ asset($difficult->map_image) }}" alt="{{ $difficult->name }}" class="templatemo-item difficult">
-                      <h4>{{ $difficult->name }}</h4>
-                      <h6>{{ $difficult->elevation }}%</h6>
-                    </li>
+                    <a href="{{ route('user.infoRace', $difficult->id) }}">
+                      <li>
+                        <img src="{{ asset($difficult->map_image) }}" alt="{{ $difficult->name }}" class="templatemo-item difficult">
+                        <h4>{{ $difficult->name }}</h4>
+                        <h6>{{ $difficult->elevation }}%</h6>
+                      </li>
+                    </a>  
                   @endforeach
                 </ul>
                 <div class="text-button">
