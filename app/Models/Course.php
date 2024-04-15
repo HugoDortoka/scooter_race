@@ -12,10 +12,6 @@ class Course extends Model
         'name', 'description', 'elevation', 'map_image', 'max_participants', 'distance_km', 'date', 'time', 'location', 'promotion_poster', 'sponsorship_cost', 'registration_price', 'active'
     ];
     
-    public static function viewAllCourses()
-    {
-        return self::all();
-    }
     public static function insurerById($id)
     {
         return self::findOrFail($id);
